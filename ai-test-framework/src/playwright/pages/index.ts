@@ -3,3 +3,5 @@ export { LoginPage } from './login.page';
 export { DashboardPage } from './dashboard.page';
 export { IncidentCreatePage } from './incident-create.page';
 export type { IncidentFormData } from './incident-create.page';
+export { CoiRequestPage } from './coi-request.page';
+export type { CoiFormData, CoiCoverageData } from './coi-request.page';

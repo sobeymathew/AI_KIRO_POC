@@ -2,6 +2,7 @@ import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
 import { DashboardPage } from '../pages/dashboard.page';
 import { IncidentCreatePage } from '../pages/incident-create.page';
+import { CoiRequestPage } from '../pages/coi-request.page';
 import { HeaderNavComponent } from '../components/header-nav.component';
 
 /**
@@ -12,6 +13,7 @@ type PageFixtures = {
   loginPage: LoginPage;
   dashboardPage: DashboardPage;
   incidentCreatePage: IncidentCreatePage;
+  coiRequestPage: CoiRequestPage;
   headerNav: HeaderNavComponent;
 };
 
@@ -29,6 +31,11 @@ export const test = base.extend<PageFixtures>({
   incidentCreatePage: async ({ page }, use) => {
     const incidentCreatePage = new IncidentCreatePage(page);
     await use(incidentCreatePage);
+  },
+
+  coiRequestPage: async ({ page }, use) => {
+    const coiRequestPage = new CoiRequestPage(page);
+    await use(coiRequestPage);
   },
 
   headerNav: async ({ page }, use) => {
