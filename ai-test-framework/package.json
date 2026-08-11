@@ -1,0 +1,41 @@
+{
+  "name": "ai-test-framework",
+  "version": "1.0.0",
+  "description": "Enterprise-grade AI-driven End-to-End Test Automation Framework",
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:sanity": "playwright test --grep @sanity",
+    "test:regression": "playwright test --grep @regression",
+    "test:e2e": "playwright test --grep @e2e",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "report:allure": "allure generate allure-results --clean -o allure-report && allure open allure-report",
+    "generate:report": "ts-node src/reporting/dashboards/dashboard-generator.ts",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "traceability": "ts-node src/test-case-management/traceability/rtm-generator.ts"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.45.0",
+    "allure-playwright": "^2.15.0",
+    "dotenv": "^16.4.0",
+    "winston": "^3.13.0",
+    "ajv": "^8.16.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/uuid": "^10.0.0",
+    "typescript": "^5.5.0",
+    "ts-node": "^10.9.0",
+    "eslint": "^9.5.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "prettier": "^3.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

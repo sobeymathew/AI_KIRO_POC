@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "lib": ["ES2022", "DOM"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["src/playwright/pages/*"],
+      "@components/*": ["src/playwright/components/*"],
+      "@fixtures/*": ["src/playwright/fixtures/*"],
+      "@utils/*": ["src/playwright/utils/*"],
+      "@test-data/*": ["src/test-data/*"],
+      "@config/*": ["src/config/*"],
+      "@reporting/*": ["src/reporting/*"],
+      "@web-scraping/*": ["src/web-scraping/*"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

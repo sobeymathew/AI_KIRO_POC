@@ -1,0 +1,52 @@
+[
+  {
+    "date": "2026-08-01",
+    "passRate": 92,
+    "totalTests": 48,
+    "passed": 44,
+    "failed": 3,
+    "skipped": 1,
+    "duration": 185000,
+    "environment": "staging"
+  },
+  {
+    "date": "2026-08-02",
+    "passRate": 95,
+    "totalTests": 48,
+    "passed": 46,
+    "failed": 2,
+    "skipped": 0,
+    "duration": 178000,
+    "environment": "staging"
+  },
+  {
+    "date": "2026-08-03",
+    "passRate": 89,
+    "totalTests": 52,
+    "passed": 46,
+    "failed": 5,
+    "skipped": 1,
+    "duration": 210000,
+    "environment": "staging"
+  },
+  {
+    "date": "2026-08-04",
+    "passRate": 96,
+    "totalTests": 52,
+    "passed": 50,
+    "failed": 1,
+    "skipped": 1,
+    "duration": 172000,
+    "environment": "staging"
+  },
+  {
+    "date": "2026-08-05",
+    "passRate": 98,
+    "totalTests": 55,
+    "passed": 54,
+    "failed": 1,
+    "skipped": 0,
+    "duration": 165000,
+    "environment": "staging"
+  }
+]

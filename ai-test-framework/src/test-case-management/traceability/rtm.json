@@ -1,0 +1,88 @@
+{
+  "title": "Requirement Traceability Matrix",
+  "version": "1.0.0",
+  "lastUpdated": "2026-08-05",
+  "entries": [
+    {
+      "requirementId": "REQ-0001",
+      "requirementTitle": "User Authentication",
+      "userStories": [
+        {
+          "storyId": "US-0001",
+          "title": "User Login with Email and Password",
+          "testCases": [
+            {
+              "testCaseId": "TC-0001",
+              "title": "Successful login with valid credentials",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/user-authentication.feature",
+              "automationScript": "tests/smoke/user-login.spec.ts",
+              "automationStatus": "AUTOMATED",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0002",
+              "title": "Failed login with invalid credentials",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/user-authentication.feature",
+              "automationScript": "tests/smoke/user-login.spec.ts",
+              "automationStatus": "AUTOMATED",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0003",
+              "title": "Email field validation",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/user-authentication-full.feature",
+              "automationScript": "tests/regression/user-login-regression.spec.ts",
+              "automationStatus": "AUTOMATED",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0004",
+              "title": "Password field validation",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/user-authentication-full.feature",
+              "automationScript": "tests/regression/user-login-regression.spec.ts",
+              "automationStatus": "AUTOMATED",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0005",
+              "title": "Complete user journey login to logout",
+              "category": "e2e",
+              "priority": "P0",
+              "featureFile": "features/e2e/user-complete-journey.feature",
+              "automationScript": "tests/e2e/user-journey.spec.ts",
+              "automationStatus": "AUTOMATED",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        }
+      ],
+      "coverageSummary": {
+        "totalTestCases": 5,
+        "automated": 5,
+        "manual": 0,
+        "pending": 0,
+        "coveragePercentage": 100
+      }
+    }
+  ],
+  "overallCoverage": {
+    "totalRequirements": 1,
+    "coveredRequirements": 1,
+    "totalTestCases": 5,
+    "automatedTestCases": 5,
+    "coveragePercentage": 100
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "page": "login",
+  "url": "https://milestoneitsm--fullcopy.sandbox.my.site.com/itsm/s/login/",
+  "title": "Login",
+  "discoveredAt": "2026-08-06T09:24:38.066Z",
+  "lastVerified": "2026-08-06T09:24:38.066Z",
+  "status": "VERIFIED",
+  "elementCount": 3,
+  "elements": {
+    "usernameInput": {
+      "name": "usernameInput",
+      "locator": "[placeholder=\"Username\"]",
+      "playwrightLocator": "page.getByPlaceholder('Username')",
+      "type": "text",
+      "strategy": "placeholder",
+      "description": "Username input field on login form",
+      "tagName": "input",
+      "attributes": {
+        "placeholder": "Username",
+        "type": "text",
+        "class": "inputBox input",
+        "required": "",
+        "aria-required": "true"
+      }
+    },
+    "passwordInput": {
+      "name": "passwordInput",
+      "locator": "[placeholder=\"Password\"]",
+      "playwrightLocator": "page.getByPlaceholder('Password')",
+      "type": "password",
+      "strategy": "placeholder",
+      "description": "Password input field on login form",
+      "tagName": "input",
+      "attributes": {
+        "placeholder": "Password",
+        "type": "password",
+        "class": "inputBox input",
+        "required": "",
+        "aria-required": "true"
+      }
+    },
+    "loginButton": {
+      "name": "loginButton",
+      "locator": "button:has-text(\"Log in\")",
+      "playwrightLocator": "page.getByRole('button', { name: 'Log in' })",
+      "type": "button",
+      "strategy": "role",
+      "description": "Log in button to submit credentials",
+      "tagName": "button",
+      "attributes": {
+        "type": "button",
+        "class": "slds-button slds-button--brand loginButton"
+      }
+    }
+  }
+}

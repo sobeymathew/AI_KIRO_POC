@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  test-runner:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      - ENV=staging
+      - BASE_URL=${BASE_URL:-http://host.docker.internal:3000}
+      - TEST_USER_EMAIL=${TEST_USER_EMAIL}
+      - TEST_USER_PASSWORD=${TEST_USER_PASSWORD}
+      - CI=true
+    volumes:
+      - ../src/reporting/artifacts:/app/src/reporting/artifacts
+      - ../allure-results:/app/allure-results
+    networks:
+      - test-network
+
+  allure-report:
+    image: frankescobar/allure-docker-service
+    ports:
+      - "5050:5050"
+    volumes:
+      - ../allure-results:/app/allure-results
+      - ../allure-reports:/app/default-reports
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 5
+      KEEP_HISTORY: 1
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge

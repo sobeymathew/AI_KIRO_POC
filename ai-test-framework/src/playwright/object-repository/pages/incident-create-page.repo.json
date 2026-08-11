@@ -1,0 +1,132 @@
+{
+  "page": "incident-create",
+  "url": "https://milestoneitsm--fullcopy.sandbox.my.site.com/itsm/s/incident/create",
+  "title": "Create Incident",
+  "discoveredAt": "2026-08-06T09:30:00.000Z",
+  "lastVerified": "2026-08-06T09:30:00.000Z",
+  "status": "TEMPLATE - Needs live verification",
+  "notes": "Locators based on Salesforce Lightning Web Component patterns. Run incident-page-extractor.ts with valid credentials to verify and update.",
+  "elementCount": 12,
+  "elements": {
+    "requestedByLookup": {
+      "name": "requestedByLookup",
+      "locator": "lightning-lookup[data-field='RequestedBy'], lightning-grouped-combobox[label='Requested By']",
+      "playwrightLocator": "page.getByLabel('Requested By')",
+      "type": "lookup",
+      "strategy": "label",
+      "description": "Requested By - user lookup field",
+      "tagName": "lightning-lookup",
+      "verified": false
+    },
+    "requestedForLookup": {
+      "name": "requestedForLookup",
+      "locator": "lightning-lookup[data-field='RequestedFor'], lightning-grouped-combobox[label='Requested For']",
+      "playwrightLocator": "page.getByLabel('Requested For')",
+      "type": "lookup",
+      "strategy": "label",
+      "description": "Requested For - user lookup field",
+      "tagName": "lightning-lookup",
+      "verified": false
+    },
+    "urgencyDropdown": {
+      "name": "urgencyDropdown",
+      "locator": "lightning-combobox[data-field='Urgency'], lightning-combobox[label='Urgency']",
+      "playwrightLocator": "page.getByLabel('Urgency')",
+      "type": "dropdown",
+      "strategy": "label",
+      "description": "Urgency dropdown selector",
+      "tagName": "lightning-combobox",
+      "verified": false
+    },
+    "categoryDropdown": {
+      "name": "categoryDropdown",
+      "locator": "lightning-combobox[data-field='Category'], lightning-combobox[label='Category']",
+      "playwrightLocator": "page.getByLabel('Category')",
+      "type": "dropdown",
+      "strategy": "label",
+      "description": "Category dropdown selector",
+      "tagName": "lightning-combobox",
+      "verified": false
+    },
+    "subCategoryDropdown": {
+      "name": "subCategoryDropdown",
+      "locator": "lightning-combobox[data-field='SubCategory'], lightning-combobox[label='Sub Category']",
+      "playwrightLocator": "page.getByLabel('Sub Category')",
+      "type": "dropdown",
+      "strategy": "label",
+      "description": "Sub Category dropdown (dependent on Category selection)",
+      "tagName": "lightning-combobox",
+      "verified": false
+    },
+    "briefDescriptionInput": {
+      "name": "briefDescriptionInput",
+      "locator": "lightning-input[data-field='BriefDescription'], lightning-input[label='Brief Description']",
+      "playwrightLocator": "page.getByLabel('Brief Description')",
+      "type": "text",
+      "strategy": "label",
+      "description": "Brief Description text input",
+      "tagName": "lightning-input",
+      "verified": false
+    },
+    "detailedDescriptionTextarea": {
+      "name": "detailedDescriptionTextarea",
+      "locator": "lightning-textarea[data-field='DetailedDescription'], lightning-textarea[label='Detailed Description']",
+      "playwrightLocator": "page.getByLabel('Detailed Description')",
+      "type": "textarea",
+      "strategy": "label",
+      "description": "Detailed Description text area / rich text",
+      "tagName": "lightning-textarea",
+      "verified": false
+    },
+    "attachmentUpload": {
+      "name": "attachmentUpload",
+      "locator": "lightning-file-upload, input[type='file']",
+      "playwrightLocator": "page.locator('lightning-file-upload')",
+      "type": "file-upload",
+      "strategy": "css",
+      "description": "Attachment file upload (optional field)",
+      "tagName": "lightning-file-upload",
+      "verified": false
+    },
+    "submitButton": {
+      "name": "submitButton",
+      "locator": "button:has-text('Submit'), lightning-button[label='Submit']",
+      "playwrightLocator": "page.getByRole('button', { name: 'Submit' })",
+      "type": "button",
+      "strategy": "role",
+      "description": "Submit button to create the incident",
+      "tagName": "button",
+      "verified": false
+    },
+    "successMessage": {
+      "name": "successMessage",
+      "locator": ".toastMessage, .slds-notify, [data-key='success']",
+      "playwrightLocator": "page.locator('.toastMessage')",
+      "type": "notification",
+      "strategy": "css",
+      "description": "Success toast/confirmation message after creation",
+      "tagName": "div",
+      "verified": false
+    },
+    "incidentNumberText": {
+      "name": "incidentNumberText",
+      "locator": ".incidentNumber, [data-field='IncidentNumber'], .slds-page-header__title",
+      "playwrightLocator": "page.locator('[data-field=\"IncidentNumber\"]')",
+      "type": "text-display",
+      "strategy": "css",
+      "description": "Generated Incident Number / Ticket ID",
+      "tagName": "span",
+      "verified": false
+    },
+    "incidentSearchInput": {
+      "name": "incidentSearchInput",
+      "locator": "input[placeholder*='Search'], lightning-input[label='Search']",
+      "playwrightLocator": "page.getByPlaceholder('Search')",
+      "type": "text",
+      "strategy": "placeholder",
+      "description": "Search input on Incident list page",
+      "tagName": "input",
+      "verified": false
+    }
+  }
+}

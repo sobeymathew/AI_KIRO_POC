@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment files with secrets
+src/config/.env.production
+src/test-data/environments/.env.*
+!src/test-data/environments/.env.template
+
+# Auth state
+src/test-data/environments/.auth-state.json
+
+# Test artifacts (generated)
+src/reporting/artifacts/screenshots/*
+src/reporting/artifacts/videos/*
+src/reporting/artifacts/traces/*
+src/reporting/artifacts/logs/*
+src/reporting/html/report/
+allure-results/
+allure-report/
+allure-history/
+test-results/
+
+# Web scraping generated
+src/web-scraping/screenshots/*
+src/web-scraping/metadata/*.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keep directory structure
+!**/.gitkeep
