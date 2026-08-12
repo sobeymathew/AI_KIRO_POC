@@ -2,6 +2,8 @@ import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
 import { DashboardPage } from '../pages/dashboard.page';
 import { IncidentCreatePage } from '../pages/incident-create.page';
+import { CoiRequestPage } from '../pages/coi-request.page';
+import { ExpenseRequestPage } from '../pages/expense-request.page';
 import { HeaderNavComponent } from '../components/header-nav.component';
 
 /**
@@ -12,28 +14,34 @@ type PageFixtures = {
   loginPage: LoginPage;
   dashboardPage: DashboardPage;
   incidentCreatePage: IncidentCreatePage;
+  coiRequestPage: CoiRequestPage;
+  expenseRequestPage: ExpenseRequestPage;
   headerNav: HeaderNavComponent;
 };
 
 export const test = base.extend<PageFixtures>({
   loginPage: async ({ page }, use) => {
-    const loginPage = new LoginPage(page);
-    await use(loginPage);
+    await use(new LoginPage(page));
   },
 
   dashboardPage: async ({ page }, use) => {
-    const dashboardPage = new DashboardPage(page);
-    await use(dashboardPage);
+    await use(new DashboardPage(page));
   },
 
   incidentCreatePage: async ({ page }, use) => {
-    const incidentCreatePage = new IncidentCreatePage(page);
-    await use(incidentCreatePage);
+    await use(new IncidentCreatePage(page));
+  },
+
+  coiRequestPage: async ({ page }, use) => {
+    await use(new CoiRequestPage(page));
+  },
+
+  expenseRequestPage: async ({ page }, use) => {
+    await use(new ExpenseRequestPage(page));
   },
 
   headerNav: async ({ page }, use) => {
-    const headerNav = new HeaderNavComponent(page);
-    await use(headerNav);
+    await use(new HeaderNavComponent(page));
   },
 });
 
