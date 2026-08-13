@@ -7,3 +7,5 @@ export { CoiRequestPage } from './coi-request.page';
 export type { CoiFormData, CoiCoverageData } from './coi-request.page';
 export { ExpenseRequestPage } from './expense-request.page';
 export type { ExpenseFormData } from './expense-request.page';
+export { FacilitiesRequestPage } from './facilities-request.page';
+export type { FacilitiesFormData } from './facilities-request.page';
