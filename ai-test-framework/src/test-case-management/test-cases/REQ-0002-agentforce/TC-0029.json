@@ -1,0 +1,49 @@
+{
+  "id": "TC-0029",
+  "name": "Verify adding comment to existing open ticket via assistant",
+  "objective": "Validate that a user can add information to an existing open ticket through the assistant and it is saved as a customer-visible comment.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open. User has an open ticket INC-12345.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0008",
+  "labels": ["regression", "p1", "agentforce", "ticket-update"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Request to add information to a specific ticket",
+      "testData": "\"I want to add information to INC-12345\"",
+      "expectedResult": "The assistant acknowledges and prompts for the information"
+    },
+    {
+      "step": 3,
+      "description": "Provide the additional information",
+      "testData": "\"The issue is now affecting all users on the 3rd floor\"",
+      "expectedResult": "The assistant processes the update"
+    },
+    {
+      "step": 4,
+      "description": "Verify the information is saved as a comment",
+      "testData": "",
+      "expectedResult": "The assistant confirms the comment was added to the ticket"
+    },
+    {
+      "step": 5,
+      "description": "Verify the assigned fulfiller receives notification",
+      "testData": "",
+      "expectedResult": "The assigned fulfiller is notified of the update"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

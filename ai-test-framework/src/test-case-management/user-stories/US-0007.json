@@ -1,0 +1,43 @@
+{
+  "id": "US-0007",
+  "requirementId": "REQ-0002",
+  "title": "Ticket Status Inquiry",
+  "story": "As a requestor, I want to ask about my existing tickets, so that I can receive updates without contacting the service desk.",
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0011",
+      "given": "I ask about my tickets",
+      "when": "the assistant retrieves my ticket information",
+      "then": "I can view a list of my open tickets including ticket number and status"
+    },
+    {
+      "id": "AC-0011a",
+      "given": "I ask about a specific ticket",
+      "when": "I provide a ticket number or description",
+      "then": "I can see the details for that specific ticket"
+    },
+    {
+      "id": "AC-0011b",
+      "given": "I ask about another user's ticket",
+      "when": "the assistant processes the request",
+      "then": "unauthorized ticket information is never disclosed"
+    },
+    {
+      "id": "AC-0011c",
+      "given": "I have no open tickets",
+      "when": "I ask about my tickets",
+      "then": "clear messaging is provided indicating no open tickets exist"
+    }
+  ],
+  "edgeCases": [
+    "User has 50+ open tickets",
+    "User asks about a ticket that was merged",
+    "User provides incorrect ticket number format",
+    "Ticket was recently closed and not yet visible",
+    "User asks about tickets from a previous account/role"
+  ],
+  "priority": "P1",
+  "complexity": "MEDIUM",
+  "estimatedTestCases": 6,
+  "status": "APPROVED"
+}

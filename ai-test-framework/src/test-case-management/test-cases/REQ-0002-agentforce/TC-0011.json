@@ -1,0 +1,43 @@
+{
+  "id": "TC-0011",
+  "name": "Verify assistant asks clarifying questions on low confidence input",
+  "objective": "Validate that when the user provides a vague or ambiguous description, the assistant asks clarifying questions to better understand the issue.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open after clicking the Agentforce icon.",
+  "category": "smoke",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0003",
+  "labels": ["smoke", "p0", "agentforce", "nlp"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Type a vague issue description",
+      "testData": "\"something is broken\"",
+      "expectedResult": "Message is submitted to the assistant"
+    },
+    {
+      "step": 3,
+      "description": "Verify the assistant asks clarifying questions",
+      "testData": "",
+      "expectedResult": "The assistant responds with one or more clarifying questions to understand what is broken"
+    },
+    {
+      "step": 4,
+      "description": "Respond to the clarifying question with more detail",
+      "testData": "\"My email application crashes when I open it\"",
+      "expectedResult": "The assistant maintains conversation context and now identifies the issue as an email/application problem"
+    }
+  ],
+  "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+  "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

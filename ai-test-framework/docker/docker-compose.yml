@@ -7,9 +7,9 @@ services:
       dockerfile: docker/Dockerfile
     environment:
       - ENV=staging
-      - BASE_URL=${BASE_URL:-http://host.docker.internal:3000}
-      - TEST_USER_EMAIL=${TEST_USER_EMAIL}
-      - TEST_USER_PASSWORD=${TEST_USER_PASSWORD}
+      - BASE_URL=${BASE_URL:-https://milestoneitsm--itsmcopy.sandbox.my.site.com/itsm/s/}
+      - APP_USERNAME=${APP_USERNAME}
+      - APP_PASSWORD=${APP_PASSWORD}
       - CI=true
     volumes:
       - ../src/reporting/artifacts:/app/src/reporting/artifacts

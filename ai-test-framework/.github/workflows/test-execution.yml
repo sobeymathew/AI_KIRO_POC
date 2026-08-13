@@ -1,4 +1,4 @@
-name: Test Automation Pipeline
+name: ITSM QA Test Automation Pipeline
 
 on:
   push:
@@ -27,7 +27,6 @@ on:
         options:
           - dev
           - staging
-          - production
 
 env:
   ENV: ${{ github.event.inputs.environment || 'staging' }}
@@ -56,8 +55,8 @@ jobs:
         run: npm run test:smoke
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
-          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
-          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+          APP_USERNAME: ${{ secrets.APP_USERNAME }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
 
       - name: Upload test results
         if: always()
@@ -95,8 +94,8 @@ jobs:
         run: npx playwright test --grep @regression --shard=${{ matrix.shard }}/4
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
-          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
-          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+          APP_USERNAME: ${{ secrets.APP_USERNAME }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
 
       - name: Upload test results
         if: always()
@@ -131,8 +130,8 @@ jobs:
         run: npm run test:e2e
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
-          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
-          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+          APP_USERNAME: ${{ secrets.APP_USERNAME }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
 
       - name: Upload test results
         if: always()

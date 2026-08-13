@@ -1,0 +1,37 @@
+{
+  "id": "TC-0034",
+  "name": "Verify high-confidence classification populates Category and Subcategory",
+  "objective": "Validate that when the AI has high confidence in classification, Category and Subcategory are auto-populated on the ticket.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0010",
+  "labels": ["regression", "p1", "agentforce", "categorization"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon and describe a clear, specific issue",
+      "testData": "\"I cannot connect to the corporate VPN from my laptop. Error: connection timeout.\"",
+      "expectedResult": "The assistant identifies this as a network/VPN issue with high confidence"
+    },
+    {
+      "step": 2,
+      "description": "Complete the ticket creation flow and confirm",
+      "testData": "",
+      "expectedResult": "Ticket is created successfully"
+    },
+    {
+      "step": 3,
+      "description": "Open the created ticket record and check classification fields",
+      "testData": "",
+      "expectedResult": "Category is populated (e.g., 'Network & Connectivity') and Subcategory is populated (e.g., 'VPN')"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

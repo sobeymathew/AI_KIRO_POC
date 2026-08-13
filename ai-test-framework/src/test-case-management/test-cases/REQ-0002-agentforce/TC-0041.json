@@ -1,0 +1,91 @@
+{
+  "id": "TC-0041",
+  "name": "E2E: Requestor creates an incident through conversational interaction",
+  "objective": "Validate the complete end-to-end journey where a user describes an issue conversationally, the assistant classifies it as an Incident, gathers details, creates the ticket after confirmation, and verifies source tracking, categorization, and routing.",
+  "precondition": "User has valid credentials. Routing rules and category mappings are configured.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002,US-0003,US-0005,US-0006,US-0009,US-0010,US-0011",
+  "labels": ["e2e", "p0", "agentforce", "incident-creation"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Log in to the self-service portal and navigate to home page",
+      "testData": "Valid portal credentials",
+      "expectedResult": "Home page loads with Agentforce icon visible"
+    },
+    {
+      "step": 2,
+      "description": "Click the Agentforce icon to open the AI Assistant",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 3,
+      "description": "Describe the issue in natural language",
+      "testData": "\"My email application has been crashing every time I open it since this morning\"",
+      "expectedResult": "The assistant identifies the intent as a system failure"
+    },
+    {
+      "step": 4,
+      "description": "Verify the assistant classifies the request as an Incident",
+      "testData": "",
+      "expectedResult": "Classification shown as 'Incident'"
+    },
+    {
+      "step": 5,
+      "description": "Provide additional details when asked",
+      "testData": "\"It affects Outlook on my Windows laptop, error code 0x800CCC0E\"",
+      "expectedResult": "The assistant maintains context and gathers all required information"
+    },
+    {
+      "step": 6,
+      "description": "Verify the assistant presents a summary for review",
+      "testData": "",
+      "expectedResult": "Summary displayed with description, category, and classification"
+    },
+    {
+      "step": 7,
+      "description": "Confirm the incident creation",
+      "testData": "Click confirm/submit",
+      "expectedResult": "Incident is created successfully"
+    },
+    {
+      "step": 8,
+      "description": "Verify incident number and link are displayed",
+      "testData": "",
+      "expectedResult": "Incident number (INC-XXXXX) and clickable link are shown"
+    },
+    {
+      "step": 9,
+      "description": "Open the created ticket and verify Source = Agentforce, Channel = Portal",
+      "testData": "",
+      "expectedResult": "Source field shows 'Agentforce', Channel shows 'Portal'"
+    },
+    {
+      "step": 10,
+      "description": "Verify Short Description and Description are generated from conversation",
+      "testData": "",
+      "expectedResult": "Fields contain AI-generated content from the conversation"
+    },
+    {
+      "step": 11,
+      "description": "Verify Category and Subcategory are populated",
+      "testData": "",
+      "expectedResult": "Category and Subcategory are auto-populated based on AI classification"
+    },
+    {
+      "step": 12,
+      "description": "Verify the ticket is routed to the appropriate resolver queue",
+      "testData": "",
+      "expectedResult": "Assignment Group corresponds to the correct resolver queue"
+    }
+  ],
+  "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
+  "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

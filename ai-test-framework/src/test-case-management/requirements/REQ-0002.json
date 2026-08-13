@@ -1,0 +1,44 @@
+{
+  "id": "REQ-0002",
+  "title": "Agentforce AI Assistant for Self-Service Portal and Service Management",
+  "description": "The system must provide an Agentforce AI Assistant accessible from the self-service portal and service management interface, enabling requestors to receive conversational assistance, raise and manage tickets without navigating forms, and enabling fulfillers to receive proactive AI-powered recommendations on incident records.",
+  "priority": "P0",
+  "risk": "HIGH",
+  "module": "Agentforce",
+  "status": "ACTIVE",
+  "acceptanceCriteria": [
+    "AC-0006: Agentforce AI Assistant is visible and accessible when the portal page loads",
+    "AC-0007: The assistant identifies user intent from natural language input",
+    "AC-0008: The assistant retrieves answers from relevant knowledge articles",
+    "AC-0009: The assistant gathers required information and creates incidents after user confirmation",
+    "AC-0010: Issues are correctly classified as Incidents or Service Requests",
+    "AC-0011: Users can view and inquire about their existing ticket status",
+    "AC-0012: Users can add information to existing tickets through the assistant",
+    "AC-0013: Tickets created by Agentforce are marked with Source = Agentforce",
+    "AC-0014: Classification fields are auto-populated from conversation data",
+    "AC-0015: Tickets are auto-routed to the correct resolver team",
+    "AC-0016: Authorized fulfillers can access Proactive Assistance on the Incident page"
+  ],
+  "nonFunctionalRequirements": [
+    "Assistant response time < 3 seconds for conversational interactions",
+    "Knowledge article retrieval < 2 seconds",
+    "Incident creation completes within 5 seconds of user confirmation",
+    "Supports concurrent user sessions without degradation",
+    "Conversation context maintained across multi-turn interactions",
+    "Agent availability SLA aligned with portal SLA"
+  ],
+  "dependencies": ["REQ-0001"],
+  "userStories": ["US-0002", "US-0003", "US-0004", "US-0005", "US-0006", "US-0007", "US-0008", "US-0009", "US-0010", "US-0011", "US-0012"],
+  "epicBreakdown": {
+    "AI Assistant Access & Conversation": ["US-0002", "US-0003"],
+    "Knowledge Management & Deflection": ["US-0004"],
+    "Ticket Creation & Classification": ["US-0005", "US-0006"],
+    "Ticket Management": ["US-0007", "US-0008"],
+    "Ticket Metadata & Reporting": ["US-0009"],
+    "AI Categorization & Routing": ["US-0010", "US-0011"],
+    "Proactive Assistance for Fulfillers": ["US-0012"]
+  },
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12",
+  "author": "Test Design Agent"
+}

@@ -1,0 +1,61 @@
+{
+  "id": "TC-0014",
+  "name": "Verify assistant creates incident after gathering information and confirmation",
+  "objective": "Validate that the AI Assistant gathers required information, presents a summary, and creates an incident only after user confirmation.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open.",
+  "category": "smoke",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0005",
+  "labels": ["smoke", "p0", "agentforce", "incident-creation"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Describe an issue to the assistant",
+      "testData": "\"My email is not working since this morning\"",
+      "expectedResult": "The assistant acknowledges the issue and may ask for more details"
+    },
+    {
+      "step": 3,
+      "description": "Provide additional details as requested by the assistant",
+      "testData": "\"It affects Outlook, showing connection error\"",
+      "expectedResult": "The assistant gathers all required information"
+    },
+    {
+      "step": 4,
+      "description": "Verify the assistant presents a summary before creation",
+      "testData": "",
+      "expectedResult": "A summary of the incident is displayed showing description, category, and other fields"
+    },
+    {
+      "step": 5,
+      "description": "Confirm the incident creation",
+      "testData": "Click confirm/submit",
+      "expectedResult": "The incident is created successfully"
+    },
+    {
+      "step": 6,
+      "description": "Verify the incident number is displayed",
+      "testData": "",
+      "expectedResult": "An incident number (e.g., INC-XXXXX) is displayed"
+    },
+    {
+      "step": 7,
+      "description": "Verify a link to the incident record is provided",
+      "testData": "",
+      "expectedResult": "A clickable link to the created incident record is shown"
+    }
+  ],
+  "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+  "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

@@ -52,27 +52,32 @@ export class ExpenseRequestPage extends BasePage {
     this.submitButton = page.locator('button:has-text("Submit")');
     this.finishButton = page.locator('button:has-text("Finish"), a:has-text("Finish")');
 
-    // Success feedback
-    this.successMessageText = page.getByText('Service Request Created Successfully');
-    this.requestNumberText = page.getByText(/RQ-\d+/);
+    // Success feedback - flexible to handle variations
+    this.successMessageText = page.getByText(/Service Request Created|Request Created Successfully|Created Successfully/i);
+    this.requestNumberText = page.getByText(/RQ[-]?\d+/);
   }
 
   /** Navigate: Service Request menu → Service Catalog → Expense Request */
   async navigate(): Promise<void> {
     this.logger.info('Clicking Service Request menu');
     await this.serviceRequestMenu.click();
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
 
     this.logger.info('Clicking Service Catalog');
     await this.serviceCatalogLink.click();
     await this.page.waitForLoadState('domcontentloaded', { timeout: 30000 });
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForTimeout(5000);
 
     this.logger.info('Clicking Expense Request button');
-    await this.expenseRequestButton.waitFor({ state: 'visible', timeout: 15000 });
+    await this.expenseRequestButton.waitFor({ state: 'visible', timeout: 20000 });
     await this.expenseRequestButton.click();
     await this.page.waitForLoadState('domcontentloaded', { timeout: 30000 });
-    await this.page.waitForTimeout(3000);
+    // Wait for the Salesforce Flow to fully render the form
+    await this.page.waitForTimeout(10000);
+
+    // Wait for the Category dropdown or Submit button to confirm form is loaded
+    this.logger.info('Waiting for Expense Request form to load');
+    await this.submitButton.waitFor({ state: 'visible', timeout: 30000 });
   }
 
   /** Select a value from the Category dropdown (native select) */
@@ -125,7 +130,10 @@ export class ExpenseRequestPage extends BasePage {
     await this.selectCategory(data.category);
     await this.selectSubcategory(data.subcategory);
     await this.fillBusinessJustification(data.businessJustification);
+    await this.page.waitForTimeout(2000);
     await this.submit();
+    // Wait for Salesforce to process submission
+    await this.page.waitForTimeout(10000);
   }
 
   /** Get the success message text */

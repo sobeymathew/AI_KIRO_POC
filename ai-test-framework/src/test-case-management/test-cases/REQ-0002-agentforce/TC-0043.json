@@ -1,0 +1,67 @@
+{
+  "id": "TC-0043",
+  "name": "E2E: Ambiguous request requires clarification before ticket creation",
+  "objective": "Validate the complete end-to-end journey where a user provides a vague description, the assistant asks clarifying questions across multiple turns, correctly classifies the request, and creates the ticket with full conversation context.",
+  "precondition": "User has valid credentials. Routing rules are configured for Identity and Access Management queue.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002,US-0003,US-0005,US-0006,US-0011",
+  "labels": ["e2e", "p0", "agentforce", "clarification"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Log in to the self-service portal and navigate to home page",
+      "testData": "Valid portal credentials",
+      "expectedResult": "Home page loads with Agentforce icon visible"
+    },
+    {
+      "step": 2,
+      "description": "Click the Agentforce icon to open the AI Assistant",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 3,
+      "description": "Describe an ambiguous issue",
+      "testData": "\"I have a problem with my account\"",
+      "expectedResult": "The assistant has low confidence and asks clarifying questions"
+    },
+    {
+      "step": 4,
+      "description": "Provide first clarification",
+      "testData": "\"I cannot log in to the HR system\"",
+      "expectedResult": "The assistant identifies access/authentication issue and asks further"
+    },
+    {
+      "step": 5,
+      "description": "Provide second clarification",
+      "testData": "\"I am getting an error saying my account is locked\"",
+      "expectedResult": "The assistant classifies this as an Incident"
+    },
+    {
+      "step": 6,
+      "description": "Verify the assistant gathers remaining details and presents summary",
+      "testData": "",
+      "expectedResult": "Complete summary is presented with all conversation context"
+    },
+    {
+      "step": 7,
+      "description": "Confirm the incident creation",
+      "testData": "Click confirm",
+      "expectedResult": "Incident is created with full conversation context"
+    },
+    {
+      "step": 8,
+      "description": "Verify the incident is routed to Identity and Access Management queue",
+      "testData": "",
+      "expectedResult": "Assignment Group shows Identity and Access Management queue"
+    }
+  ],
+  "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
+  "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

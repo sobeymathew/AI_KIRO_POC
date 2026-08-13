@@ -46,9 +46,11 @@ try {
 
 ### Locators
 ```typescript
-// Good - specific, stable
-page.getByTestId('login-submit')
-page.getByRole('button', { name: 'Submit' })
+// Good - Salesforce ITSM patterns (no data-testid in Salesforce)
+page.locator('[aria-label="Category"]')
+page.locator('a[href="/itsm/s/Incident-Form"]')
+page.locator('select[name="Urgency"]')
+page.locator('button:has-text("Submit")')
 
 // Bad - fragile, non-specific
 page.locator('div > div > button')

@@ -26,8 +26,8 @@ When asked to create test cases in Zephyr (e.g., "create test cases for KD-7 in 
 
 ```
 /Incident Management        — ITSM Incident module tests
-/OrangeHRM/Authentication   — Authentication tests
-/Postal API                 — API tests
+/Service Requests           — Service Catalog request tests
+/Agentforce AI              — AI Assistant tests
 ```
 
 Create new folders by module or feature when needed. Keep folder names concise and descriptive.
