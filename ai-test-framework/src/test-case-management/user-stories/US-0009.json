@@ -1,0 +1,36 @@
+{
+  "id": "US-0009",
+  "requirementId": "REQ-0002",
+  "title": "Record Ticket Creation Source",
+  "story": "As a fulfiller, I want to know that a ticket was created by Agentforce and through which channel, so that I understand the ticket's origin.",
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0013",
+      "given": "a ticket is created by the Agentforce AI Assistant",
+      "when": "the ticket record is viewed",
+      "then": "it is marked with Source = Agentforce"
+    },
+    {
+      "id": "AC-0013a",
+      "given": "a ticket is created via the AI Assistant",
+      "when": "the ticket record is viewed",
+      "then": "the originating channel (Portal or Teams) is stored and displayed"
+    },
+    {
+      "id": "AC-0013b",
+      "given": "fulfillers want to filter tickets by source",
+      "when": "they use reporting and filtering tools",
+      "then": "Agentforce-created tickets can be filtered and reported on"
+    }
+  ],
+  "edgeCases": [
+    "Ticket created via API fallback when assistant partially fails",
+    "Source field not editable by non-admin users",
+    "Reporting on tickets created across multiple channels",
+    "Ticket transferred between queues retains source information"
+  ],
+  "priority": "P1",
+  "complexity": "LOW",
+  "estimatedTestCases": 4,
+  "status": "APPROVED"
+}

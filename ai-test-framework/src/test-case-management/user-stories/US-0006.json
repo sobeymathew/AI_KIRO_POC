@@ -1,0 +1,43 @@
+{
+  "id": "US-0006",
+  "requirementId": "REQ-0002",
+  "title": "Record Type Classification",
+  "story": "As the AI Assistant, I want to determine whether a request is an Incident or Service Request, so that the correct ticket type is created.",
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0010",
+      "given": "the user describes a failure or outage",
+      "when": "the assistant classifies the request",
+      "then": "it is classified as an Incident"
+    },
+    {
+      "id": "AC-0010a",
+      "given": "the user requests access, equipment, or new services",
+      "when": "the assistant classifies the request",
+      "then": "it is classified as a Service Request"
+    },
+    {
+      "id": "AC-0010b",
+      "given": "the user describes an ambiguous request",
+      "when": "the assistant cannot determine the type",
+      "then": "it triggers clarification questions"
+    },
+    {
+      "id": "AC-0010c",
+      "given": "the assistant proposes a ticket type",
+      "when": "the user reviews the classification",
+      "then": "the user can review and correct the proposed ticket type before submission"
+    }
+  ],
+  "edgeCases": [
+    "Request that could be both incident and service request",
+    "User explicitly states the wrong ticket type",
+    "Description changes from incident to service request mid-conversation",
+    "Multiple issues described in a single message (one incident, one SR)",
+    "Jargon that could be misclassified"
+  ],
+  "priority": "P0",
+  "complexity": "HIGH",
+  "estimatedTestCases": 7,
+  "status": "APPROVED"
+}

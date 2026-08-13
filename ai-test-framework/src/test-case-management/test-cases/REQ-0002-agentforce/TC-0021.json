@@ -1,0 +1,43 @@
+{
+  "id": "TC-0021",
+  "name": "Verify user confirms resolution via knowledge article - ticket deflection",
+  "objective": "Validate that when a user confirms their issue is resolved by a knowledge article, no ticket is created and the interaction is logged as a deflection.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open. Assistant has provided a knowledge article answer.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0004",
+  "labels": ["regression", "p1", "agentforce", "knowledge", "deflection"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon and ask a question that returns a knowledge article",
+      "testData": "\"How do I connect to VPN from home\"",
+      "expectedResult": "AI Assistant provides a knowledge article answer"
+    },
+    {
+      "step": 2,
+      "description": "Confirm the issue is resolved",
+      "testData": "Click 'Yes, resolved' or say \"Yes that answers my question\"",
+      "expectedResult": "The assistant acknowledges the resolution"
+    },
+    {
+      "step": 3,
+      "description": "Verify no ticket is created",
+      "testData": "",
+      "expectedResult": "No incident number or ticket confirmation is shown"
+    },
+    {
+      "step": 4,
+      "description": "Verify the interaction is logged as a ticket deflection",
+      "testData": "",
+      "expectedResult": "The session is marked as resolved via knowledge (deflection)"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

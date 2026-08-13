@@ -1,0 +1,55 @@
+{
+  "id": "US-0012",
+  "requirementId": "REQ-0002",
+  "title": "Proactive Assistance on Incident Records",
+  "story": "As a fulfiller, I want to access Proactive Assistance directly on the Incident page, so that I can receive recommendations and investigate issues more effectively.",
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0016",
+      "given": "I am an authorized fulfiller on an Incident page",
+      "when": "I access the Proactive Assistance panel",
+      "then": "I can interact with the Agent and receive recommendations"
+    },
+    {
+      "id": "AC-0016a",
+      "given": "I interact with the Agent on the Incident page",
+      "when": "I ask a question",
+      "then": "the Agent responds within agreed performance expectations"
+    },
+    {
+      "id": "AC-0016b",
+      "given": "I request incident-related details",
+      "when": "the Agent processes my request",
+      "then": "relevant and accurate information is returned"
+    },
+    {
+      "id": "AC-0016c",
+      "given": "information is unavailable for the Agent to provide",
+      "when": "I ask a question",
+      "then": "an appropriate message is shown explaining unavailability"
+    },
+    {
+      "id": "AC-0016d",
+      "given": "I am not an authorized fulfiller",
+      "when": "I attempt to access Proactive Assistance",
+      "then": "access is restricted and I cannot interact with the Agent"
+    },
+    {
+      "id": "AC-0016e",
+      "given": "Proactive Assistance is loaded on the Incident page",
+      "when": "the page renders",
+      "then": "the Incident page performance and loading behavior are not negatively impacted"
+    }
+  ],
+  "edgeCases": [
+    "Agent suggests an action that conflicts with current incident state",
+    "Multiple fulfillers accessing Agent on the same incident simultaneously",
+    "Agent recommendation references a deleted knowledge article",
+    "Incident record is read-only (closed/resolved)",
+    "Agent session timeout during a complex investigation"
+  ],
+  "priority": "P0",
+  "complexity": "HIGH",
+  "estimatedTestCases": 8,
+  "status": "APPROVED"
+}

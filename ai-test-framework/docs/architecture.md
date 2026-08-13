@@ -2,69 +2,74 @@
 
 ## System Architecture
 
-The AI-Driven Test Automation Framework is built on four pillars:
+The ITSM QA Platform is built on four pillars optimized for Salesforce Experience Cloud testing:
 
 ### 1. Kiro AI Orchestration Layer
 
-The brain of the framework. Kiro steering documents define standards, and skills provide both role context and detailed process guidance for each capability.
+The intelligence layer. Kiro steering documents define standards, and workflows automate the full testing lifecycle from Jira ticket to passing tests.
 
 **Structure:**
-- `steering/` — Always-active standards and constraints
-- `skills/` — Capability definitions with role, process, rules, and templates
-- `prompts/` — Reusable prompt templates for common tasks
+- `steering/` — Framework standards, workflows, and constraints
+- `hooks/` — Event-driven automation (file saves, task completion)
+- `skills/` — Reusable capability definitions
 
-**Data Flow:**
+**Workflow:**
 ```
-User Input → Kiro reads steering + relevant skills → Executes process → Artifact Generation
+Jira Ticket → Kiro reads steering → Creates Zephyr test cases →
+  Generates feature file → Discovers locators via MCP Healer →
+    Builds page object → Writes test spec → Runs & heals → Reports
 ```
 
 ### 2. Test Case Management Module
 
 Manages the complete test design lifecycle:
-- Receives requirements (manual or from Jira/Confluence)
-- Decomposes into user stories
-- Generates test scenarios using test design techniques
-- Creates Gherkin feature files
-- Maintains bidirectional traceability
+- Receives requirements from Jira (via MCP integration)
+- Creates test cases in Zephyr Scale
+- Generates Gherkin feature files with traceability
+- Maintains bidirectional requirement traceability matrix (RTM)
 
-### 3. Web Scraping & Object Repository Module
+**Key integrations:**
+- Jira Cloud (project KD)
+- Zephyr Scale (test case management)
+- Feature files → Playwright test specs
 
-Provides application intelligence:
-- Crawls target applications to discover pages
-- Extracts interactive elements from DOM
-- Generates scored locator strategies
-- Maintains centralized object repository
-- Supports locator healing when elements change
+### 3. Playwright Automation Module
 
-### 4. Playwright Automation Module
+Executes tests against Salesforce ITSM portal:
+- **Page Object Model** with `BasePage` abstract class
+- **Fixture-based DI** for page object injection
+- **Auto-waiting** — no hard-coded waits
+- **Shadow DOM piercing** for LWC components
+- **Self-healing locators** via Playwright MCP healer
 
-Executes tests with modern best practices:
-- Page Object Model for maintainability
-- Fixture-based dependency injection
-- Auto-waiting assertions (no hard-coded waits)
-- Parallel execution with sharding
-- Multi-browser and mobile testing
+**Locator Discovery:**
+```
+Feature File → Playwright MCP navigates live page →
+  Inspects elements (pierces Shadow DOM) →
+    Tests interactions (fill/click/select) →
+      Stores verified locators in object-repository →
+        Builds Page Object → Writes Test Spec
+```
 
-### 5. Reporting & Analytics Module
+### 4. Reporting & Analytics Module
 
 Provides visibility into test health:
-- Real-time execution dashboards
-- Historical trend analysis
-- Failure root cause analysis
-- Flaky test detection and quarantine
-- Artifact management (screenshots, videos, traces)
+- Allure reports with full execution history
+- HTML dashboards for stakeholder visibility
+- Trend analysis across test runs
+- Artifact management (screenshots, videos, traces on failure)
 
 ## Integration Architecture
 
 ```
 ┌──────────┐     ┌──────────┐     ┌──────────┐
-│   Jira   │────▶│  RTM     │────▶│ Feature  │
-│  Tickets │     │ Generator│     │  Files   │
+│   Jira   │────▶│  Zephyr  │────▶│ Feature  │
+│  (KD-X)  │     │  Scale   │     │  Files   │
 └──────────┘     └──────────┘     └────┬─────┘
                                        │
 ┌──────────┐     ┌──────────┐         │
-│  App     │────▶│ Crawler  │         │
-│  (AUT)   │     │ /Scraper │         │
+│Salesforce│────▶│ MCP      │         │
+│ITSM Portal    │ Healer   │         │
 └──────────┘     └────┬─────┘         │
                       │               │
                       ▼               ▼
@@ -76,32 +81,60 @@ Provides visibility into test health:
                            ▼
               ┌──────────────────────────┐
               │    Playwright Tests       │
-              │  (Smoke/Sanity/Reg/E2E)  │
+              │  (Smoke/Regression/E2E)  │
               └────────────┬─────────────┘
                            │
               ┌────────────┼────────────┐
               ▼            ▼            ▼
        ┌──────────┐ ┌──────────┐ ┌──────────┐
        │  Allure  │ │  HTML    │ │  CI/CD   │
-       │  Report  │ │  Dash    │ │  Output  │
+       │  Report  │ │  Report  │ │  Output  │
        └──────────┘ └──────────┘ └──────────┘
 ```
 
-## Technology Decisions
+## Technology Stack
 
-| Decision | Choice | Rationale |
-|----------|--------|-----------|
-| Language | TypeScript | Type safety, IDE support, ecosystem |
-| Test Runner | Playwright | Modern, fast, multi-browser, auto-wait |
-| Reporting | Allure + Custom | Rich UI + customizable dashboards |
-| Scraping | Playwright + Cheerio | Reuse browser engine, static parse |
-| CI/CD | GitHub Actions | Native integration, matrix support |
-| Container | Docker | Reproducible environments |
+| Layer | Technology | Rationale |
+|-------|-----------|-----------|
+| Language | TypeScript (strict) | Type safety, IDE support, ecosystem |
+| Test Runner | Playwright ^1.45 | Modern, fast, auto-wait, Shadow DOM |
+| Reporting | Allure + Playwright HTML | Rich UI + integrated reports |
+| Locator Discovery | Playwright MCP Healer | Live page inspection, Shadow DOM piercing |
+| Logging | Winston | Structured, configurable logging |
+| CI/CD | GitHub Actions | Native integration, matrix sharding |
+| Container | Docker / Docker Compose | Reproducible environments |
+| Linting | ESLint + Prettier | Code consistency |
+| Test Design | Gherkin (BDD) | Business-readable scenarios |
+| Test Management | Zephyr Scale (Cloud) | Enterprise test case management |
+| Project Tracking | Jira Cloud | Requirement traceability |
 
-## Scalability Considerations
+## Salesforce-Specific Architecture Decisions
 
-- **Horizontal**: Shard tests across CI workers
-- **Vertical**: Increase worker count per machine
-- **Data**: JSON files scale, migrate to DB if needed
-- **Reports**: Historical data pruned after 90 days
-- **Crawling**: Rate-limited, incremental updates supported
+| Challenge | Solution |
+|-----------|----------|
+| Shadow DOM (LWC) | `deepQuery` function + Playwright's native piercing |
+| Slow page loads | `domcontentloaded` strategy + 120s test timeout |
+| Dynamic comboboxes | Click trigger → select `[data-value]` option |
+| No `data-testid` | `aria-label` > `a[href]` > `select[name]` > `input[name]` priority |
+| Network-heavy pages | Avoid `networkidle`, use element visibility waits |
+| Session management | Salesforce-managed auth via username/password |
+
+## Scalability
+
+- **Horizontal**: GitHub Actions matrix sharding (4 workers)
+- **Vertical**: Configurable worker count per environment
+- **Modularity**: Each ITSM module is a self-contained page object + spec
+- **Extensibility**: New modules follow the same pattern (page → fixture → spec)
+- **Self-healing**: MCP healer detects and fixes broken locators
+
+## ITSM Modules
+
+| Module | Status | Jira | Verified |
+|--------|--------|------|----------|
+| Incident Creation | Active | KD-7 | 2026-08-10 |
+| COI Request | Active | KD-8 | 2026-08-11 |
+| Facilities Request | Active | KD-9 | 2026-08-11 |
+| Expense Request | Active | — | 2026-08-11 |
+| Travel Request | Active | — | 2026-08-11 |
+| Request Assessments | Active | — | 2026-08-11 |
+| Agentforce AI Assistant | Design | — | — |

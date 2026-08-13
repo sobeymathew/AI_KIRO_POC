@@ -1,24 +1,21 @@
-import { test as base } from '@playwright/test';
+import { test as base, Page } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
-import { DashboardPage } from '../pages/dashboard.page';
 
 /**
  * Authentication fixture that provides a pre-authenticated browser context.
- * Uses storage state to skip login for tests that require authenticated state.
+ * Uses Salesforce ITSM portal authentication via username/password.
  */
 type AuthFixtures = {
-  authenticatedPage: DashboardPage;
+  authenticatedPage: Page;
 };
 
 export const test = base.extend<AuthFixtures>({
   authenticatedPage: async ({ browser }, use) => {
-    // Create a new context with stored auth state
     const context = await browser.newContext({
-      storageState: 'src/test-data/environments/.auth-state.json',
+      storageState: 'src/playwright/fixtures/.auth-state.json',
     });
     const page = await context.newPage();
-    const dashboardPage = new DashboardPage(page);
-    await use(dashboardPage);
+    await use(page);
     await context.close();
   },
 });
@@ -26,26 +23,29 @@ export const test = base.extend<AuthFixtures>({
 export { expect } from '@playwright/test';
 
 /**
- * Global setup to create authentication state.
+ * Global setup to create ITSM portal authentication state.
  * Run once before test suite to generate .auth-state.json
  */
 export async function globalAuthSetup(
   baseURL: string,
-  email: string,
+  username: string,
   password: string
 ): Promise<void> {
   const { chromium } = await import('@playwright/test');
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
-  await page.goto(`${baseURL}/login`);
+  await page.goto(baseURL);
   const loginPage = new LoginPage(page);
-  await loginPage.login(email, password);
-  await page.waitForURL('**/dashboard');
+  await loginPage.login(username, password);
+
+  // Wait for portal home page to load after login
+  await page.waitForLoadState('domcontentloaded');
+  await page.waitForTimeout(3000);
 
   // Save authentication state
   await page.context().storageState({
-    path: 'src/test-data/environments/.auth-state.json',
+    path: 'src/playwright/fixtures/.auth-state.json',
   });
 
   await browser.close();

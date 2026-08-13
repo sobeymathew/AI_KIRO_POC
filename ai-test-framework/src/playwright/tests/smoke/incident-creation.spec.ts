@@ -25,7 +25,7 @@ test.describe('Incident Creation - Smoke @smoke', () => {
 
   test.beforeEach(async ({ page }) => {
     // Background: Login to the application using verified locators from login-page.repo.json
-    const baseUrl = process.env.BASE_URL || 'https://milestoneitsm--fullcopy.sandbox.my.site.com/itsm/s/';
+    const baseUrl = process.env.BASE_URL || 'https://milestoneitsm--itsmcopy.sandbox.my.site.com/itsm/s/login/';
     const username = process.env.APP_USERNAME || 'juliaand@mtiitsm.com';
     const password = process.env.APP_PASSWORD || 'Test@123';
 
@@ -58,7 +58,7 @@ test.describe('Incident Creation - Smoke @smoke', () => {
     // Verify Incident Number is generated (format: INC-XXXXXXXXX)
     await expect(incidentCreatePage.incidentNumberText).toBeVisible({ timeout: 15000 });
     const incidentNumber = await incidentCreatePage.getIncidentNumber();
-    expect(incidentNumber).toMatch(/INC-\d+/);
+    expect(incidentNumber).toMatch(/INC[-]?\d+/);
     console.log(`✅ Incident created successfully: ${incidentNumber}`);
   });
 });

@@ -1,0 +1,43 @@
+{
+  "id": "TC-0025",
+  "name": "Verify user views list of open tickets via assistant",
+  "objective": "Validate that the user can ask about their tickets and see a list of open tickets with ticket numbers and statuses.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open. User has open tickets in the system.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0007",
+  "labels": ["regression", "p1", "agentforce", "ticket-status"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Ask about open tickets",
+      "testData": "\"What are my open tickets?\"",
+      "expectedResult": "Message is submitted"
+    },
+    {
+      "step": 3,
+      "description": "Verify the assistant displays a list of open tickets",
+      "testData": "",
+      "expectedResult": "A list of the user's open tickets is displayed"
+    },
+    {
+      "step": 4,
+      "description": "Verify each ticket shows ticket number and status",
+      "testData": "",
+      "expectedResult": "Each ticket in the list shows the ticket number (e.g., INC-12345) and current status (e.g., Open, In Progress)"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "TC-0038",
+  "name": "Verify no matching routing rule assigns ticket to default queue",
+  "objective": "Validate that when no routing keyword matches the ticket content, the ticket is assigned to the default queue.",
+  "precondition": "Routing rules are configured. Ticket content does not match any existing keyword.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0011",
+  "labels": ["regression", "p1", "agentforce", "routing"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create a ticket through the AI Assistant with content that doesn't match any routing keyword",
+      "testData": "\"My desk chair is broken\" (no matching routing rule)",
+      "expectedResult": "Ticket is created"
+    },
+    {
+      "step": 2,
+      "description": "Open the created ticket record",
+      "testData": "",
+      "expectedResult": "Ticket record is displayed"
+    },
+    {
+      "step": 3,
+      "description": "Verify the ticket is assigned to the default queue",
+      "testData": "",
+      "expectedResult": "Assignment Group shows the default/general support queue"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

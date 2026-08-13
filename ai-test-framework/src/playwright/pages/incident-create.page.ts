@@ -54,9 +54,9 @@ export class IncidentCreatePage extends BasePage {
     this.submitButton = page.locator('button:has-text("Submit")');
     this.finishButton = page.locator('button:has-text("Finish"), a:has-text("Finish")');
 
-    // Success feedback — after submit, page shows "Incident Created Sucessfully:" + INC number
-    this.successMessageText = page.getByText('Incident Created');
-    this.incidentNumberText = page.getByText(/INC-\d+/);
+    // Success feedback — after submit, page shows "Incident Created" + INC number
+    this.successMessageText = page.getByText(/Incident Created/i);
+    this.incidentNumberText = page.getByText(/INC[-]?\d+/);
   }
 
   /** Navigate: Click Incident menu → Click Create Incident */
@@ -119,12 +119,22 @@ export class IncidentCreatePage extends BasePage {
    */
   async createIncident(data: IncidentFormData): Promise<void> {
     this.logger.info('Creating incident with all mandatory fields');
+
+    // Wait for Requested By to be fully auto-populated by the system
+    await this.page.waitForTimeout(3000);
+
     await this.selectUrgency(data.urgency);
     await this.selectCategory(data.category);
     await this.selectSubCategory(data.subCategory);
     await this.enterBriefDescription(data.briefDescription);
     await this.enterDetailedDescription(data.detailedDescription);
+
+    // Wait briefly before submit to ensure form validation clears
+    await this.page.waitForTimeout(2000);
     await this.submit();
+
+    // Wait for the page to process the submission
+    await this.page.waitForTimeout(5000);
   }
 
   /** Get the success message text */

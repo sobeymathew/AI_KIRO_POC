@@ -1,0 +1,37 @@
+{
+  "id": "TC-0026",
+  "name": "Verify user requests details for a specific ticket",
+  "objective": "Validate that a user can ask about a specific ticket and receive its detailed status and assignment information.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open. User has an open ticket INC-12345.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0007",
+  "labels": ["regression", "p1", "agentforce", "ticket-status"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Ask about a specific ticket",
+      "testData": "\"What is the status of INC-12345?\"",
+      "expectedResult": "Message is submitted"
+    },
+    {
+      "step": 3,
+      "description": "Verify the assistant displays details for the specific ticket",
+      "testData": "",
+      "expectedResult": "The assistant shows ticket details including status, description, assigned team, and last update"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

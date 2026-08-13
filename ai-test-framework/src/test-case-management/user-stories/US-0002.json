@@ -1,0 +1,44 @@
+{
+  "id": "US-0002",
+  "requirementId": "REQ-0002",
+  "title": "Access AI Assistant from Self-Service Portal",
+  "story": "As a requestor, I want to access the Agentforce AI Assistant directly from the self-service portal, so that I can receive assistance and raise tickets without navigating through forms.",
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0006",
+      "given": "I am logged in and on the home page",
+      "when": "the home page loads",
+      "then": "the Agentforce icon is displayed on the home page"
+    },
+    {
+      "id": "AC-0006a",
+      "given": "the Agentforce icon is displayed on the home page",
+      "when": "I click the Agentforce icon",
+      "then": "the AI Assistant panel opens and the assistant greets me and explains its capabilities"
+    },
+    {
+      "id": "AC-0006b",
+      "given": "I am authenticated on the portal",
+      "when": "I click the Agentforce icon and interact with the assistant",
+      "then": "my identity is automatically recognized based on portal authentication"
+    },
+    {
+      "id": "AC-0006c",
+      "given": "the AI Assistant is unavailable",
+      "when": "I click the Agentforce icon",
+      "then": "I receive a clear message and an alternative method for raising a ticket"
+    }
+  ],
+  "edgeCases": [
+    "Assistant loads on slow network connections",
+    "Multiple browser tabs with the portal open simultaneously",
+    "Session timeout during assistant interaction",
+    "Portal accessed from mobile device",
+    "Assistant availability during maintenance window",
+    "User not authenticated attempts to access assistant"
+  ],
+  "priority": "P0",
+  "complexity": "MEDIUM",
+  "estimatedTestCases": 6,
+  "status": "APPROVED"
+}
