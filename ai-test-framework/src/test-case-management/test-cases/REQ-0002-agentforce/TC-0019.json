@@ -1,0 +1,43 @@
+{
+  "id": "TC-0019",
+  "name": "Verify conversation context is maintained across multiple turns",
+  "objective": "Validate that the assistant maintains conversation context when the user provides information across multiple messages.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0003",
+  "labels": ["regression", "p1", "agentforce", "nlp"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Describe an initial issue",
+      "testData": "\"I have a VPN issue\"",
+      "expectedResult": "The assistant acknowledges and asks for clarification"
+    },
+    {
+      "step": 3,
+      "description": "Provide follow-up information referencing the original context",
+      "testData": "\"It started after the update yesterday\"",
+      "expectedResult": "The assistant maintains context from the first message"
+    },
+    {
+      "step": 4,
+      "description": "Verify the response incorporates both messages",
+      "testData": "",
+      "expectedResult": "The assistant provides assistance relevant to VPN + update context combined"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

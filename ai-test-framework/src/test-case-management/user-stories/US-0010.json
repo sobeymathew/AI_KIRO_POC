@@ -1,0 +1,43 @@
+{
+  "id": "US-0010",
+  "requirementId": "REQ-0002",
+  "title": "AI-Powered Ticket Categorization",
+  "story": "As the AI Assistant, I want to populate classification fields from conversation data, so that fulfillers receive properly categorized tickets.",
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0014",
+      "given": "an incident is created from a conversation",
+      "when": "the ticket fields are populated",
+      "then": "Short Description and Description are generated from conversation content"
+    },
+    {
+      "id": "AC-0014a",
+      "given": "the AI has high confidence in the classification",
+      "when": "the ticket is created",
+      "then": "Category and Subcategory are populated automatically"
+    },
+    {
+      "id": "AC-0014b",
+      "given": "the AI has low confidence in the classification",
+      "when": "the ticket is created",
+      "then": "classification fields remain blank or are flagged for manual triage"
+    },
+    {
+      "id": "AC-0014c",
+      "given": "a fulfiller reviews an AI-categorized ticket",
+      "when": "they determine the classification needs adjustment",
+      "then": "they can override AI-generated classifications"
+    }
+  ],
+  "edgeCases": [
+    "Conversation with no clear category match",
+    "Multiple categories applicable to the same issue",
+    "Category/subcategory combination not valid in the system",
+    "Description generated exceeds field character limits",
+    "Conversation in non-English language"
+  ],
+  "priority": "P1",
+  "complexity": "HIGH",
+  "estimatedTestCases": 7,
+  "status": "APPROVED"
+}

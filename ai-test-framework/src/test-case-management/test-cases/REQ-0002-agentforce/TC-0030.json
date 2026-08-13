@@ -1,0 +1,43 @@
+{
+  "id": "TC-0030",
+  "name": "Verify attempt to update closed ticket provides explanation and new ticket option",
+  "objective": "Validate that when a user tries to update a closed ticket, the assistant explains it is closed and offers to create a new ticket.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open. User has a closed ticket INC-99999.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0008",
+  "labels": ["regression", "p1", "agentforce", "ticket-update"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Attempt to add information to a closed ticket",
+      "testData": "\"I want to update INC-99999\"",
+      "expectedResult": "The assistant retrieves the ticket status"
+    },
+    {
+      "step": 3,
+      "description": "Verify the assistant explains the ticket is closed",
+      "testData": "",
+      "expectedResult": "The assistant clearly states that INC-99999 is closed and cannot be updated"
+    },
+    {
+      "step": 4,
+      "description": "Verify the option to create a new ticket is offered",
+      "testData": "",
+      "expectedResult": "The assistant offers to create a new ticket instead"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

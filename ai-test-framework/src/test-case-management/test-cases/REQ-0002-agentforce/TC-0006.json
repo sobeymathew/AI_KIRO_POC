@@ -1,0 +1,43 @@
+{
+  "id": "TC-0006",
+  "name": "Verify Agentforce icon is visible on home page after login",
+  "objective": "Validate that the Agentforce AI Assistant icon is displayed on the home page when a user logs in to the self-service portal.",
+  "precondition": "User has valid portal credentials. Self-service portal is accessible.",
+  "category": "smoke",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["smoke", "p0", "agentforce", "access"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Navigate to the self-service portal login page",
+      "testData": "URL: https://milestoneitsm--fullcopy.sandbox.my.site.com/itsm/s/",
+      "expectedResult": "Login page is displayed with username and password fields"
+    },
+    {
+      "step": 2,
+      "description": "Enter valid credentials and click Log in",
+      "testData": "Valid portal username and password",
+      "expectedResult": "User is authenticated and redirected to the home page"
+    },
+    {
+      "step": 3,
+      "description": "Verify the home page has loaded completely",
+      "testData": "",
+      "expectedResult": "Home page is fully loaded with all elements visible"
+    },
+    {
+      "step": 4,
+      "description": "Verify the Agentforce icon is displayed on the home page",
+      "testData": "",
+      "expectedResult": "The Agentforce icon is visible and clickable on the home page"
+    }
+  ],
+  "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+  "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "TC-0017",
+  "name": "Verify request for access or equipment is classified as Service Request",
+  "objective": "Validate that when a user requests access, equipment, or new services, the assistant correctly classifies it as a Service Request.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open.",
+  "category": "smoke",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0006",
+  "labels": ["smoke", "p0", "agentforce", "classification"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Describe a request for access or equipment",
+      "testData": "\"I need access to the Finance shared drive\"",
+      "expectedResult": "Message is submitted to the assistant"
+    },
+    {
+      "step": 3,
+      "description": "Verify the assistant classifies the request as a Service Request",
+      "testData": "",
+      "expectedResult": "The assistant identifies this as a Service Request (not an Incident)"
+    },
+    {
+      "step": 4,
+      "description": "Verify the proposed ticket type is displayed to the user",
+      "testData": "",
+      "expectedResult": "The assistant communicates the classification as 'Service Request' before proceeding"
+    }
+  ],
+  "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+  "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

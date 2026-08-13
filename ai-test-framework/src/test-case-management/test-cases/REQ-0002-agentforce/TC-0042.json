@@ -1,0 +1,67 @@
+{
+  "id": "TC-0042",
+  "name": "E2E: Requestor checks ticket status and adds information",
+  "objective": "Validate the complete end-to-end journey where a user asks about their tickets, views the list, requests details for a specific ticket, and adds a comment to it.",
+  "precondition": "User has valid credentials. User has an existing open incident INC-12345 in the system.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002,US-0007,US-0008",
+  "labels": ["e2e", "p0", "agentforce", "ticket-management"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Log in to the self-service portal and navigate to home page",
+      "testData": "Valid portal credentials",
+      "expectedResult": "Home page loads with Agentforce icon visible"
+    },
+    {
+      "step": 2,
+      "description": "Click the Agentforce icon to open the AI Assistant",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 3,
+      "description": "Ask about open tickets",
+      "testData": "\"What is the status of my tickets?\"",
+      "expectedResult": "The assistant displays a list of open tickets including INC-12345"
+    },
+    {
+      "step": 4,
+      "description": "Ask for details about a specific ticket",
+      "testData": "\"Tell me more about INC-12345\"",
+      "expectedResult": "Detailed status and assignment information is displayed"
+    },
+    {
+      "step": 5,
+      "description": "Request to add information to the ticket",
+      "testData": "\"I want to add information to INC-12345\"",
+      "expectedResult": "The assistant prompts for the information to add"
+    },
+    {
+      "step": 6,
+      "description": "Provide the additional information",
+      "testData": "\"The issue is now affecting 5 more users on the same floor\"",
+      "expectedResult": "The assistant processes the update"
+    },
+    {
+      "step": 7,
+      "description": "Verify the comment is saved successfully",
+      "testData": "",
+      "expectedResult": "The assistant confirms the update was added as a customer-visible comment"
+    },
+    {
+      "step": 8,
+      "description": "Verify the assigned fulfiller receives a notification",
+      "testData": "",
+      "expectedResult": "Notification is sent to the assigned fulfiller about the update"
+    }
+  ],
+  "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
+  "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

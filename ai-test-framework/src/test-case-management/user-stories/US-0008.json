@@ -1,0 +1,37 @@
+{
+  "id": "US-0008",
+  "requirementId": "REQ-0002",
+  "title": "Add Information to Existing Tickets",
+  "story": "As a requestor, I want to add information to an existing ticket through the assistant, so that I can provide updates conversationally.",
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0012",
+      "given": "I provide additional information for an existing ticket",
+      "when": "the assistant processes the update",
+      "then": "the information is saved as a customer-visible comment"
+    },
+    {
+      "id": "AC-0012a",
+      "given": "a comment is added to a ticket",
+      "when": "the update is saved",
+      "then": "the assigned fulfiller receives a notification of the update"
+    },
+    {
+      "id": "AC-0012b",
+      "given": "I attempt to update a closed ticket",
+      "when": "the assistant processes my request",
+      "then": "I receive an explanation and an option to create a new ticket"
+    }
+  ],
+  "edgeCases": [
+    "Updating a ticket assigned to a different team",
+    "Adding an attachment through the assistant",
+    "Very long comment exceeding character limits",
+    "Updating a ticket that was escalated",
+    "Concurrent updates to the same ticket"
+  ],
+  "priority": "P1",
+  "complexity": "MEDIUM",
+  "estimatedTestCases": 5,
+  "status": "APPROVED"
+}

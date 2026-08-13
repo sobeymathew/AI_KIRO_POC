@@ -1,0 +1,51 @@
+{
+  "folder": "REQ-0002-agentforce",
+  "requirementId": "REQ-0002",
+  "title": "Agentforce AI Assistant for Self-Service Portal and Service Management",
+  "totalTestCases": 40,
+  "categories": {
+    "smoke": {
+      "count": 12,
+      "range": "TC-0006 to TC-0017",
+      "coverage": [
+        { "userStory": "US-0002", "testCases": ["TC-0006", "TC-0007", "TC-0008", "TC-0009"] },
+        { "userStory": "US-0003", "testCases": ["TC-0010", "TC-0011"] },
+        { "userStory": "US-0004", "testCases": ["TC-0012", "TC-0013"] },
+        { "userStory": "US-0005", "testCases": ["TC-0014", "TC-0015"] },
+        { "userStory": "US-0006", "testCases": ["TC-0016", "TC-0017"] }
+      ]
+    },
+    "regression": {
+      "count": 22,
+      "range": "TC-0018 to TC-0039",
+      "coverage": [
+        { "userStory": "US-0003", "testCases": ["TC-0018", "TC-0019", "TC-0020"] },
+        { "userStory": "US-0004", "testCases": ["TC-0021"] },
+        { "userStory": "US-0005", "testCases": ["TC-0022"] },
+        { "userStory": "US-0006", "testCases": ["TC-0023", "TC-0024"] },
+        { "userStory": "US-0007", "testCases": ["TC-0025", "TC-0026", "TC-0027", "TC-0028"] },
+        { "userStory": "US-0008", "testCases": ["TC-0029", "TC-0030"] },
+        { "userStory": "US-0009", "testCases": ["TC-0031", "TC-0032"] },
+        { "userStory": "US-0010", "testCases": ["TC-0033", "TC-0034", "TC-0035", "TC-0036"] },
+        { "userStory": "US-0011", "testCases": ["TC-0037", "TC-0038"] },
+        { "userStory": "US-0012", "testCases": ["TC-0039"] }
+      ]
+    },
+    "e2e": {
+      "count": 6,
+      "range": "TC-0040 to TC-0045",
+      "coverage": [
+        { "userStory": "US-0002,US-0003,US-0004", "testCases": ["TC-0040"], "journey": "Knowledge deflection" },
+        { "userStory": "US-0002,US-0003,US-0005,US-0006,US-0009,US-0010,US-0011", "testCases": ["TC-0041"], "journey": "Incident creation" },
+        { "userStory": "US-0002,US-0007,US-0008", "testCases": ["TC-0042"], "journey": "Ticket status & update" },
+        { "userStory": "US-0002,US-0003,US-0005,US-0006,US-0011", "testCases": ["TC-0043"], "journey": "Ambiguous request clarification" },
+        { "userStory": "US-0012", "testCases": ["TC-0044"], "journey": "Fulfiller proactive assistance" },
+        { "userStory": "US-0002,US-0004,US-0005", "testCases": ["TC-0045"], "journey": "Knowledge to ticket" }
+      ]
+    }
+  },
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12",
+  "zephyrSyncStatus": "NOT_SYNCED",
+  "author": "Test Design Agent"
+}

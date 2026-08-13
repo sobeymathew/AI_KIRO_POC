@@ -1,0 +1,43 @@
+{
+  "id": "TC-0018",
+  "name": "Verify out-of-scope request is identified with escalation path",
+  "objective": "Validate that the assistant clearly identifies out-of-scope requests and provides appropriate escalation paths.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0003",
+  "labels": ["regression", "p1", "agentforce", "nlp"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Describe a request that is outside the assistant's capabilities",
+      "testData": "\"What is the stock price of our company today?\"",
+      "expectedResult": "Message is submitted to the assistant"
+    },
+    {
+      "step": 3,
+      "description": "Verify the assistant identifies the request as out-of-scope",
+      "testData": "",
+      "expectedResult": "The assistant clearly communicates that this request is outside its capabilities"
+    },
+    {
+      "step": 4,
+      "description": "Verify appropriate escalation paths are provided",
+      "testData": "",
+      "expectedResult": "The assistant suggests alternative channels or contacts for the request"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

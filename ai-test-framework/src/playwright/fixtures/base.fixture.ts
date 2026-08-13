@@ -4,6 +4,7 @@ import { DashboardPage } from '../pages/dashboard.page';
 import { IncidentCreatePage } from '../pages/incident-create.page';
 import { CoiRequestPage } from '../pages/coi-request.page';
 import { ExpenseRequestPage } from '../pages/expense-request.page';
+import { TravelRequestPage } from '../pages/travel-request.page';
 import { HeaderNavComponent } from '../components/header-nav.component';
 
 /**
@@ -16,6 +17,7 @@ type PageFixtures = {
   incidentCreatePage: IncidentCreatePage;
   coiRequestPage: CoiRequestPage;
   expenseRequestPage: ExpenseRequestPage;
+  travelRequestPage: TravelRequestPage;
   headerNav: HeaderNavComponent;
 };
 
@@ -38,6 +40,10 @@ export const test = base.extend<PageFixtures>({
 
   expenseRequestPage: async ({ page }, use) => {
     await use(new ExpenseRequestPage(page));
+  },
+
+  travelRequestPage: async ({ page }, use) => {
+    await use(new TravelRequestPage(page));
   },
 
   headerNav: async ({ page }, use) => {

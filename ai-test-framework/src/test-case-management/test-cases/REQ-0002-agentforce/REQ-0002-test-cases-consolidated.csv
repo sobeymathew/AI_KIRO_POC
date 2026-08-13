@@ -1,0 +1,482 @@
+﻿Test Case ID,Name,Objective,Precondition,Category,Priority,Requirement ID,User Story ID,Labels,Steps,Test Data,Expected Results,Feature File,Automation Script,Automation Status
+"TC-0006","Verify Agentforce icon is visible on home page after login","Validate that the Agentforce AI Assistant icon is displayed on the home page when a user logs in to the self-service portal.","User has valid portal credentials. Self-service portal is accessible.","smoke","P0","REQ-0002","US-0002","smoke; p0; agentforce; access","1. Navigate to the self-service portal login page
+2. Enter valid credentials and click Log in
+3. Verify the home page has loaded completely
+4. Verify the Agentforce icon is displayed on the home page","1. URL: https://milestoneitsm--fullcopy.sandbox.my.site.com/itsm/s/
+2. Valid portal username and password
+3. -
+4. -","1. Login page is displayed with username and password fields
+2. User is authenticated and redirected to the home page
+3. Home page is fully loaded with all elements visible
+4. The Agentforce icon is visible and clickable on the home page","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0007","Verify AI Assistant opens and greets user when icon is clicked","Validate that clicking the Agentforce icon opens the AI Assistant panel and the assistant greets the user with a welcome message explaining its capabilities.","User is logged in and on the home page. Agentforce icon is visible.","smoke","P0","REQ-0002","US-0002","smoke; p0; agentforce; access","1. Verify the Agentforce icon is displayed on the home page
+2. Click the Agentforce icon
+3. Verify the assistant displays a greeting message
+4. Verify the assistant explains its capabilities","1. -
+2. -
+3. -
+4. -","1. Agentforce icon is visible on the home page
+2. The AI Assistant panel opens
+3. The assistant greets the user with a welcome message
+4. The assistant provides information about what it can help with (raise tickets, check status, knowledge articles, etc.)","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0008","Verify user identity is recognized from portal authentication","Validate that the AI Assistant automatically recognizes the user's identity based on portal authentication and addresses them by name.","User is logged in and on the home page. Agentforce icon is visible.","smoke","P0","REQ-0002","US-0002","smoke; p0; agentforce; access","1. Click the Agentforce icon on the home page
+2. Observe the greeting message from the assistant
+3. Verify the user identity is correctly recognized","1. -
+2. -
+3. Expected name matches the logged-in user's display name","1. The AI Assistant panel opens
+2. The assistant addresses the user by their name
+3. The user's identity is automatically recognized without requiring manual identification","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0009","Verify fallback message when AI Assistant is unavailable","Validate that when the Agentforce AI Assistant service is unavailable, the user receives a clear unavailability message and is provided an alternative method for raising a ticket.","User is logged in and on the home page. AI Assistant service is intentionally unavailable or simulated as down.","smoke","P0","REQ-0002","US-0002","smoke; p0; agentforce; access; error-handling","1. Ensure the AI Assistant service is unavailable (simulated or actual outage)
+2. Click the Agentforce icon on the home page
+3. Verify a clear unavailability message is displayed
+4. Verify an alternative method for raising a ticket is provided","1. -
+2. -
+3. -
+4. -","1. AI Assistant service is confirmed unavailable
+2. System attempts to load the AI Assistant
+3. User sees a clear message indicating the AI Assistant is currently unavailable
+4. User is given a link or instructions for an alternative way to raise a ticket (e.g., form link, email)","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0010","Verify assistant identifies intent from natural language input","Validate that the AI Assistant correctly identifies user intent when an issue is described in natural language.","User is logged in, on home page, AI Assistant panel is open after clicking the Agentforce icon.","smoke","P0","REQ-0002","US-0003","smoke; p0; agentforce; nlp","1. Click the Agentforce icon on the home page
+2. Type a natural language description of an issue in the assistant chat
+3. Verify the assistant identifies the intent
+4. Verify the assistant offers relevant assistance options","1. -
+2. ""My laptop cannot connect to the VPN""
+3. -
+4. -","1. AI Assistant panel opens
+2. Message is submitted to the assistant
+3. The assistant identifies the intent as a connectivity/VPN issue
+4. The assistant provides relevant next steps (knowledge article, create ticket, troubleshooting)","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0011","Verify assistant asks clarifying questions on low confidence input","Validate that when the user provides a vague or ambiguous description, the assistant asks clarifying questions to better understand the issue.","User is logged in, on home page, AI Assistant panel is open after clicking the Agentforce icon.","smoke","P0","REQ-0002","US-0003","smoke; p0; agentforce; nlp","1. Click the Agentforce icon on the home page
+2. Type a vague issue description
+3. Verify the assistant asks clarifying questions
+4. Respond to the clarifying question with more detail","1. -
+2. ""something is broken""
+3. -
+4. ""My email application crashes when I open it""","1. AI Assistant panel opens
+2. Message is submitted to the assistant
+3. The assistant responds with one or more clarifying questions to understand what is broken
+4. The assistant maintains conversation context and now identifies the issue as an email/application problem","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0012","Verify assistant resolves issue with knowledge article","Validate that the AI Assistant retrieves and displays a relevant knowledge article when the user asks a question that matches existing knowledge.","User is logged in, on home page, AI Assistant panel is open. Knowledge articles exist in the system.","smoke","P0","REQ-0002","US-0004","smoke; p0; agentforce; knowledge","1. Click the Agentforce icon on the home page
+2. Ask a question that matches an existing knowledge article
+3. Verify the assistant retrieves a relevant knowledge article
+4. Verify the source knowledge article is displayed with the response","1. -
+2. ""How do I reset my password""
+3. -
+4. -","1. AI Assistant panel opens
+2. Message is submitted to the assistant
+3. The assistant provides an answer sourced from a knowledge article
+4. The knowledge article title/link is shown as the source reference","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0013","Verify assistant offers ticket creation when knowledge is insufficient","Validate that when no relevant knowledge article exists, the assistant informs the user and offers to create a ticket.","User is logged in, on home page, AI Assistant panel is open. The issue described does not match any knowledge articles.","smoke","P0","REQ-0002","US-0004","smoke; p0; agentforce; knowledge","1. Click the Agentforce icon on the home page
+2. Describe an issue that has no matching knowledge article
+3. Verify the assistant indicates no relevant knowledge is available
+4. Verify the assistant offers to create a ticket","1. -
+2. ""My custom application XYZ-Widget is showing error code QR-9999""
+3. -
+4. -","1. AI Assistant panel opens
+2. Message is submitted to the assistant
+3. The assistant communicates that it could not find a matching knowledge article
+4. The assistant offers to create a ticket for further assistance","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0014","Verify assistant creates incident after gathering information and confirmation","Validate that the AI Assistant gathers required information, presents a summary, and creates an incident only after user confirmation.","User is logged in, on home page, AI Assistant panel is open.","smoke","P0","REQ-0002","US-0005","smoke; p0; agentforce; incident-creation","1. Click the Agentforce icon on the home page
+2. Describe an issue to the assistant
+3. Provide additional details as requested by the assistant
+4. Verify the assistant presents a summary before creation
+5. Confirm the incident creation
+6. Verify the incident number is displayed
+7. Verify a link to the incident record is provided","1. -
+2. ""My email is not working since this morning""
+3. ""It affects Outlook, showing connection error""
+4. -
+5. Click confirm/submit
+6. -
+7. -","1. AI Assistant panel opens
+2. The assistant acknowledges the issue and may ask for more details
+3. The assistant gathers all required information
+4. A summary of the incident is displayed showing description, category, and other fields
+5. The incident is created successfully
+6. An incident number (e.g., INC-XXXXX) is displayed
+7. A clickable link to the created incident record is shown","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0015","Verify assistant requests missing mandatory details before incident creation","Validate that the assistant does not create an incident until all mandatory details are provided, prompting the user for missing information.","User is logged in, on home page, AI Assistant panel is open.","smoke","P0","REQ-0002","US-0005","smoke; p0; agentforce; incident-creation","1. Click the Agentforce icon on the home page
+2. Describe an issue very briefly
+3. Verify the assistant requests additional mandatory details
+4. Verify no incident is created before all mandatory fields are provided","1. -
+2. ""network issue""
+3. -
+4. -","1. AI Assistant panel opens
+2. The assistant acknowledges but identifies missing mandatory fields
+3. The assistant asks for specific details (e.g., what exactly is the issue, when did it start, who is affected)
+4. No incident number or confirmation is shown; the assistant continues gathering information","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0016","Verify failure or outage is classified as Incident","Validate that when a user describes a failure, outage, or system malfunction, the assistant correctly classifies the request as an Incident.","User is logged in, on home page, AI Assistant panel is open.","smoke","P0","REQ-0002","US-0006","smoke; p0; agentforce; classification","1. Click the Agentforce icon on the home page
+2. Describe a system failure or outage
+3. Verify the assistant classifies the request as an Incident
+4. Verify the proposed ticket type is displayed to the user","1. -
+2. ""The CRM application is down and I cannot access any records""
+3. -
+4. -","1. AI Assistant panel opens
+2. Message is submitted to the assistant
+3. The assistant identifies this as an Incident (not a Service Request)
+4. The assistant communicates the classification as 'Incident' before proceeding","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0017","Verify request for access or equipment is classified as Service Request","Validate that when a user requests access, equipment, or new services, the assistant correctly classifies it as a Service Request.","User is logged in, on home page, AI Assistant panel is open.","smoke","P0","REQ-0002","US-0006","smoke; p0; agentforce; classification","1. Click the Agentforce icon on the home page
+2. Describe a request for access or equipment
+3. Verify the assistant classifies the request as a Service Request
+4. Verify the proposed ticket type is displayed to the user","1. -
+2. ""I need access to the Finance shared drive""
+3. -
+4. -","1. AI Assistant panel opens
+2. Message is submitted to the assistant
+3. The assistant identifies this as a Service Request (not an Incident)
+4. The assistant communicates the classification as 'Service Request' before proceeding","features/smoke/agentforce-ai-assistant.feature","tests/smoke/agentforce-assistant.spec.ts","PENDING"
+"TC-0018","Verify out-of-scope request is identified with escalation path","Validate that the assistant clearly identifies out-of-scope requests and provides appropriate escalation paths.","User is logged in, on home page, AI Assistant panel is open.","regression","P1","REQ-0002","US-0003","regression; p1; agentforce; nlp","1. Click the Agentforce icon on the home page
+2. Describe a request that is outside the assistant's capabilities
+3. Verify the assistant identifies the request as out-of-scope
+4. Verify appropriate escalation paths are provided","1. -
+2. ""What is the stock price of our company today?""
+3. -
+4. -","1. AI Assistant panel opens
+2. Message is submitted to the assistant
+3. The assistant clearly communicates that this request is outside its capabilities
+4. The assistant suggests alternative channels or contacts for the request","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0019","Verify conversation context is maintained across multiple turns","Validate that the assistant maintains conversation context when the user provides information across multiple messages.","User is logged in, on home page, AI Assistant panel is open.","regression","P1","REQ-0002","US-0003","regression; p1; agentforce; nlp","1. Click the Agentforce icon on the home page
+2. Describe an initial issue
+3. Provide follow-up information referencing the original context
+4. Verify the response incorporates both messages","1. -
+2. ""I have a VPN issue""
+3. ""It started after the update yesterday""
+4. -","1. AI Assistant panel opens
+2. The assistant acknowledges and asks for clarification
+3. The assistant maintains context from the first message
+4. The assistant provides assistance relevant to VPN + update context combined","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0020","Verify assistant handles input with typos and grammatical errors","Validate that the assistant can identify intent even when the user's input contains typos and grammatical errors.","User is logged in, on home page, AI Assistant panel is open.","regression","P1","REQ-0002","US-0003","regression; p1; agentforce; nlp","1. Click the Agentforce icon on the home page
+2. Type a message with typos and grammatical errors
+3. Verify the assistant identifies the intent despite errors
+4. Verify relevant assistance is provided","1. -
+2. ""my compter is not wrking and i cant acess email""
+3. -
+4. -","1. AI Assistant panel opens
+2. Message is submitted to the assistant
+3. The assistant identifies this as a computer/email issue
+4. The assistant provides relevant help options (knowledge article, create ticket, etc.)","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0021","Verify user confirms resolution via knowledge article - ticket deflection","Validate that when a user confirms their issue is resolved by a knowledge article, no ticket is created and the interaction is logged as a deflection.","User is logged in, on home page, AI Assistant panel is open. Assistant has provided a knowledge article answer.","regression","P1","REQ-0002","US-0004","regression; p1; agentforce; knowledge; deflection","1. Click the Agentforce icon and ask a question that returns a knowledge article
+2. Confirm the issue is resolved
+3. Verify no ticket is created
+4. Verify the interaction is logged as a ticket deflection","1. ""How do I connect to VPN from home""
+2. Click 'Yes, resolved' or say ""Yes that answers my question""
+3. -
+4. -","1. AI Assistant provides a knowledge article answer
+2. The assistant acknowledges the resolution
+3. No incident number or ticket confirmation is shown
+4. The session is marked as resolved via knowledge (deflection)","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0022","Verify user cancels during incident confirmation - no ticket created","Validate that when a user cancels during the incident confirmation step, no incident is created.","User is logged in, on home page, AI Assistant panel is open. Assistant has gathered information and presents a summary.","regression","P1","REQ-0002","US-0005","regression; p1; agentforce; incident-creation","1. Click the Agentforce icon and describe an issue to trigger incident creation flow
+2. When presented with the confirmation summary, cancel the creation
+3. Verify no incident is created
+4. Verify the assistant asks if further assistance is needed","1. ""My laptop is overheating and shutting down""
+2. Click 'Cancel' or say ""No, don't create it""
+3. -
+4. -","1. The assistant gathers details and presents a summary
+2. The incident creation is cancelled
+3. No incident number or record link is shown
+4. The assistant asks if the user needs help with anything else","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0023","Verify ambiguous request triggers clarification for ticket type","Validate that when a user describes an ambiguous request, the assistant asks clarifying questions to determine whether it is an Incident or Service Request.","User is logged in, on home page, AI Assistant panel is open.","regression","P1","REQ-0002","US-0006","regression; p1; agentforce; classification","1. Click the Agentforce icon on the home page
+2. Describe an ambiguous request
+3. Verify the assistant asks clarifying questions
+4. Provide clarification","1. -
+2. ""I need something done with my account""
+3. -
+4. ""I am locked out of my account""","1. AI Assistant panel opens
+2. Message is submitted
+3. The assistant asks what specifically is needed with the account (access issue, locked out, new access, etc.)
+4. The assistant now classifies this as an Incident and proceeds accordingly","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0024","Verify user can correct proposed ticket type before submission","Validate that the user can review and correct the proposed ticket type (Incident vs Service Request) before the ticket is created.","User is logged in, on home page, AI Assistant panel is open. Assistant has classified a request.","regression","P1","REQ-0002","US-0006","regression; p1; agentforce; classification","1. Click the Agentforce icon and describe an issue
+2. Indicate the classification should be different
+3. Verify the assistant updates the classification
+4. Verify the assistant proceeds with the corrected type","1. ""I need help with my email""
+2. ""Actually this is an incident, my email stopped working""
+3. -
+4. -","1. The assistant classifies the request (e.g., as Service Request)
+2. The assistant acknowledges the correction
+3. The ticket type is updated to Incident
+4. The assistant continues the ticket creation flow using the corrected classification","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0025","Verify user views list of open tickets via assistant","Validate that the user can ask about their tickets and see a list of open tickets with ticket numbers and statuses.","User is logged in, on home page, AI Assistant panel is open. User has open tickets in the system.","regression","P1","REQ-0002","US-0007","regression; p1; agentforce; ticket-status","1. Click the Agentforce icon on the home page
+2. Ask about open tickets
+3. Verify the assistant displays a list of open tickets
+4. Verify each ticket shows ticket number and status","1. -
+2. ""What are my open tickets?""
+3. -
+4. -","1. AI Assistant panel opens
+2. Message is submitted
+3. A list of the user's open tickets is displayed
+4. Each ticket in the list shows the ticket number (e.g., INC-12345) and current status (e.g., Open, In Progress)","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0026","Verify user requests details for a specific ticket","Validate that a user can ask about a specific ticket and receive its detailed status and assignment information.","User is logged in, on home page, AI Assistant panel is open. User has an open ticket INC-12345.","regression","P1","REQ-0002","US-0007","regression; p1; agentforce; ticket-status","1. Click the Agentforce icon on the home page
+2. Ask about a specific ticket
+3. Verify the assistant displays details for the specific ticket","1. -
+2. ""What is the status of INC-12345?""
+3. -","1. AI Assistant panel opens
+2. Message is submitted
+3. The assistant shows ticket details including status, description, assigned team, and last update","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0027","Verify unauthorized ticket information is not disclosed","Validate that the assistant does not disclose ticket information belonging to another user.","User is logged in, on home page, AI Assistant panel is open.","regression","P1","REQ-0002","US-0007","regression; p1; agentforce; ticket-status; security","1. Click the Agentforce icon on the home page
+2. Ask about a ticket that belongs to another user
+3. Verify the assistant does not disclose any information
+4. Verify the assistant informs user about access restriction","1. -
+2. ""What is the status of INC-99998?"" (ticket owned by a different user)
+3. -
+4. -","1. AI Assistant panel opens
+2. Message is submitted
+3. No ticket details are shown
+4. The assistant informs the user that they do not have access to that ticket","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0028","Verify clear message when user has no open tickets","Validate that the assistant provides a clear message when the user has no open tickets in the system.","User is logged in, on home page, AI Assistant panel is open. User has no open tickets.","regression","P1","REQ-0002","US-0007","regression; p1; agentforce; ticket-status","1. Click the Agentforce icon on the home page
+2. Ask about open tickets
+3. Verify the assistant provides a clear message about no tickets","1. -
+2. ""Show me my tickets""
+3. -","1. AI Assistant panel opens
+2. Message is submitted
+3. The assistant clearly states that no open tickets exist for the user","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0029","Verify adding comment to existing open ticket via assistant","Validate that a user can add information to an existing open ticket through the assistant and it is saved as a customer-visible comment.","User is logged in, on home page, AI Assistant panel is open. User has an open ticket INC-12345.","regression","P1","REQ-0002","US-0008","regression; p1; agentforce; ticket-update","1. Click the Agentforce icon on the home page
+2. Request to add information to a specific ticket
+3. Provide the additional information
+4. Verify the information is saved as a comment
+5. Verify the assigned fulfiller receives notification","1. -
+2. ""I want to add information to INC-12345""
+3. ""The issue is now affecting all users on the 3rd floor""
+4. -
+5. -","1. AI Assistant panel opens
+2. The assistant acknowledges and prompts for the information
+3. The assistant processes the update
+4. The assistant confirms the comment was added to the ticket
+5. The assigned fulfiller is notified of the update","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0030","Verify attempt to update closed ticket provides explanation and new ticket option","Validate that when a user tries to update a closed ticket, the assistant explains it is closed and offers to create a new ticket.","User is logged in, on home page, AI Assistant panel is open. User has a closed ticket INC-99999.","regression","P1","REQ-0002","US-0008","regression; p1; agentforce; ticket-update","1. Click the Agentforce icon on the home page
+2. Attempt to add information to a closed ticket
+3. Verify the assistant explains the ticket is closed
+4. Verify the option to create a new ticket is offered","1. -
+2. ""I want to update INC-99999""
+3. -
+4. -","1. AI Assistant panel opens
+2. The assistant retrieves the ticket status
+3. The assistant clearly states that INC-99999 is closed and cannot be updated
+4. The assistant offers to create a new ticket instead","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0031","Verify Agentforce-created ticket is marked with Source = Agentforce","Validate that tickets created via the AI Assistant have the Source field set to 'Agentforce' and channel stored as 'Portal'.","User is logged in, on home page, AI Assistant panel is open.","regression","P1","REQ-0002","US-0009","regression; p1; agentforce; source-tracking","1. Click the Agentforce icon and create a ticket through the assistant
+2. Navigate to the created ticket record
+3. Verify the Source field is set to 'Agentforce'
+4. Verify the originating channel is stored as 'Portal'","1. Describe an issue, confirm creation
+2. Click the incident link or open the ticket in the system
+3. -
+4. -","1. A ticket is created successfully with incident number displayed
+2. The ticket record is displayed
+3. Source field shows 'Agentforce'
+4. The channel field shows 'Portal'","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0032","Verify Agentforce tickets can be filtered in reports","Validate that fulfillers can filter and report on tickets created by Agentforce.","Tickets created by Agentforce exist in the system. Fulfiller has reporting access.","regression","P2","REQ-0002","US-0009","regression; p2; agentforce; source-tracking; reporting","1. Navigate to the ticket reporting/list view
+2. Apply filter: Source = Agentforce
+3. Verify only Agentforce-created tickets are displayed","1. -
+2. Filter by Source = 'Agentforce'
+3. -","1. Ticket list or report view is displayed
+2. Filter is applied successfully
+3. All displayed tickets have Source = Agentforce; no other tickets are shown","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0033","Verify Short Description and Description are generated from conversation","Validate that when the AI creates a ticket, the Short Description and Description fields are auto-generated from the conversation content.","User is logged in, on home page, AI Assistant panel is open.","regression","P1","REQ-0002","US-0010","regression; p1; agentforce; categorization","1. Click the Agentforce icon and describe a detailed issue
+2. Complete the ticket creation flow and confirm
+3. Open the created ticket record
+4. Verify the Short Description is generated from conversation
+5. Verify the full Description captures conversation details","1. ""My laptop keeps showing blue screen errors whenever I open Outlook. It started 2 days ago after the Windows update.""
+2. -
+3. -
+4. -
+5. -","1. The assistant processes the issue
+2. Ticket is created successfully
+3. The ticket record is displayed
+4. Short Description contains a concise summary of the issue (e.g., 'Blue screen error when opening Outlook')
+5. Description includes the detailed issue, context, and timeline from the conversation","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0034","Verify high-confidence classification populates Category and Subcategory","Validate that when the AI has high confidence in classification, Category and Subcategory are auto-populated on the ticket.","User is logged in, on home page, AI Assistant panel is open.","regression","P1","REQ-0002","US-0010","regression; p1; agentforce; categorization","1. Click the Agentforce icon and describe a clear, specific issue
+2. Complete the ticket creation flow and confirm
+3. Open the created ticket record and check classification fields","1. ""I cannot connect to the corporate VPN from my laptop. Error: connection timeout.""
+2. -
+3. -","1. The assistant identifies this as a network/VPN issue with high confidence
+2. Ticket is created successfully
+3. Category is populated (e.g., 'Network & Connectivity') and Subcategory is populated (e.g., 'VPN')","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0035","Verify low-confidence classification leaves fields for manual triage","Validate that when the AI has low confidence in classification, Category/Subcategory remain blank or are flagged for manual triage.","User is logged in, on home page, AI Assistant panel is open.","regression","P1","REQ-0002","US-0010","regression; p1; agentforce; categorization","1. Click the Agentforce icon and describe an ambiguous issue spanning multiple categories
+2. Complete the ticket creation flow and confirm
+3. Open the created ticket record and check classification fields","1. ""Something is wrong with my system, not sure if it's hardware or software""
+2. -
+3. -","1. The assistant processes the issue with low classification confidence
+2. Ticket is created
+3. Category and Subcategory are blank or flagged for manual triage","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0036","Verify fulfiller can override AI-generated classifications","Validate that fulfillers can modify the Category and Subcategory that were auto-populated by the AI.","A ticket exists with AI-populated Category and Subcategory. Fulfiller has edit permissions.","regression","P1","REQ-0002","US-0010","regression; p1; agentforce; categorization","1. Open a ticket that was created by Agentforce with AI-populated classification
+2. Edit the Category field
+3. Edit the Subcategory field
+4. Save the changes","1. -
+2. Change Category from 'Network & Connectivity' to 'Hardware'
+3. Change Subcategory to 'Laptop'
+4. -","1. Ticket record opens showing AI-generated Category and Subcategory
+2. Category field is editable and accepts the new value
+3. Subcategory field is editable and accepts the new value
+4. The overridden classifications are saved successfully","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0037","Verify ticket matching routing keywords is assigned to correct resolver queue","Validate that tickets with content matching configured routing keywords are automatically assigned to the corresponding resolver queue.","Routing rules are configured in the system (e.g., 'VPN' â†’ Network Support queue).","regression","P1","REQ-0002","US-0011","regression; p1; agentforce; routing","1. Create a ticket through the AI Assistant with content matching a routing keyword
+2. Open the created ticket record
+3. Verify the ticket is assigned to the correct resolver queue","1. ""I cannot connect to VPN"" (matches 'VPN' routing keyword)
+2. -
+3. -","1. Ticket is created
+2. Ticket record is displayed
+3. Assignment Group shows 'Network Support' (the queue mapped to 'VPN' keyword)","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0038","Verify no matching routing rule assigns ticket to default queue","Validate that when no routing keyword matches the ticket content, the ticket is assigned to the default queue.","Routing rules are configured. Ticket content does not match any existing keyword.","regression","P1","REQ-0002","US-0011","regression; p1; agentforce; routing","1. Create a ticket through the AI Assistant with content that doesn't match any routing keyword
+2. Open the created ticket record
+3. Verify the ticket is assigned to the default queue","1. ""My desk chair is broken"" (no matching routing rule)
+2. -
+3. -","1. Ticket is created
+2. Ticket record is displayed
+3. Assignment Group shows the default/general support queue","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0039","Verify authorized fulfiller accesses Proactive Assistance on Incident page","Validate that an authorized fulfiller can access and interact with the Proactive Assistance Agent on the Incident page.","Fulfiller is logged in with authorized role. An incident record exists and is assigned to the fulfiller.","regression","P1","REQ-0002","US-0012","regression; p1; agentforce; proactive-assist","1. Navigate to an assigned Incident record page
+2. Locate and access the Proactive Assistance panel
+3. Ask the Agent a question about the incident
+4. Verify the response is relevant and accurate","1. -
+2. -
+3. ""Are there similar incidents reported recently?""
+4. -","1. Incident page loads with all details
+2. The Proactive Assistance panel is available and accessible
+3. The Agent responds within performance expectations with relevant information
+4. The information returned is relevant to the incident context","features/regression/agentforce-ai-assistant-full.feature","tests/regression/agentforce-assistant-regression.spec.ts","PENDING"
+"TC-0040","E2E: Requestor resolves issue through knowledge article without ticket creation","Validate the complete end-to-end journey where a user logs in, opens the AI Assistant, asks a question, receives a knowledge article answer, confirms resolution, and no ticket is created (ticket deflection).","User has valid credentials. Knowledge articles exist in the system matching the user's question.","e2e","P0","REQ-0002","US-0002,US-0003,US-0004","e2e; p0; agentforce; knowledge-deflection","1. Log in to the self-service portal with valid credentials
+2. Verify the Agentforce icon is displayed on the home page
+3. Click the Agentforce icon
+4. Verify user identity is automatically recognized
+5. Describe the issue in natural language
+6. Verify a relevant knowledge article is retrieved and displayed
+7. Confirm that the article resolved the issue
+8. Verify no ticket is created
+9. Verify the interaction is logged as a ticket deflection
+10. Verify the assistant offers further assistance","1. Valid portal username and password
+2. -
+3. -
+4. -
+5. ""How do I connect to the corporate VPN from home""
+6. -
+7. Click 'Resolved' or confirm verbally
+8. -
+9. -
+10. -","1. User is authenticated and redirected to the home page
+2. Agentforce icon is visible on the home page
+3. AI Assistant panel opens with greeting and capability explanation
+4. The assistant addresses the user by name
+5. The assistant identifies intent as a VPN connectivity question
+6. Knowledge article answer is displayed with source reference
+7. The assistant acknowledges the resolution
+8. No incident number or ticket link is shown
+9. The session is recorded as a knowledge deflection
+10. The assistant asks if the user needs help with anything else","features/e2e/agentforce-ai-assistant-journeys.feature","tests/e2e/agentforce-journeys.spec.ts","PENDING"
+"TC-0041","E2E: Requestor creates an incident through conversational interaction","Validate the complete end-to-end journey where a user describes an issue conversationally, the assistant classifies it as an Incident, gathers details, creates the ticket after confirmation, and verifies source tracking, categorization, and routing.","User has valid credentials. Routing rules and category mappings are configured.","e2e","P0","REQ-0002","US-0002,US-0003,US-0005,US-0006,US-0009,US-0010,US-0011","e2e; p0; agentforce; incident-creation","1. Log in to the self-service portal and navigate to home page
+2. Click the Agentforce icon to open the AI Assistant
+3. Describe the issue in natural language
+4. Verify the assistant classifies the request as an Incident
+5. Provide additional details when asked
+6. Verify the assistant presents a summary for review
+7. Confirm the incident creation
+8. Verify incident number and link are displayed
+9. Open the created ticket and verify Source = Agentforce, Channel = Portal
+10. Verify Short Description and Description are generated from conversation
+11. Verify Category and Subcategory are populated
+12. Verify the ticket is routed to the appropriate resolver queue","1. Valid portal credentials
+2. -
+3. ""My email application has been crashing every time I open it since this morning""
+4. -
+5. ""It affects Outlook on my Windows laptop, error code 0x800CCC0E""
+6. -
+7. Click confirm/submit
+8. -
+9. -
+10. -
+11. -
+12. -","1. Home page loads with Agentforce icon visible
+2. AI Assistant panel opens
+3. The assistant identifies the intent as a system failure
+4. Classification shown as 'Incident'
+5. The assistant maintains context and gathers all required information
+6. Summary displayed with description, category, and classification
+7. Incident is created successfully
+8. Incident number (INC-XXXXX) and clickable link are shown
+9. Source field shows 'Agentforce', Channel shows 'Portal'
+10. Fields contain AI-generated content from the conversation
+11. Category and Subcategory are auto-populated based on AI classification
+12. Assignment Group corresponds to the correct resolver queue","features/e2e/agentforce-ai-assistant-journeys.feature","tests/e2e/agentforce-journeys.spec.ts","PENDING"
+"TC-0042","E2E: Requestor checks ticket status and adds information","Validate the complete end-to-end journey where a user asks about their tickets, views the list, requests details for a specific ticket, and adds a comment to it.","User has valid credentials. User has an existing open incident INC-12345 in the system.","e2e","P0","REQ-0002","US-0002,US-0007,US-0008","e2e; p0; agentforce; ticket-management","1. Log in to the self-service portal and navigate to home page
+2. Click the Agentforce icon to open the AI Assistant
+3. Ask about open tickets
+4. Ask for details about a specific ticket
+5. Request to add information to the ticket
+6. Provide the additional information
+7. Verify the comment is saved successfully
+8. Verify the assigned fulfiller receives a notification","1. Valid portal credentials
+2. -
+3. ""What is the status of my tickets?""
+4. ""Tell me more about INC-12345""
+5. ""I want to add information to INC-12345""
+6. ""The issue is now affecting 5 more users on the same floor""
+7. -
+8. -","1. Home page loads with Agentforce icon visible
+2. AI Assistant panel opens
+3. The assistant displays a list of open tickets including INC-12345
+4. Detailed status and assignment information is displayed
+5. The assistant prompts for the information to add
+6. The assistant processes the update
+7. The assistant confirms the update was added as a customer-visible comment
+8. Notification is sent to the assigned fulfiller about the update","features/e2e/agentforce-ai-assistant-journeys.feature","tests/e2e/agentforce-journeys.spec.ts","PENDING"
+"TC-0043","E2E: Ambiguous request requires clarification before ticket creation","Validate the complete end-to-end journey where a user provides a vague description, the assistant asks clarifying questions across multiple turns, correctly classifies the request, and creates the ticket with full conversation context.","User has valid credentials. Routing rules are configured for Identity and Access Management queue.","e2e","P0","REQ-0002","US-0002,US-0003,US-0005,US-0006,US-0011","e2e; p0; agentforce; clarification","1. Log in to the self-service portal and navigate to home page
+2. Click the Agentforce icon to open the AI Assistant
+3. Describe an ambiguous issue
+4. Provide first clarification
+5. Provide second clarification
+6. Verify the assistant gathers remaining details and presents summary
+7. Confirm the incident creation
+8. Verify the incident is routed to Identity and Access Management queue","1. Valid portal credentials
+2. -
+3. ""I have a problem with my account""
+4. ""I cannot log in to the HR system""
+5. ""I am getting an error saying my account is locked""
+6. -
+7. Click confirm
+8. -","1. Home page loads with Agentforce icon visible
+2. AI Assistant panel opens
+3. The assistant has low confidence and asks clarifying questions
+4. The assistant identifies access/authentication issue and asks further
+5. The assistant classifies this as an Incident
+6. Complete summary is presented with all conversation context
+7. Incident is created with full conversation context
+8. Assignment Group shows Identity and Access Management queue","features/e2e/agentforce-ai-assistant-journeys.feature","tests/e2e/agentforce-journeys.spec.ts","PENDING"
+"TC-0044","E2E: Fulfiller uses Proactive Assistance to investigate incident","Validate the complete end-to-end journey where a fulfiller navigates to an incident page, accesses the Proactive Assistance panel, asks questions about the incident, and receives relevant AI-powered recommendations.","Fulfiller is logged in with authorized role. An incident record exists and is assigned to the fulfiller. Proactive Assistance is enabled.","e2e","P0","REQ-0002","US-0012","e2e; p0; agentforce; proactive-assist","1. Log in as an authorized fulfiller
+2. Navigate to an assigned Incident record page
+3. Verify page performance is not impacted by Proactive Assistance
+4. Access the Proactive Assistance panel
+5. Ask about similar incidents
+6. Ask about related knowledge articles
+7. Ask about information the Agent cannot provide","1. Valid fulfiller credentials with appropriate role
+2. -
+3. -
+4. -
+5. ""Are there similar incidents reported recently?""
+6. ""What knowledge articles relate to this issue?""
+7. ""What is the user's personal phone number?""","1. Fulfiller is authenticated
+2. Incident page loads with all details
+3. Page loads within acceptable time; no performance degradation
+4. Proactive Assistance panel is available and opens
+5. Agent responds within performance expectations with relevant similar incidents
+6. Agent returns relevant and accurate knowledge article references
+7. An appropriate message is shown explaining the limitation","features/e2e/agentforce-ai-assistant-journeys.feature","tests/e2e/agentforce-journeys.spec.ts","PENDING"
+"TC-0045","E2E: Knowledge article insufficient leads to incident creation","Validate the complete end-to-end journey where a user asks a question, receives a knowledge article that doesn't resolve the issue, and the assistant seamlessly transitions to ticket creation with conversation history preserved.","User has valid credentials. Knowledge articles exist but may not fully resolve the specific issue.","e2e","P0","REQ-0002","US-0002,US-0004,US-0005","e2e; p0; agentforce; knowledge-to-ticket","1. Log in to the self-service portal and navigate to home page
+2. Click the Agentforce icon to open the AI Assistant
+3. Ask a question that returns a knowledge article
+4. Indicate the article did not resolve the issue
+5. Confirm desire to create a ticket
+6. Provide remaining required details as prompted
+7. Confirm incident creation
+8. Verify incident number and link are displayed
+9. Verify the knowledge article interaction is recorded in ticket history","1. Valid portal credentials
+2. -
+3. ""How do I fix the printer error on the 3rd floor""
+4. ""That didn't help"" or click 'Not resolved'
+5. ""Yes, please create a ticket""
+6. Location, urgency, additional context as requested
+7. Click confirm
+8. -
+9. -","1. Home page loads with Agentforce icon visible
+2. AI Assistant panel opens
+3. The assistant retrieves a relevant knowledge article about printer troubleshooting
+4. The assistant offers to create a ticket
+5. The assistant begins gathering additional details
+6. The assistant gathers all information and presents summary
+7. Incident is created with conversation history as context
+8. Incident number (INC-XXXXX) and link are shown
+9. Ticket description or history references the knowledge article that was tried","features/e2e/agentforce-ai-assistant-journeys.feature","tests/e2e/agentforce-journeys.spec.ts","PENDING"

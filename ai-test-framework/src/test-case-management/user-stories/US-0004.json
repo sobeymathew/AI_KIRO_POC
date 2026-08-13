@@ -1,0 +1,44 @@
+{
+  "id": "US-0004",
+  "requirementId": "REQ-0002",
+  "title": "Knowledge Article Resolution",
+  "story": "As a requestor, I want the assistant to answer questions using existing knowledge resources, so that simple issues can be resolved without creating tickets.",
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0008",
+      "given": "I describe an issue that matches existing knowledge articles",
+      "when": "the assistant processes my request",
+      "then": "it retrieves and displays answers from relevant knowledge articles"
+    },
+    {
+      "id": "AC-0008a",
+      "given": "the assistant provides a knowledge-based answer",
+      "when": "the response is displayed",
+      "then": "the source knowledge article is shown with the response"
+    },
+    {
+      "id": "AC-0008b",
+      "given": "the user confirms the issue is resolved by a knowledge article",
+      "when": "they acknowledge resolution",
+      "then": "no ticket is created and the interaction is logged as a ticket deflection"
+    },
+    {
+      "id": "AC-0008c",
+      "given": "no relevant knowledge exists or the issue remains unresolved",
+      "when": "the assistant cannot resolve the issue",
+      "then": "it offers ticket creation as the next step"
+    }
+  ],
+  "edgeCases": [
+    "Multiple knowledge articles match the query",
+    "Knowledge article is outdated or deprecated",
+    "User asks follow-up questions about the article",
+    "Knowledge base is temporarily unavailable",
+    "Article content is very long and complex",
+    "User explicitly requests ticket creation despite available knowledge"
+  ],
+  "priority": "P0",
+  "complexity": "HIGH",
+  "estimatedTestCases": 8,
+  "status": "APPROVED"
+}

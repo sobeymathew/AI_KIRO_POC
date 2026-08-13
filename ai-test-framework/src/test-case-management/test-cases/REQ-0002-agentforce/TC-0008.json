@@ -1,0 +1,37 @@
+{
+  "id": "TC-0008",
+  "name": "Verify user identity is recognized from portal authentication",
+  "objective": "Validate that the AI Assistant automatically recognizes the user's identity based on portal authentication and addresses them by name.",
+  "precondition": "User is logged in and on the home page. Agentforce icon is visible.",
+  "category": "smoke",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["smoke", "p0", "agentforce", "access"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "The AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Observe the greeting message from the assistant",
+      "testData": "",
+      "expectedResult": "The assistant addresses the user by their name"
+    },
+    {
+      "step": 3,
+      "description": "Verify the user identity is correctly recognized",
+      "testData": "Expected name matches the logged-in user's display name",
+      "expectedResult": "The user's identity is automatically recognized without requiring manual identification"
+    }
+  ],
+  "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+  "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

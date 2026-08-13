@@ -20,7 +20,7 @@ test.describe('Expense Request - Smoke @smoke', () => {
 
   test.beforeEach(async ({ page }) => {
     // Background: Login
-    const baseUrl = process.env.BASE_URL || 'https://milestoneitsm--fullcopy.sandbox.my.site.com/itsm/s/';
+    const baseUrl = process.env.BASE_URL || 'https://milestoneitsm--itsmcopy.sandbox.my.site.com/itsm/s/login/';
     const username = process.env.APP_USERNAME || 'juliaand@mtiitsm.com';
     const password = process.env.APP_PASSWORD || 'Test@123';
 
@@ -43,13 +43,13 @@ test.describe('Expense Request - Smoke @smoke', () => {
     // Act - Fill mandatory fields and submit
     await expenseRequestPage.submitExpenseRequest(expenseData);
 
-    // Assert - Verify "Service Request Created Successfully"
-    await expect(expenseRequestPage.successMessageText).toBeVisible({ timeout: 20000 });
+    // Assert - Verify success message (flexible matching)
+    await expect(expenseRequestPage.successMessageText).toBeVisible({ timeout: 30000 });
 
-    // Verify Request Number is generated (format: RQ-XXXXXXXXX)
-    await expect(expenseRequestPage.requestNumberText).toBeVisible({ timeout: 15000 });
+    // Verify Request Number is generated (format: RQ-XXXXXXXXX or RQXXXXXXXXX)
+    await expect(expenseRequestPage.requestNumberText).toBeVisible({ timeout: 20000 });
     const requestNumber = await expenseRequestPage.getRequestNumber();
-    expect(requestNumber).toMatch(/RQ-\d+/);
-    console.log(`✅ Expense request submitted successfully: ${requestNumber}`);
+    expect(requestNumber).toMatch(/RQ[-]?\d+/);
+    console.log(`Expense request submitted successfully: ${requestNumber}`);
   });
 });

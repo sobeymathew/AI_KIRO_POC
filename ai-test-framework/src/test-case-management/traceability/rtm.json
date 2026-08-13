@@ -1,7 +1,7 @@
 {
   "title": "Requirement Traceability Matrix",
-  "version": "1.0.0",
-  "lastUpdated": "2026-08-05",
+  "version": "2.0.0",
+  "lastUpdated": "2026-08-12",
   "entries": [
     {
       "requirementId": "REQ-0001",
@@ -76,13 +76,533 @@
         "pending": 0,
         "coveragePercentage": 100
       }
+    },
+    {
+      "requirementId": "REQ-0002",
+      "requirementTitle": "Agentforce AI Assistant for Self-Service Portal and Service Management",
+      "userStories": [
+        {
+          "storyId": "US-0002",
+          "title": "Access AI Assistant from Self-Service Portal",
+          "testCases": [
+            {
+              "testCaseId": "TC-0006",
+              "title": "AI Assistant is visible on portal page load",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0007",
+              "title": "AI Assistant greets user and explains capabilities",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0008",
+              "title": "User identity is recognized from portal authentication",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0009",
+              "title": "Fallback message when AI Assistant is unavailable",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        },
+        {
+          "storyId": "US-0003",
+          "title": "Natural Language Issue Understanding",
+          "testCases": [
+            {
+              "testCaseId": "TC-0010",
+              "title": "Assistant identifies intent from natural language input",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0011",
+              "title": "Assistant asks clarifying questions on low confidence",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0012",
+              "title": "Out-of-scope request identified with escalation path",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0013",
+              "title": "Conversation context maintained across multiple turns",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        },
+        {
+          "storyId": "US-0004",
+          "title": "Knowledge Article Resolution",
+          "testCases": [
+            {
+              "testCaseId": "TC-0014",
+              "title": "Assistant resolves issue with knowledge article",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0015",
+              "title": "Assistant offers ticket creation when knowledge is insufficient",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0016",
+              "title": "User confirms resolution - ticket deflection logged",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0017",
+              "title": "E2E: Requestor resolves issue through knowledge article",
+              "category": "e2e",
+              "priority": "P0",
+              "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
+              "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        },
+        {
+          "storyId": "US-0005",
+          "title": "Conversational Incident Creation",
+          "testCases": [
+            {
+              "testCaseId": "TC-0018",
+              "title": "Assistant creates incident after confirmation",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0019",
+              "title": "Assistant requests missing mandatory details",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0020",
+              "title": "User cancels during incident confirmation",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0021",
+              "title": "E2E: Requestor creates incident through conversation",
+              "category": "e2e",
+              "priority": "P0",
+              "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
+              "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        },
+        {
+          "storyId": "US-0006",
+          "title": "Record Type Classification",
+          "testCases": [
+            {
+              "testCaseId": "TC-0022",
+              "title": "Failure or outage classified as Incident",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0023",
+              "title": "Access request classified as Service Request",
+              "category": "smoke",
+              "priority": "P0",
+              "featureFile": "features/smoke/agentforce-ai-assistant.feature",
+              "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0024",
+              "title": "Ambiguous request triggers clarification",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0025",
+              "title": "User can correct proposed ticket type",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        },
+        {
+          "storyId": "US-0007",
+          "title": "Ticket Status Inquiry",
+          "testCases": [
+            {
+              "testCaseId": "TC-0026",
+              "title": "User views list of open tickets",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0027",
+              "title": "User requests details for a specific ticket",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0028",
+              "title": "Unauthorized ticket information is not disclosed",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0029",
+              "title": "E2E: Requestor checks ticket status and adds information",
+              "category": "e2e",
+              "priority": "P0",
+              "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
+              "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        },
+        {
+          "storyId": "US-0008",
+          "title": "Add Information to Existing Tickets",
+          "testCases": [
+            {
+              "testCaseId": "TC-0030",
+              "title": "Add comment to existing open ticket",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0031",
+              "title": "Attempt to update a closed ticket",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0032",
+              "title": "E2E: Closed ticket update redirects to new ticket",
+              "category": "e2e",
+              "priority": "P1",
+              "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
+              "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        },
+        {
+          "storyId": "US-0009",
+          "title": "Record Ticket Creation Source",
+          "testCases": [
+            {
+              "testCaseId": "TC-0033",
+              "title": "Agentforce-created ticket marked with correct source",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0034",
+              "title": "Agentforce tickets can be filtered in reports",
+              "category": "regression",
+              "priority": "P2",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        },
+        {
+          "storyId": "US-0010",
+          "title": "AI-Powered Ticket Categorization",
+          "testCases": [
+            {
+              "testCaseId": "TC-0035",
+              "title": "Short Description and Description generated from conversation",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0036",
+              "title": "High-confidence classification populates Category and Subcategory",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0037",
+              "title": "Low-confidence classification leaves fields for manual triage",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0038",
+              "title": "Fulfiller can override AI-generated classifications",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        },
+        {
+          "storyId": "US-0011",
+          "title": "Intelligent Ticket Routing",
+          "testCases": [
+            {
+              "testCaseId": "TC-0039",
+              "title": "Ticket matching routing keywords assigned to correct queue",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0040",
+              "title": "Multiple matching rules applies highest-priority rule",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0041",
+              "title": "No matching rule assigns to default queue",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        },
+        {
+          "storyId": "US-0012",
+          "title": "Proactive Assistance on Incident Records",
+          "testCases": [
+            {
+              "testCaseId": "TC-0042",
+              "title": "Authorized fulfiller accesses Proactive Assistance",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0043",
+              "title": "Unauthorized user cannot access Proactive Assistance",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0044",
+              "title": "Incident page performance not impacted",
+              "category": "regression",
+              "priority": "P1",
+              "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+              "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            },
+            {
+              "testCaseId": "TC-0045",
+              "title": "E2E: Fulfiller uses Proactive Assistance to investigate incident",
+              "category": "e2e",
+              "priority": "P0",
+              "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
+              "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+              "automationStatus": "PENDING",
+              "lastExecutionResult": "PENDING",
+              "lastExecutionDate": null
+            }
+          ]
+        }
+      ],
+      "coverageSummary": {
+        "totalTestCases": 40,
+        "automated": 0,
+        "manual": 0,
+        "pending": 40,
+        "coveragePercentage": 100
+      }
     }
   ],
   "overallCoverage": {
-    "totalRequirements": 1,
-    "coveredRequirements": 1,
-    "totalTestCases": 5,
+    "totalRequirements": 2,
+    "coveredRequirements": 2,
+    "totalTestCases": 45,
     "automatedTestCases": 5,
+    "pendingAutomation": 40,
     "coveragePercentage": 100
   }
 }

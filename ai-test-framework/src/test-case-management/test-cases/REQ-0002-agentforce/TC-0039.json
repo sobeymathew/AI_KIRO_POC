@@ -1,0 +1,43 @@
+{
+  "id": "TC-0039",
+  "name": "Verify authorized fulfiller accesses Proactive Assistance on Incident page",
+  "objective": "Validate that an authorized fulfiller can access and interact with the Proactive Assistance Agent on the Incident page.",
+  "precondition": "Fulfiller is logged in with authorized role. An incident record exists and is assigned to the fulfiller.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0012",
+  "labels": ["regression", "p1", "agentforce", "proactive-assist"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Navigate to an assigned Incident record page",
+      "testData": "",
+      "expectedResult": "Incident page loads with all details"
+    },
+    {
+      "step": 2,
+      "description": "Locate and access the Proactive Assistance panel",
+      "testData": "",
+      "expectedResult": "The Proactive Assistance panel is available and accessible"
+    },
+    {
+      "step": 3,
+      "description": "Ask the Agent a question about the incident",
+      "testData": "\"Are there similar incidents reported recently?\"",
+      "expectedResult": "The Agent responds within performance expectations with relevant information"
+    },
+    {
+      "step": 4,
+      "description": "Verify the response is relevant and accurate",
+      "testData": "",
+      "expectedResult": "The information returned is relevant to the incident context"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

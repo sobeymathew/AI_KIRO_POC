@@ -1,0 +1,43 @@
+{
+  "id": "TC-0024",
+  "name": "Verify user can correct proposed ticket type before submission",
+  "objective": "Validate that the user can review and correct the proposed ticket type (Incident vs Service Request) before the ticket is created.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open. Assistant has classified a request.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0006",
+  "labels": ["regression", "p1", "agentforce", "classification"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon and describe an issue",
+      "testData": "\"I need help with my email\"",
+      "expectedResult": "The assistant classifies the request (e.g., as Service Request)"
+    },
+    {
+      "step": 2,
+      "description": "Indicate the classification should be different",
+      "testData": "\"Actually this is an incident, my email stopped working\"",
+      "expectedResult": "The assistant acknowledges the correction"
+    },
+    {
+      "step": 3,
+      "description": "Verify the assistant updates the classification",
+      "testData": "",
+      "expectedResult": "The ticket type is updated to Incident"
+    },
+    {
+      "step": 4,
+      "description": "Verify the assistant proceeds with the corrected type",
+      "testData": "",
+      "expectedResult": "The assistant continues the ticket creation flow using the corrected classification"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}
