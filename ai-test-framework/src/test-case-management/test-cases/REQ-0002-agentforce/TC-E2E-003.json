@@ -1,0 +1,74 @@
+{
+  "id": "TC-E2E-003",
+  "name": "E2E: Fulfiller uses Agentforce in Salesforce console to manage incident",
+  "objective": "Validate that a fulfiller can use Agentforce inside Salesforce to locate, summarize, update, and resolve an incident.",
+  "precondition": "Fulfiller is logged into Salesforce. Incident INC-000001518 exists. Agentforce is enabled for fulfillers.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0012",
+  "labels": ["e2e", "p0", "agentforce", "fulfiller", "blocked"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Navigate to incident record page in Salesforce",
+      "testData": "URL: /lightning/r/Incident/0nydq000000VOcLAAW/view",
+      "expectedResult": "Incident record page loads with Proactive Assistance section visible"
+    },
+    {
+      "step": 2,
+      "description": "Click Agentforce button in Salesforce header",
+      "testData": "Locator: button[aria-label='Agentforce']",
+      "expectedResult": "Agentforce utility bar panel opens with greeting and suggested actions"
+    },
+    {
+      "step": 3,
+      "description": "Ask Agentforce to summarize the incident",
+      "testData": "Input: 'Summarize incident INC-000001518'. Locator: textarea[placeholder='Describe your task or ask a question…']",
+      "expectedResult": "Agentforce retrieves and displays incident summary"
+    },
+    {
+      "step": 4,
+      "description": "Ask Agentforce to update incident status",
+      "testData": "Input: 'Change status of INC-000001518 to In Progress'",
+      "expectedResult": "Agentforce updates the status field"
+    },
+    {
+      "step": 5,
+      "description": "Ask Agentforce to add work notes",
+      "testData": "Input: 'Add work notes: Investigating Windows update KB5039211 compatibility'",
+      "expectedResult": "Work notes are added to the incident"
+    },
+    {
+      "step": 6,
+      "description": "Ask Agentforce to resolve the incident",
+      "testData": "Input: 'Resolve INC-000001518 with resolution: Rolled back Windows update. Outlook now works.'",
+      "expectedResult": "Incident status changes to Resolved with resolution notes captured"
+    }
+  ],
+  "executionResult": {
+    "status": "BLOCKED",
+    "blockerDefect": "DEF-004",
+    "blockerMessage": "I do not currently have access to the details of this incident. This may be due to data access restrictions.",
+    "executionDate": "2026-08-14",
+    "observations": [
+      "Agentforce panel in Salesforce does NOT inherit context from the currently viewed record",
+      "Suggested actions displayed: 'Summarize this incident for tracking updates', 'Add a comment to this incident', 'Reopen this incident if it is resolved'",
+      "Proactive Assistance section buttons (Summarize Incident, Create Root Cause Summary, Associate Similar Incidents, Propose Resolution Summary) are visible on the record page but blocked by Agentforce overlay"
+    ]
+  },
+  "salesforceConsoleLocators": {
+    "agentforceHeaderButton": "button[aria-label='Agentforce']",
+    "agentforceTextarea": "textarea[placeholder='Describe your task or ask a question…']",
+    "agentforceSendButton": "button[title='Send'] (in Shadow DOM)",
+    "proactiveAssistanceSection": "text containing 'Proactive Assistance'",
+    "summarizeIncidentAction": "span with text 'Summarize Incident' (in Shadow DOM)",
+    "incidentPathSteps": "New → In Progress → On Hold → Resolved → Cancelled → Re-Open → Closed"
+  },
+  "featureFile": "features/e2e/agentforce-incident-management-e2e.feature",
+  "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+  "automationStatus": "BLOCKED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

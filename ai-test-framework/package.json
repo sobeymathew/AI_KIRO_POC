@@ -10,12 +10,19 @@
     "test:e2e": "playwright test --grep @e2e",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
+    "test:agentforce": "playwright test --grep @agentforce --project=chromium --workers=1",
+    "test:agentforce:smoke": "playwright test src/playwright/tests/smoke/agentforce-assistant.spec.ts --project=chromium --workers=1",
+    "test:agentforce:regression": "playwright test src/playwright/tests/regression/agentforce-assistant-regression.spec.ts --project=chromium --workers=1",
+    "test:agentforce:coverage": "playwright test src/playwright/tests/regression/agentforce-coverage-gaps.spec.ts --project=chromium --workers=1",
+    "test:agentforce:e2e": "playwright test src/playwright/tests/e2e/agentforce-journeys.spec.ts --project=chromium --workers=1",
+    "test:agentforce:headed": "playwright test --grep @agentforce --project=chromium --workers=1 --headed",
     "report": "playwright show-report",
     "report:allure": "allure generate allure-results --clean -o allure-report && allure open allure-report",
     "generate:report": "ts-node src/reporting/dashboards/dashboard-generator.ts",
     "lint": "eslint src --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
-    "traceability": "ts-node src/test-case-management/traceability/rtm-generator.ts"
+    "traceability": "ts-node src/test-case-management/traceability/rtm-generator.ts",
+    "auth:sf-sandbox": "npx ts-node src/playwright/auth/sf-sandbox-auth.setup.ts"
   },
   "dependencies": {
     "@playwright/test": "^1.45.0",

@@ -1,0 +1,37 @@
+{
+  "id": "TC-0051",
+  "name": "Verify session timeout behavior after prolonged inactivity",
+  "objective": "Validate session timeout message and behavior",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p1", "agentforce", "session"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Open the chat panel",
+      "testData": "",
+      "expectedResult": "Chat panel is open and active"
+    },
+    {
+      "step": 2,
+      "description": "Wait for an extended period without interaction",
+      "testData": "Wait duration: session timeout period",
+      "expectedResult": "Session timeout period elapses"
+    },
+    {
+      "step": 3,
+      "description": "Verify session timeout is handled gracefully",
+      "testData": "",
+      "expectedResult": "A timeout message is displayed or session is cleanly terminated with appropriate feedback to the user"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

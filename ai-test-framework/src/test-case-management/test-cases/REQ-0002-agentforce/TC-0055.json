@@ -1,0 +1,37 @@
+{
+  "id": "TC-0055",
+  "name": "Verify chat panel meets color contrast requirements",
+  "objective": "Validate text contrast ratio meets WCAG AA (4.5:1)",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P2",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p2", "agentforce", "accessibility"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Check message text color contrast ratio against background",
+      "testData": "WCAG AA minimum: 4.5:1",
+      "expectedResult": "Message text meets WCAG AA contrast ratio of 4.5:1 or higher"
+    },
+    {
+      "step": 2,
+      "description": "Check input field text color contrast ratio",
+      "testData": "WCAG AA minimum: 4.5:1",
+      "expectedResult": "Input text meets WCAG AA contrast ratio of 4.5:1 or higher"
+    },
+    {
+      "step": 3,
+      "description": "Check button text/icon color contrast ratio",
+      "testData": "WCAG AA minimum: 4.5:1",
+      "expectedResult": "Button elements meet WCAG AA contrast ratio of 4.5:1 or higher"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

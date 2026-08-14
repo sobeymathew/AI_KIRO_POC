@@ -1,0 +1,37 @@
+{
+  "id": "TC-0054",
+  "name": "Verify screen reader compatible aria attributes on chat",
+  "objective": "Validate ARIA labels and roles exist on chat elements",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p1", "agentforce", "accessibility"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Check the Agentforce icon has an appropriate aria-label",
+      "testData": "",
+      "expectedResult": "Agentforce icon has a descriptive aria-label attribute"
+    },
+    {
+      "step": 2,
+      "description": "Check the chat panel has an appropriate ARIA role",
+      "testData": "",
+      "expectedResult": "Chat panel has a valid ARIA role (e.g., dialog, complementary)"
+    },
+    {
+      "step": 3,
+      "description": "Check the chat input field has an appropriate aria-label",
+      "testData": "",
+      "expectedResult": "Chat input field has a descriptive aria-label for screen readers"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

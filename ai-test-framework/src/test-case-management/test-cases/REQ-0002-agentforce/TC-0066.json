@@ -1,0 +1,37 @@
+{
+  "id": "TC-0066",
+  "name": "Verify Agentforce icon is visible on mobile viewport",
+  "objective": "Validate icon displays correctly on 375x667 (iPhone SE)",
+  "precondition": "User logged in on mobile viewport",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p1", "agentforce", "mobile"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Set the browser viewport to 375x667 (iPhone SE dimensions)",
+      "testData": "Viewport: 375x667",
+      "expectedResult": "Viewport is resized to mobile dimensions"
+    },
+    {
+      "step": 2,
+      "description": "Log in and navigate to the home page",
+      "testData": "",
+      "expectedResult": "User is logged in and home page is displayed"
+    },
+    {
+      "step": 3,
+      "description": "Verify the Agentforce icon is visible and not overlapping other elements",
+      "testData": "",
+      "expectedResult": "Agentforce icon is visible, properly positioned, and does not overlap with other UI elements"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

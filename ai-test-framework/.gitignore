@@ -11,6 +11,7 @@ src/test-data/environments/.env.*
 
 # Auth state
 src/test-data/environments/.auth-state.json
+src/playwright/auth/.sf-sandbox-storageState.json
 
 # Test artifacts (generated)
 src/reporting/artifacts/screenshots/*

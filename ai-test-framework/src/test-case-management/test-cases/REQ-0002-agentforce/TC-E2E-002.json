@@ -1,0 +1,55 @@
+{
+  "id": "TC-E2E-002",
+  "name": "E2E: Verify Agentforce-created incident exists in Salesforce with correct field values",
+  "objective": "Validate that the incident created via portal Agentforce is accurately persisted in Salesforce with all conversation data mapped to the correct fields.",
+  "precondition": "Incident INC-000001518 was created via Agentforce. Fulfiller has Salesforce access.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0009,US-0010",
+  "labels": ["e2e", "p0", "agentforce", "verification", "salesforce"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Login to Salesforce sandbox as fulfiller",
+      "testData": "URL from .env.dev SF_SANDBOX_URL, credentials from SF_SANDBOX_USERNAME/SF_SANDBOX_PASSWORD. Uses stored session to bypass MFA.",
+      "expectedResult": "Fulfiller is authenticated in Salesforce Lightning"
+    },
+    {
+      "step": 2,
+      "description": "Search for the incident using global search",
+      "testData": "Search term: INC-000001518. Locator: button[aria-label='Search'] → [role='dialog'] input[type='search'][placeholder='Search...']",
+      "expectedResult": "Incident appears in search results as a[title='INC-000001518']"
+    },
+    {
+      "step": 3,
+      "description": "Open the incident record and validate fields",
+      "testData": "Record URL: /lightning/r/Incident/0nydq000000VOcLAAW/view",
+      "expectedResult": "All fields match conversation inputs"
+    }
+  ],
+  "fieldValidation": {
+    "incidentNumber": { "expected": "INC-000001518", "actual": "INC-000001518", "result": "PASS" },
+    "shortDescription": { "expected": "Blue screen error when opening Microsoft Outlook after Windows update", "actual": "Blue screen error when opening Microsoft Outlook after Windows update", "result": "PASS" },
+    "description": { "expected": "Contains BSOD, KERNEL_DATA_INPAGE_ERROR, KB5039211, Dell Latitude 5540", "actual": "Full description captured verbatim", "result": "PASS" },
+    "category": { "expected": "Software", "actual": "Software", "result": "PASS" },
+    "subCategory": { "expected": "Productivity Suite", "actual": "Productivity Suite", "result": "PASS" },
+    "state": { "expected": "New", "actual": "New", "result": "PASS" },
+    "caller": { "expected": "Jithin Portal user", "actual": "Jithin Portal user", "result": "PASS" },
+    "priority": { "expected": "Medium or High (blocking work)", "actual": "Low", "result": "FAIL - DEF-002" },
+    "urgency": { "expected": "Medium+", "actual": "Low – Productivity not impacted", "result": "FAIL - DEF-002" },
+    "channel": { "expected": "Portal or Agentforce", "actual": "Teams Channel", "result": "FAIL - DEF-003" },
+    "assignedGroup": { "expected": "IT Support", "actual": "IT Support", "result": "PASS" }
+  },
+  "executionResult": {
+    "status": "PASS_WITH_DEFECTS",
+    "defectsFound": ["DEF-002", "DEF-003"],
+    "executionDate": "2026-08-14"
+  },
+  "featureFile": "features/e2e/agentforce-incident-management-e2e.feature",
+  "automationScript": "tests/e2e/incident-creation-verification.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

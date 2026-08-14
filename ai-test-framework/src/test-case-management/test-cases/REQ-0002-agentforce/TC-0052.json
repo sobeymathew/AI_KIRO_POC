@@ -1,0 +1,43 @@
+{
+  "id": "TC-0052",
+  "name": "Verify user can close and reopen chat without losing context",
+  "objective": "Validate minimize/reopen preserves conversation",
+  "precondition": "User logged in, chat open with messages",
+  "category": "smoke",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["smoke", "p0", "agentforce", "session"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Send a message to the AI assistant",
+      "testData": "Help me with my incident",
+      "expectedResult": "Message is sent and response is received"
+    },
+    {
+      "step": 2,
+      "description": "Minimize or close the chat panel",
+      "testData": "",
+      "expectedResult": "Chat panel is closed/minimized"
+    },
+    {
+      "step": 3,
+      "description": "Reopen the chat panel by clicking the icon",
+      "testData": "",
+      "expectedResult": "Chat panel opens again"
+    },
+    {
+      "step": 4,
+      "description": "Verify previous messages are still visible",
+      "testData": "",
+      "expectedResult": "All previous messages and responses are still displayed in the conversation"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

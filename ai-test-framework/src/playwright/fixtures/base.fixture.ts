@@ -6,6 +6,9 @@ import { ExpenseRequestPage } from '../pages/expense-request.page';
 import { TravelRequestPage } from '../pages/travel-request.page';
 import { FacilitiesRequestPage } from '../pages/facilities-request.page';
 import { RequestAssessmentsPage } from '../pages/request-assessments.page';
+import { SfSandboxLoginPage } from '../pages/sf-sandbox-login.page';
+import { SfSandboxSearchPage } from '../pages/sf-sandbox-search.page';
+import { AgentforcePage } from '../pages/agentforce.page';
 
 /**
  * Extended test fixtures providing ITSM page objects.
@@ -19,6 +22,9 @@ type PageFixtures = {
   travelRequestPage: TravelRequestPage;
   facilitiesRequestPage: FacilitiesRequestPage;
   requestAssessmentsPage: RequestAssessmentsPage;
+  sfSandboxLoginPage: SfSandboxLoginPage;
+  sfSandboxSearchPage: SfSandboxSearchPage;
+  agentforcePage: AgentforcePage;
 };
 
 export const test = base.extend<PageFixtures>({
@@ -42,6 +48,15 @@ export const test = base.extend<PageFixtures>({
   },
   requestAssessmentsPage: async ({ page }, use) => {
     await use(new RequestAssessmentsPage(page));
+  },
+  sfSandboxLoginPage: async ({ page }, use) => {
+    await use(new SfSandboxLoginPage(page));
+  },
+  sfSandboxSearchPage: async ({ page }, use) => {
+    await use(new SfSandboxSearchPage(page));
+  },
+  agentforcePage: async ({ page }, use) => {
+    await use(new AgentforcePage(page));
   },
 });
 

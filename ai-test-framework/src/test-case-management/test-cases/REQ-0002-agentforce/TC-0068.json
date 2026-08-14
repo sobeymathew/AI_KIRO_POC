@@ -1,0 +1,43 @@
+{
+  "id": "TC-0068",
+  "name": "Verify chat input is accessible with virtual keyboard on mobile",
+  "objective": "Validate input remains visible when keyboard is up",
+  "precondition": "User logged in on mobile viewport, chat open",
+  "category": "regression",
+  "priority": "P2",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p2", "agentforce", "mobile"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Set the browser viewport to mobile dimensions",
+      "testData": "Viewport: 375x667",
+      "expectedResult": "Viewport is set to mobile size"
+    },
+    {
+      "step": 2,
+      "description": "Open the chat panel",
+      "testData": "",
+      "expectedResult": "Chat panel is open"
+    },
+    {
+      "step": 3,
+      "description": "Focus on the chat input field (simulating virtual keyboard appearance)",
+      "testData": "",
+      "expectedResult": "Input field receives focus"
+    },
+    {
+      "step": 4,
+      "description": "Verify the input field is not hidden behind the virtual keyboard",
+      "testData": "",
+      "expectedResult": "Chat input remains visible and accessible even when virtual keyboard is displayed"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

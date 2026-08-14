@@ -1,0 +1,37 @@
+{
+  "id": "TC-0048",
+  "name": "Verify assistant handles concurrent messages gracefully",
+  "objective": "Validate no errors when messages are sent rapidly",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P2",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p2", "agentforce", "performance"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Send 3 messages rapidly in quick succession",
+      "testData": "Message 1: Hello | Message 2: Help me | Message 3: What can you do?",
+      "expectedResult": "All 3 messages are sent without error"
+    },
+    {
+      "step": 2,
+      "description": "Verify all messages are processed by the assistant",
+      "testData": "",
+      "expectedResult": "All 3 messages receive responses from the assistant"
+    },
+    {
+      "step": 3,
+      "description": "Verify no error messages or UI glitches are displayed",
+      "testData": "",
+      "expectedResult": "No errors, crashes, or UI anomalies are present"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

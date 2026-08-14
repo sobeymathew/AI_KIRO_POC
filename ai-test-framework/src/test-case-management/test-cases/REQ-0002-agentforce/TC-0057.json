@@ -1,0 +1,31 @@
+{
+  "id": "TC-0057",
+  "name": "Verify XSS injection attempts in chat are sanitized",
+  "objective": "Validate script injection is neutralized",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p0", "agentforce", "security"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Send a message containing a script tag injection attempt",
+      "testData": "<script>alert('XSS')</script>",
+      "expectedResult": "Message is sent to the assistant"
+    },
+    {
+      "step": 2,
+      "description": "Verify the script tag is rendered as plain text and not executed",
+      "testData": "",
+      "expectedResult": "The script content is displayed as sanitized text, no JavaScript execution occurs"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

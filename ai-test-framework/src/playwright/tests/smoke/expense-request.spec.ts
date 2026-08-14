@@ -43,6 +43,14 @@ test.describe('Expense Request - Smoke @smoke', () => {
     // Act - Fill mandatory fields and submit
     await expenseRequestPage.submitExpenseRequest(expenseData);
 
+    // Check for portal error (Salesforce Flow errors)
+    const errorMessage = expenseRequestPage.page.getByText('Something went wrong');
+    const hasError = await errorMessage.isVisible().catch(() => false);
+    if (hasError) {
+      const errorText = await expenseRequestPage.page.locator('main').textContent();
+      throw new Error(`Portal returned a system error after submission: ${errorText?.trim()}`);
+    }
+
     // Assert - Verify success message (flexible matching)
     await expect(expenseRequestPage.successMessageText).toBeVisible({ timeout: 30000 });
 

@@ -1,0 +1,28 @@
+{
+  "id": "TC-NEG-002",
+  "name": "Negative: Vague description triggers clarification request",
+  "objective": "Validate that Agentforce seeks clarification when user provides a vague issue description.",
+  "precondition": "Portal user logged in, Agentforce chat open.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0003",
+  "labels": ["e2e", "p0", "agentforce", "negative", "nlp"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Send a vague issue description",
+      "testData": "something is not working",
+      "expectedResult": "Agent asks for more detail about the issue"
+    }
+  ],
+  "executionResult": {
+    "status": "PASS",
+    "agentResponse": "I understand something is not working. Could you please describe your issue in more detail? The more information you provide, the better I can help you select the right category and assist you with your request. If you would like to create an incident, let me know and I will guide you through the process.",
+    "executionDate": "2026-08-14"
+  },
+  "featureFile": "features/e2e/agentforce-incident-management-e2e.feature",
+  "automationStatus": "AUTOMATED",
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

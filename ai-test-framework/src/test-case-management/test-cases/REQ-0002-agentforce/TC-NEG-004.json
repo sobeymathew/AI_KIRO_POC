@@ -1,0 +1,52 @@
+{
+  "id": "TC-NEG-004",
+  "name": "Negative: Long description with upfront category causes confirmation loop (BUG)",
+  "objective": "Validate that incident is created successfully when user provides category/subcategory upfront with a long detailed description.",
+  "precondition": "Portal user logged in, Agentforce chat open.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0005",
+  "labels": ["e2e", "p0", "agentforce", "negative", "bug", "confirmation-loop"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Provide category and subcategory upfront",
+      "testData": "I need to create an incident. Category: Hardware. Subcategory: Laptop/Desktop.",
+      "expectedResult": "Agent asks for brief description"
+    },
+    {
+      "step": 2,
+      "description": "Provide brief description",
+      "testData": "Laptop overheating causing automatic shutdown during video calls and heavy processing tasks",
+      "expectedResult": "Agent asks for detailed description"
+    },
+    {
+      "step": 3,
+      "description": "Provide very long detailed description (500+ characters)",
+      "testData": "My Dell Latitude 7420 laptop has been experiencing severe overheating issues for the past 3 days. The problem occurs consistently during Microsoft Teams video calls and when running multiple applications simultaneously (Outlook, Chrome with 20+ tabs, SAP)... [500+ chars]",
+      "expectedResult": "Agent asks for confirmation to proceed"
+    },
+    {
+      "step": 4,
+      "description": "Confirm with 'yes'",
+      "testData": "yes",
+      "expectedResult": "Incident should be created"
+    }
+  ],
+  "executionResult": {
+    "status": "FAIL",
+    "defect": "DEF-001",
+    "observation": "Agent enters confirmation loop. Asks 'Reply yes to proceed' repeatedly (3+ times) despite user confirming 'yes' each time. Incident is never created.",
+    "agentResponses": [
+      "Reply 'yes' to continue, or let me know if you need to provide any updates before I create the incident.",
+      "Reply 'yes' to proceed, or let me know if you want to update any details before I create the incident.",
+      "Reply 'yes' to proceed, or let me know if you want to update any details before I create the incident."
+    ],
+    "executionDate": "2026-08-14"
+  },
+  "featureFile": "features/e2e/agentforce-incident-management-e2e.feature",
+  "automationStatus": "AUTOMATED",
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

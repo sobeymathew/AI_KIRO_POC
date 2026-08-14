@@ -1,0 +1,31 @@
+{
+  "id": "TC-0061",
+  "name": "Verify behavior when user sends empty message",
+  "objective": "Validate empty messages are not sent or handled gracefully",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P2",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p2", "agentforce", "edge-case"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Attempt to send an empty message (click send with no text)",
+      "testData": "",
+      "expectedResult": "Empty message is either not submitted or handled gracefully"
+    },
+    {
+      "step": 2,
+      "description": "Verify no error is thrown and UI remains stable",
+      "testData": "",
+      "expectedResult": "No error message, no crash, send button is disabled or message is ignored gracefully"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

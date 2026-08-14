@@ -1,0 +1,43 @@
+{
+  "id": "TC-0053",
+  "name": "Verify keyboard navigation works for chat panel",
+  "objective": "Validate Tab/Enter/Escape keyboard interactions",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p1", "agentforce", "accessibility"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Use Tab key to navigate to the chat input field",
+      "testData": "",
+      "expectedResult": "Chat input field receives focus via keyboard Tab"
+    },
+    {
+      "step": 2,
+      "description": "Type a message using the keyboard",
+      "testData": "Hello from keyboard",
+      "expectedResult": "Message text is entered in the input field"
+    },
+    {
+      "step": 3,
+      "description": "Press Enter to send the message",
+      "testData": "",
+      "expectedResult": "Message is sent successfully via Enter key"
+    },
+    {
+      "step": 4,
+      "description": "Verify the entire chat interaction works via keyboard only",
+      "testData": "",
+      "expectedResult": "All chat actions (focus, type, send) are fully accessible via keyboard without requiring mouse"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

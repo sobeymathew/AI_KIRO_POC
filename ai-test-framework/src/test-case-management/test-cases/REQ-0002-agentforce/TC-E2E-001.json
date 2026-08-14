@@ -1,0 +1,75 @@
+{
+  "id": "TC-E2E-001",
+  "name": "E2E: Portal user creates incident via Agentforce full conversational flow",
+  "objective": "Validate the complete incident creation workflow from portal login through Agentforce conversation to Salesforce record verification.",
+  "precondition": "Portal user has valid credentials. Self-service portal is accessible. Agentforce chat widget is enabled.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002,US-0005",
+  "labels": ["e2e", "p0", "agentforce", "incident-creation", "portal"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Navigate to ITSM portal and login with portal user credentials",
+      "testData": "URL from .env.dev BASE_URL, credentials from APP_USERNAME/APP_PASSWORD",
+      "expectedResult": "User is authenticated and redirected to the home page"
+    },
+    {
+      "step": 2,
+      "description": "Click the Agentforce icon (#embeddedMessagingConversationButton) on the home page",
+      "testData": "",
+      "expectedResult": "Chat panel opens (iframe#embeddedMessagingFrame with class isMaximized)"
+    },
+    {
+      "step": 3,
+      "description": "Send initial message requesting incident creation with issue description",
+      "testData": "I need to create an incident. My laptop is showing a blue screen error every time I open Microsoft Outlook. It started this morning after the Windows update.",
+      "expectedResult": "Agent asks for category selection from 25 available categories"
+    },
+    {
+      "step": 4,
+      "description": "Select category when asked",
+      "testData": "Software",
+      "expectedResult": "Agent asks for subcategory from options: Business Application, Collaboration Tool, Data Platform, DevOps Tool, Operating System, Productivity Suite, Security Tool"
+    },
+    {
+      "step": 5,
+      "description": "Select subcategory when asked",
+      "testData": "Productivity Suite",
+      "expectedResult": "Agent asks for brief description (at least 20 characters)"
+    },
+    {
+      "step": 6,
+      "description": "Provide brief description",
+      "testData": "Blue screen error when opening Microsoft Outlook after Windows update",
+      "expectedResult": "Agent asks for detailed long description"
+    },
+    {
+      "step": 7,
+      "description": "Provide detailed description",
+      "testData": "Since this morning after the automatic Windows update (KB5039211), my laptop shows a Blue Screen of Death (BSOD) with error code KERNEL_DATA_INPAGE_ERROR every time I try to open Microsoft Outlook. Other Office applications like Word and Excel work fine. I have restarted the laptop 3 times but the issue persists. My laptop model is Dell Latitude 5540 running Windows 11. This is blocking my work as I cannot access emails.",
+      "expectedResult": "Agent confirms incident created with INC-XXXXXXXXX number"
+    },
+    {
+      "step": 8,
+      "description": "Verify incident number format in agent response",
+      "testData": "",
+      "expectedResult": "Incident number matches pattern INC-\\d{9} (e.g., INC-000001518)"
+    }
+  ],
+  "executionResult": {
+    "status": "PASS",
+    "incidentCreated": "INC-000001518",
+    "executionDate": "2026-08-14",
+    "duration": "~5 minutes",
+    "agentResponseTime": "5-8 seconds per message",
+    "turnsToComplete": 6
+  },
+  "featureFile": "features/e2e/agentforce-incident-management-e2e.feature",
+  "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

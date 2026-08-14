@@ -1,0 +1,34 @@
+{
+  "id": "TC-NEG-005",
+  "name": "Negative: Short description below minimum character limit is rejected",
+  "objective": "Validate that Agentforce enforces the 20-character minimum for incident brief description.",
+  "precondition": "Portal user logged in, Agentforce chat open.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0005",
+  "labels": ["e2e", "p0", "agentforce", "negative", "validation"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Provide category, subcategory, and a very short description",
+      "testData": "Create incident. Category: Email & Collaboration. Subcategory: Collaboration Tool. Short description: fix it",
+      "expectedResult": "Agent rejects the short description and asks for at least 20 characters"
+    },
+    {
+      "step": 2,
+      "description": "Verify no incident was created",
+      "testData": "",
+      "expectedResult": "No INC- number in the conversation"
+    }
+  ],
+  "executionResult": {
+    "status": "PASS",
+    "agentResponse": "Please provide a detailed description of your issue (at least 20 characters) so I can complete the incident creation for the 'Email & Collaboration' category and 'Collaboration Tool' subcategory. Include any background information, error messages, or steps you have tried.",
+    "executionDate": "2026-08-14"
+  },
+  "featureFile": "features/e2e/agentforce-incident-management-e2e.feature",
+  "automationStatus": "AUTOMATED",
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

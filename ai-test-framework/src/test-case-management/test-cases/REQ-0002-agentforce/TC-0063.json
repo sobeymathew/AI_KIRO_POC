@@ -1,0 +1,37 @@
+{
+  "id": "TC-0063",
+  "name": "Verify behavior when network drops during conversation",
+  "objective": "Validate graceful error handling on network loss",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p1", "agentforce", "edge-case"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Send a message to the AI assistant",
+      "testData": "Help me with my request",
+      "expectedResult": "Message is sent successfully"
+    },
+    {
+      "step": 2,
+      "description": "Simulate network disconnection (go offline)",
+      "testData": "Set browser to offline mode",
+      "expectedResult": "Network connection is severed"
+    },
+    {
+      "step": 3,
+      "description": "Verify an error message is shown to the user",
+      "testData": "",
+      "expectedResult": "A user-friendly error message is displayed indicating network connectivity issue"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

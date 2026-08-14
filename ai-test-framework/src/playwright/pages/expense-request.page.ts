@@ -35,7 +35,7 @@ export class ExpenseRequestPage extends BasePage {
 
     // Navigation
     this.serviceRequestMenu = page.locator('button:has-text("Service Request")');
-    this.serviceCatalogLink = page.locator('a[href="/itsm/s/service-catalog"]');
+    this.serviceCatalogLink = page.locator('a[href="/itsm/s/service-catalog"]').first();
     // Expense Request is the 2nd "Request" button in the catalog (index 1)
     this.expenseRequestButton = page.locator('.slds-button.slds-button_outline-brand').nth(1);
 

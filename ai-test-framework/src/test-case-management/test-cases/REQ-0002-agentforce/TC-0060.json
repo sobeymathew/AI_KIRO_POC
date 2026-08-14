@@ -1,0 +1,31 @@
+{
+  "id": "TC-0060",
+  "name": "Verify assistant responds in English regardless of input language",
+  "objective": "Validate consistent English responses",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P2",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p2", "agentforce", "localization"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Send a message in a non-English language",
+      "testData": "Bonjour, pouvez-vous m'aider?",
+      "expectedResult": "Message is sent successfully"
+    },
+    {
+      "step": 2,
+      "description": "Verify the assistant response is in English",
+      "testData": "",
+      "expectedResult": "Assistant responds in English regardless of the input language"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

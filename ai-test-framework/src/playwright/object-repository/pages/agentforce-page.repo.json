@@ -1,0 +1,106 @@
+{
+  "page": "agentforce-assistant",
+  "url": "/itsm/s/",
+  "verifiedAt": "2026-08-14",
+  "verifiedBy": "playwright-mcp-healer",
+  "description": "Agentforce AI Assistant embedded messaging on ITSM self-service portal",
+  "elements": {
+    "agentforceButton": {
+      "locator": "#embeddedMessagingConversationButton",
+      "type": "button",
+      "interaction": "click",
+      "ariaLabel": "Hello, have a question? Let's chat.",
+      "notes": "Floating button bottom-right. Becomes invisible after minimize (BUG-008).",
+      "verified": true
+    },
+    "agentforceIcon": {
+      "locator": "#embeddedMessagingIconChat",
+      "type": "svg",
+      "interaction": "visual",
+      "notes": "SVG icon inside the button container",
+      "verified": true
+    },
+    "agentforceIconContainer": {
+      "locator": "#embeddedMessagingIconContainer",
+      "type": "div",
+      "interaction": "visual",
+      "verified": true
+    },
+    "embeddedMessagingContainer": {
+      "locator": "#embedded-messaging",
+      "type": "div",
+      "interaction": "container",
+      "notes": "Parent container for all embedded messaging elements",
+      "verified": true
+    },
+    "chatFrame": {
+      "locator": "#embeddedMessagingFrame",
+      "type": "iframe",
+      "interaction": "frame",
+      "notes": "Main chat panel iframe. Class includes 'isMaximized' when open.",
+      "verified": true
+    },
+    "chatTextarea": {
+      "locator": "textarea[aria-label='Start a new chat...']",
+      "type": "textarea",
+      "interaction": "fill",
+      "context": "inside #embeddedMessagingFrame iframe, within Shadow DOM",
+      "placeholder": "Start a new chat...",
+      "notes": "Requires page.evaluate with deep shadow DOM query to interact",
+      "verified": true
+    },
+    "sendButton": {
+      "locator": "button[title='Send message']",
+      "type": "button",
+      "interaction": "click",
+      "context": "inside #embeddedMessagingFrame iframe, within Shadow DOM",
+      "notes": "Only visible after text is entered in textarea",
+      "verified": true
+    },
+    "minimizeButton": {
+      "locator": "button[title='Minimize chat window']",
+      "type": "button",
+      "interaction": "click",
+      "context": "inside #embeddedMessagingFrame iframe, within Shadow DOM",
+      "verified": true
+    },
+    "endChatButton": {
+      "locator": "button[title='End chat']",
+      "type": "button",
+      "interaction": "click",
+      "context": "inside #embeddedMessagingFrame iframe, within Shadow DOM",
+      "verified": true
+    }
+  },
+  "salesforceConsole": {
+    "agentforceHeaderButton": {
+      "locator": "[aria-label='Agentforce']",
+      "type": "button",
+      "interaction": "click",
+      "context": "Salesforce Lightning header, opens Agentforce utility bar panel",
+      "verified": true
+    },
+    "agentforceConsoleTextarea": {
+      "locator": "textarea[placeholder='Describe your task or ask a question…']",
+      "type": "textarea",
+      "interaction": "fill",
+      "context": "Salesforce console utility bar, within Shadow DOM",
+      "notes": "Requires deep shadow DOM query to interact",
+      "verified": true
+    },
+    "agentforceConsoleSendButton": {
+      "locator": "button[title='Send']",
+      "type": "button",
+      "interaction": "click",
+      "context": "Salesforce console utility bar, within Shadow DOM",
+      "verified": true
+    }
+  },
+  "agentResponses": {
+    "greetingPattern": "IT Service Employee Agent, an AI assistant",
+    "capabilitiesPattern": "troubleshoot IT issues|create incidents|service requests",
+    "agentNamePattern": "IT Service Employee",
+    "incidentNumberPattern": "INC-\\d+",
+    "categoryListIndicator": "Access & Accounts"
+  }
+}

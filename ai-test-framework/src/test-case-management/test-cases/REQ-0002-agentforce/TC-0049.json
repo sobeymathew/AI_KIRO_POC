@@ -1,0 +1,37 @@
+{
+  "id": "TC-0049",
+  "name": "Verify chat session persists after page refresh",
+  "objective": "Validate chat history is maintained after browser refresh",
+  "precondition": "User logged in, chat open with messages",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p1", "agentforce", "session"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Send a message to the AI assistant",
+      "testData": "What is my ticket status?",
+      "expectedResult": "Message is sent and response is received"
+    },
+    {
+      "step": 2,
+      "description": "Refresh the browser page",
+      "testData": "",
+      "expectedResult": "Page reloads successfully"
+    },
+    {
+      "step": 3,
+      "description": "Verify chat history persists after refresh",
+      "testData": "",
+      "expectedResult": "Previous messages and responses are still visible in the chat panel"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

@@ -30,7 +30,7 @@
   ],
   "featureFile": "features/smoke/agentforce-ai-assistant.feature",
   "automationScript": "tests/smoke/agentforce-assistant.spec.ts",
-  "automationStatus": "PENDING",
+  "automationStatus": "AUTOMATED",
   "zephyrKey": null,
   "createdDate": "2026-08-12",
   "lastModified": "2026-08-12"

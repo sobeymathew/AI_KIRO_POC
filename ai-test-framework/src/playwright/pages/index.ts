@@ -10,3 +10,6 @@ export { FacilitiesRequestPage } from './facilities-request.page';
 export type { FacilitiesFormData } from './facilities-request.page';
 export { TravelRequestPage } from './travel-request.page';
 export { RequestAssessmentsPage } from './request-assessments.page';
+export { SfSandboxLoginPage } from './sf-sandbox-login.page';
+export { SfSandboxSearchPage } from './sf-sandbox-search.page';
+export { AgentforcePage } from './agentforce.page';

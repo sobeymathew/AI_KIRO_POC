@@ -36,7 +36,7 @@
   ],
   "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
   "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
-  "automationStatus": "PENDING",
+  "automationStatus": "AUTOMATED",
   "zephyrKey": null,
   "createdDate": "2026-08-12",
   "lastModified": "2026-08-12"

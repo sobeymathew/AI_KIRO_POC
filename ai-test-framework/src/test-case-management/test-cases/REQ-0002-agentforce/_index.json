@@ -2,7 +2,7 @@
   "folder": "REQ-0002-agentforce",
   "requirementId": "REQ-0002",
   "title": "Agentforce AI Assistant for Self-Service Portal and Service Management",
-  "totalTestCases": 40,
+  "totalTestCases": 63,
   "categories": {
     "smoke": {
       "count": 12,
@@ -16,19 +16,26 @@
       ]
     },
     "regression": {
-      "count": 22,
-      "range": "TC-0018 to TC-0039",
+      "count": 45,
+      "range": "TC-0018 to TC-0039, TC-0046 to TC-0068",
       "coverage": [
-        { "userStory": "US-0003", "testCases": ["TC-0018", "TC-0019", "TC-0020"] },
-        { "userStory": "US-0004", "testCases": ["TC-0021"] },
-        { "userStory": "US-0005", "testCases": ["TC-0022"] },
-        { "userStory": "US-0006", "testCases": ["TC-0023", "TC-0024"] },
-        { "userStory": "US-0007", "testCases": ["TC-0025", "TC-0026", "TC-0027", "TC-0028"] },
-        { "userStory": "US-0008", "testCases": ["TC-0029", "TC-0030"] },
-        { "userStory": "US-0009", "testCases": ["TC-0031", "TC-0032"] },
-        { "userStory": "US-0010", "testCases": ["TC-0033", "TC-0034", "TC-0035", "TC-0036"] },
-        { "userStory": "US-0011", "testCases": ["TC-0037", "TC-0038"] },
-        { "userStory": "US-0012", "testCases": ["TC-0039"] }
+        { "userStory": "US-0003", "testCases": ["TC-0018", "TC-0019", "TC-0020"], "area": "NLP Edge Cases" },
+        { "userStory": "US-0004", "testCases": ["TC-0021"], "area": "Knowledge Deflection" },
+        { "userStory": "US-0005", "testCases": ["TC-0022"], "area": "Incident Cancel Flow" },
+        { "userStory": "US-0006", "testCases": ["TC-0023", "TC-0024"], "area": "Classification" },
+        { "userStory": "US-0007", "testCases": ["TC-0025", "TC-0026", "TC-0027", "TC-0028"], "area": "Ticket Status" },
+        { "userStory": "US-0008", "testCases": ["TC-0029", "TC-0030"], "area": "Ticket Update" },
+        { "userStory": "US-0009", "testCases": ["TC-0031", "TC-0032"], "area": "Source Tracking" },
+        { "userStory": "US-0010", "testCases": ["TC-0033", "TC-0034", "TC-0035", "TC-0036"], "area": "Auto-categorization" },
+        { "userStory": "US-0011", "testCases": ["TC-0037", "TC-0038"], "area": "Smart Routing" },
+        { "userStory": "US-0012", "testCases": ["TC-0039"], "area": "Proactive Assistance" },
+        { "userStory": "US-0002", "testCases": ["TC-0046", "TC-0047", "TC-0048"], "area": "Performance" },
+        { "userStory": "US-0002", "testCases": ["TC-0049", "TC-0050", "TC-0051", "TC-0052"], "area": "Session Management" },
+        { "userStory": "US-0002", "testCases": ["TC-0053", "TC-0054", "TC-0055"], "area": "Accessibility" },
+        { "userStory": "US-0002", "testCases": ["TC-0056", "TC-0057", "TC-0058"], "area": "Security" },
+        { "userStory": "US-0002", "testCases": ["TC-0059", "TC-0060"], "area": "Multi-language" },
+        { "userStory": "US-0002", "testCases": ["TC-0061", "TC-0062", "TC-0063", "TC-0064", "TC-0065"], "area": "Edge Cases" },
+        { "userStory": "US-0002", "testCases": ["TC-0066", "TC-0067", "TC-0068"], "area": "Mobile Responsiveness" }
       ]
     },
     "e2e": {
@@ -44,8 +51,26 @@
       ]
     }
   },
+  "automationStatus": {
+    "automated": 52,
+    "requiresFulfillerAccess": 7,
+    "cannotAutomate": 4,
+    "percentAutomated": "82.5%"
+  },
+  "specFiles": {
+    "smoke": "src/playwright/tests/smoke/agentforce-assistant.spec.ts",
+    "regression": "src/playwright/tests/regression/agentforce-assistant-regression.spec.ts",
+    "coverageGaps": "src/playwright/tests/regression/agentforce-coverage-gaps.spec.ts",
+    "e2e": "src/playwright/tests/e2e/agentforce-journeys.spec.ts"
+  },
+  "featureFiles": {
+    "smoke": "src/test-case-management/features/smoke/agentforce-ai-assistant.feature",
+    "regression": "src/test-case-management/features/regression/agentforce-ai-assistant-full.feature",
+    "coverageGaps": "src/test-case-management/features/regression/agentforce-coverage-gaps.feature",
+    "e2e": "src/test-case-management/features/e2e/agentforce-ai-assistant-journeys.feature"
+  },
   "createdDate": "2026-08-12",
-  "lastModified": "2026-08-12",
+  "lastModified": "2026-08-14",
   "zephyrSyncStatus": "NOT_SYNCED",
   "author": "Test Design Agent"
 }

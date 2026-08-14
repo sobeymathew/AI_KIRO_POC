@@ -1,0 +1,37 @@
+{
+  "id": "TC-0047",
+  "name": "Verify chat panel load time after clicking icon",
+  "objective": "Validate chat panel opens within 3 seconds of clicking the icon",
+  "precondition": "User logged in on home page",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p1", "agentforce", "performance"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce chat icon",
+      "testData": "",
+      "expectedResult": "Chat icon click is registered"
+    },
+    {
+      "step": 2,
+      "description": "Measure the time taken for the chat panel to fully load",
+      "testData": "",
+      "expectedResult": "Load time is captured"
+    },
+    {
+      "step": 3,
+      "description": "Verify the chat panel loads within 3 seconds",
+      "testData": "SLA threshold: 3000ms",
+      "expectedResult": "Chat panel is fully loaded and interactive within 3 seconds"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

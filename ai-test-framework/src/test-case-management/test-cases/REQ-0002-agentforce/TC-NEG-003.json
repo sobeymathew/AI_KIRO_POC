@@ -1,0 +1,34 @@
+{
+  "id": "TC-NEG-003",
+  "name": "Negative: Cancel midway prevents ticket creation",
+  "objective": "Validate that cancelling incident creation midway results in no ticket being created.",
+  "precondition": "Portal user logged in, Agentforce chat open.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0005",
+  "labels": ["e2e", "p0", "agentforce", "negative", "cancellation"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Start incident creation flow",
+      "testData": "I want to create an incident for a printer issue",
+      "expectedResult": "Agent begins gathering details"
+    },
+    {
+      "step": 2,
+      "description": "Cancel the request",
+      "testData": "Actually never mind, I don't want to create a ticket. Cancel it please.",
+      "expectedResult": "Agent confirms no ticket was created and offers further help"
+    }
+  ],
+  "executionResult": {
+    "status": "PASS",
+    "agentResponse": "No ticket has been created yet, so there is nothing to cancel. If you need help with anything else or decide to create an incident in the future, just let me know. How can I assist you further?",
+    "executionDate": "2026-08-14"
+  },
+  "featureFile": "features/e2e/agentforce-incident-management-e2e.feature",
+  "automationStatus": "AUTOMATED",
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

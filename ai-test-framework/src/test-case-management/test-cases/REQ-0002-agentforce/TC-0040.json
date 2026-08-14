@@ -72,7 +72,7 @@
   ],
   "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
   "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
-  "automationStatus": "PENDING",
+  "automationStatus": "AUTOMATED",
   "zephyrKey": null,
   "createdDate": "2026-08-12",
   "lastModified": "2026-08-12"

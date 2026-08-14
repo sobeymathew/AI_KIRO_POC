@@ -1,0 +1,37 @@
+{
+  "id": "TC-0046",
+  "name": "Verify assistant response time is within SLA",
+  "objective": "Validate AI responds within 5 seconds",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p1", "agentforce", "performance"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Send a message to the AI assistant",
+      "testData": "Hello, can you help me?",
+      "expectedResult": "Message is sent successfully"
+    },
+    {
+      "step": 2,
+      "description": "Measure the response time from message sent to response received",
+      "testData": "",
+      "expectedResult": "Response time is captured"
+    },
+    {
+      "step": 3,
+      "description": "Verify the response time is less than 5 seconds",
+      "testData": "SLA threshold: 5000ms",
+      "expectedResult": "AI assistant responds within 5 seconds"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

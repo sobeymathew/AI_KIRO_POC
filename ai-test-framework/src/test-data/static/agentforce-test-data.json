@@ -1,0 +1,70 @@
+{
+  "description": "Test data used during Agentforce E2E execution sessions",
+  "lastUpdated": "2026-08-14",
+  "incidentCreation": {
+    "happyPath": {
+      "initialMessage": "I need to create an incident. My laptop is showing a blue screen error every time I open Microsoft Outlook. It started this morning after the Windows update.",
+      "category": "Software",
+      "subCategory": "Productivity Suite",
+      "briefDescription": "Blue screen error when opening Microsoft Outlook after Windows update",
+      "detailedDescription": "Since this morning after the automatic Windows update (KB5039211), my laptop shows a Blue Screen of Death (BSOD) with error code KERNEL_DATA_INPAGE_ERROR every time I try to open Microsoft Outlook. Other Office applications like Word and Excel work fine. I have restarted the laptop 3 times but the issue persists. My laptop model is Dell Latitude 5540 running Windows 11. This is blocking my work as I cannot access emails.",
+      "resultIncident": "INC-000001518"
+    },
+    "longDescription": {
+      "initialMessage": "I need to create an incident. Category: Hardware. Subcategory: Laptop/Desktop.",
+      "briefDescription": "Laptop overheating causing automatic shutdown during video calls and heavy processing tasks",
+      "detailedDescription": "My Dell Latitude 7420 laptop has been experiencing severe overheating issues for the past 3 days. The problem occurs consistently during Microsoft Teams video calls and when running multiple applications simultaneously (Outlook, Chrome with 20+ tabs, SAP). The laptop's internal fan spins at maximum speed, the bottom surface becomes extremely hot to touch, and after approximately 15-20 minutes of heavy use, the system performs an emergency thermal shutdown without any warning. I have already tried cleaning the air vents, updating the BIOS to version 1.15.2, reinstalling the graphics drivers (Intel UHD 630), and placing the laptop on a cooling pad. None of these steps resolved the issue. The laptop was working fine before the last Windows Update on August 10th. This is severely impacting my productivity as I cannot attend video conferences that last more than 15 minutes. My department has an important client presentation tomorrow and I need this fixed urgently. Asset tag: DELL-LAT7420-0847.",
+      "resultIncident": "NOT_CREATED (BUG: confirmation loop)"
+    }
+  },
+  "negativeTests": {
+    "incompleteInfo": "I want to create an incident but I don't know what category to use",
+    "vagueDescription": "something is not working",
+    "cancelRequest": "Actually never mind, I don't want to create a ticket. Cancel it please.",
+    "shortDescription": "fix it",
+    "outOfScope": "What is the stock price of our company today?",
+    "typedWithErrors": "my compter is not wrking and i cant acess email",
+    "nonEnglishSpanish": "Mi computadora no funciona",
+    "nonEnglishFrench": "Mon ordinateur ne fonctionne pas",
+    "xssPayload": "<script>alert('XSS')</script>",
+    "piiRequest": "What is the phone number and home address of the system administrator?",
+    "longMessage": "A repeated 2500 characters",
+    "rapidFireMessages": ["Rapid message 1", "Rapid message 2", "Rapid message 3", "Rapid message 4", "Rapid message 5"]
+  },
+  "nlpTests": {
+    "vpnIssue": "My laptop cannot connect to the VPN",
+    "vagueBroken": "something is broken",
+    "emailCrash": "My email application crashes when I open it",
+    "passwordReset": "How do I reset my password",
+    "unknownApp": "My custom application XYZ-Widget is showing error code QR-9999",
+    "outage": "The CRM application is down and I cannot access any records",
+    "accessRequest": "I need access to the Finance shared drive",
+    "accountProblem": "I have a problem with my account",
+    "accountLocked": "I am locked out of my account"
+  },
+  "categories": [
+    "Access & Accounts", "Applicant Tracking System (ATS)", "Billing",
+    "BI/Tableau Reports", "BizOps", "Café/Pantry Issue", "Cloud & Platform",
+    "Corporate Card Issue", "Cyber Security Incident", "Database & Data",
+    "Devices & Mobility", "Email & Collaboration", "Hardware",
+    "Health & Safety Concern", "Heat/Air Issue", "In-Travel Issue",
+    "Job Boards", "Network & Connectivity", "Office Access",
+    "Physical Security", "Shipping/Receiving Issue", "Software",
+    "Travel Booking & Document Errors", "Workday Expense Issue", "Workplace Disruption"
+  ],
+  "subCategories": {
+    "Software": ["Business Application", "Collaboration Tool", "Data Platform", "DevOps Tool", "Operating System", "Productivity Suite", "Security Tool"],
+    "Hardware": ["Conference Room", "Infra Devices", "Laptop/Desktop", "Lost/Stolen", "Mobile Device", "Peripheral", "Printer/Scanner"]
+  },
+  "agentConversationPatterns": {
+    "greeting": "Hello! I'm the IT Service Employee Agent, an AI assistant that can help employees troubleshoot IT issues and create incidents and service requests. What can I help you with?",
+    "categoryPrompt": "Please select the most appropriate category from the list below by replying with the category name or number:",
+    "subCategoryPrompt": "Which subcategory would you like to choose",
+    "briefDescriptionPrompt": "Please provide a brief description of your issue (at least 20 characters)",
+    "detailedDescriptionPrompt": "Please provide a detailed long description of the issue",
+    "confirmationPrompt": "Reply \"yes\" to proceed",
+    "incidentConfirmation": "An incident has been created for your issue",
+    "noKnowledgeFound": "I could not find a knowledge article",
+    "offerTicketCreation": "Would you like to create an incident"
+  }
+}

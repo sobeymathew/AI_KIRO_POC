@@ -1,0 +1,43 @@
+{
+  "id": "TC-0067",
+  "name": "Verify chat panel is usable on mobile viewport",
+  "objective": "Validate chat panel fills screen properly on mobile",
+  "precondition": "User logged in on mobile viewport, chat open",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p1", "agentforce", "mobile"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Set the browser viewport to mobile dimensions",
+      "testData": "Viewport: 375x667",
+      "expectedResult": "Viewport is set to mobile size"
+    },
+    {
+      "step": 2,
+      "description": "Open the chat panel by clicking the Agentforce icon",
+      "testData": "",
+      "expectedResult": "Chat panel opens"
+    },
+    {
+      "step": 3,
+      "description": "Verify the chat panel fills the screen properly on mobile",
+      "testData": "",
+      "expectedResult": "Chat panel is displayed at appropriate size for mobile, filling the available screen space"
+    },
+    {
+      "step": 4,
+      "description": "Verify the input field is visible and usable",
+      "testData": "",
+      "expectedResult": "Chat input field is visible and accessible for typing"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

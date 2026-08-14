@@ -1,0 +1,31 @@
+{
+  "id": "TC-0059",
+  "name": "Verify assistant handles non-English input gracefully",
+  "objective": "Validate assistant responds appropriately to non-English text",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P2",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p2", "agentforce", "localization"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Send a message in Spanish to the AI assistant",
+      "testData": "Hola, necesito ayuda con mi incidente",
+      "expectedResult": "Message is sent successfully"
+    },
+    {
+      "step": 2,
+      "description": "Verify the assistant responds without error",
+      "testData": "",
+      "expectedResult": "Assistant provides a response without throwing errors or crashing"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "TC-0065",
+  "name": "Verify chat behaves correctly when browser back button is pressed",
+  "objective": "Validate navigation doesn't break chat state",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P2",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p2", "agentforce", "edge-case"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Open the chat panel and send a message",
+      "testData": "Hello assistant",
+      "expectedResult": "Chat is open with a message sent"
+    },
+    {
+      "step": 2,
+      "description": "Press the browser back button",
+      "testData": "",
+      "expectedResult": "Browser navigates back"
+    },
+    {
+      "step": 3,
+      "description": "Press the browser forward button to return",
+      "testData": "",
+      "expectedResult": "Browser navigates forward to original page"
+    },
+    {
+      "step": 4,
+      "description": "Verify chat state is intact",
+      "testData": "",
+      "expectedResult": "Chat panel state is preserved or gracefully re-initialized without errors"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}

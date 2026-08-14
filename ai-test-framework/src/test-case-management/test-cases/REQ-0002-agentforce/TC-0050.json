@@ -1,0 +1,43 @@
+{
+  "id": "TC-0050",
+  "name": "Verify chat session terminates cleanly on logout",
+  "objective": "Validate chat session ends properly when user logs out",
+  "precondition": "User logged in, chat open",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002",
+  "labels": ["regression", "p1", "agentforce", "session"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Open the chat panel and send a message",
+      "testData": "Hello assistant",
+      "expectedResult": "Chat is open with an active session"
+    },
+    {
+      "step": 2,
+      "description": "Log out of the application",
+      "testData": "",
+      "expectedResult": "User is logged out successfully"
+    },
+    {
+      "step": 3,
+      "description": "Log back in to the application",
+      "testData": "",
+      "expectedResult": "User is logged in successfully"
+    },
+    {
+      "step": 4,
+      "description": "Verify no stale session data remains in the chat",
+      "testData": "",
+      "expectedResult": "Chat panel shows a fresh session with no previous conversation data"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-coverage-gaps.feature",
+  "automationScript": "tests/regression/agentforce-coverage-gaps.spec.ts",
+  "automationStatus": "AUTOMATED",
+  "zephyrKey": null,
+  "createdDate": "2026-08-14",
+  "lastModified": "2026-08-14"
+}
