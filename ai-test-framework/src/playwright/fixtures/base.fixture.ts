@@ -6,6 +6,7 @@ import { CoiRequestPage } from '../pages/coi-request.page';
 import { ExpenseRequestPage } from '../pages/expense-request.page';
 import { FacilitiesRequestPage } from '../pages/facilities-request.page';
 import { RequestAssessmentsPage } from '../pages/request-assessments.page';
+import { SecurityExceptionRequestPage } from '../pages/security-exception-request.page';
 import { HeaderNavComponent } from '../components/header-nav.component';
 
 /**
@@ -20,6 +21,7 @@ type PageFixtures = {
   expenseRequestPage: ExpenseRequestPage;
   facilitiesRequestPage: FacilitiesRequestPage;
   requestAssessmentsPage: RequestAssessmentsPage;
+  securityExceptionPage: SecurityExceptionRequestPage;
   headerNav: HeaderNavComponent;
 };
 
@@ -44,6 +46,9 @@ export const test = base.extend<PageFixtures>({
   },
   requestAssessmentsPage: async ({ page }, use) => {
     await use(new RequestAssessmentsPage(page));
+  },
+  securityExceptionPage: async ({ page }, use) => {
+    await use(new SecurityExceptionRequestPage(page));
   },
   headerNav: async ({ page }, use) => {
     await use(new HeaderNavComponent(page));

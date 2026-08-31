@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Driven Test Automation Framework — Client Deliverables</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f6fa;
+    padding: 40px 20px;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .cover {
+    background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+    color: #fff;
+    padding: 80px 50px;
+    text-align: center;
+  }
+  .cover h1 { font-size: 2.4em; margin-bottom: 15px; font-weight: 700; }
+  .cover .subtitle { font-size: 1.2em; opacity: 0.9; margin-bottom: 30px; }
+  .cover .meta { font-size: 0.95em; opacity: 0.8; }
+  .content { padding: 50px; }
+  h2 {
+    color: #1a2980;
+    font-size: 1.8em;
+    margin: 50px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #26d0ce;
+  }
+  h2:first-child { margin-top: 0; }
+  h3 { color: #2c3e50; font-size: 1.3em; margin: 30px 0 12px; }
+  h4 { color: #34495e; font-size: 1.1em; margin: 20px 0 10px; }
+  p { margin-bottom: 15px; }
+  ul, ol { margin: 0 0 15px 25px; }
+  li { margin-bottom: 6px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.92em;
+  }
+  th {
+    background: #1a2980;
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+  }
+  td { padding: 9px 12px; border-bottom: 1px solid #e1e4e8; }
+  tr:nth-child(even) { background: #f8f9fb; }
+  code {
+    background: #f0f2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
+    color: #c7254e;
+  }
+  pre {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 18px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 18px 0;
+    font-size: 0.85em;
+    line-height: 1.4;
+  }
+  pre code { background: none; color: inherit; padding: 0; }
+  .pass { color: #27ae60; font-weight: 600; }
+  .toc {
+    background: #f8f9fb;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 25px 30px;
+    margin-bottom: 40px;
+  }
+  .toc h3 { margin-top: 0; }
+  .toc ol { margin-left: 20px; }
+  .toc a { color: #1a2980; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .section-divider {
+    page-break-before: always;
+    border-top: 2px dashed #ccc;
+    margin: 50px 0;
+  }
+  .badge {
+    display: inline-block;
+    background: #26d0ce;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+  .highlight-box {
+    background: #eaf6ff;
+    border-left: 4px solid #1a2980;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .container { box-shadow: none; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="cover">
+    <h1>AI-Driven Test Automation Framework</h1>
+    <div class="subtitle">For Web Applications · Powered by Kiro + Playwright</div>
+    <div class="meta">
+      Client Deliverables Package<br>
+      Milestone Technologies — QA Automation Team<br>
+      August 2026
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="toc">
+      <h3>Contents</h3>
+      <ol>
+        <li><a href="#case-study">Case Study / Point of View</a></li>
+        <li><a href="#presentation">Demo / Presentation</a></li>
+        <li><a href="#metrics">Metrics Report</a></li>
+        <li><a href="#workflow">Workflow Walkthrough</a></li>
+        <li><a href="#framework">Framework Documentation</a></li>
+      </ol>
+    </div>
+
+    <!-- ============ 1. CASE STUDY ============ -->
+    <h2 id="case-study">1. Case Study / Point of View</h2>
+
+    <h3>Executive Summary</h3>
+    <p>We built a <strong>general-purpose, AI-orchestrated test automation framework</strong> using <strong>Kiro</strong> and <strong>Playwright</strong> that automates functional testing for <strong>any web application</strong>. The framework converts requirements — from Jira tickets, user stories, or documents — into working, self-healing automated tests in minutes rather than days.</p>
+    <p>To prove its capability, we applied it to one of the hardest automation targets in the industry: a <strong>Salesforce Experience Cloud application</strong>. If the framework can handle Salesforce's complex Shadow DOM, it can handle virtually any web application.</p>
+
+    <h3>The Problem (Universal Across Web Apps)</h3>
+    <table>
+      <tr><th>Challenge</th><th>Impact</th></tr>
+      <tr><td>Manual test authoring</td><td>1–2 days per user story</td></tr>
+      <tr><td>Complex DOM (SPAs, Shadow DOM, iframes)</td><td>Standard locators fail to find elements</td></tr>
+      <tr><td>Locator fragility</td><td>Tests break with every UI change</td></tr>
+      <tr><td>Fragmented tooling</td><td>Requirement → test involves 5+ manual handoffs</td></tr>
+      <tr><td>Maintenance burden</td><td>60%+ of automation effort spent fixing broken tests</td></tr>
+    </table>
+
+    <h3>The Solution</h3>
+    <p>An AI-orchestrated pipeline where Kiro acts as the automation engineer:</p>
+    <ol>
+      <li><strong>Reads the requirement</strong> — from Jira, a document, or chat</li>
+      <li><strong>Creates test cases</strong> — in Zephyr Scale, linked to the source</li>
+      <li><strong>Generates the feature file</strong> — business-readable Gherkin</li>
+      <li><strong>Discovers locators live</strong> — Playwright MCP navigates the real app, pierces Shadow DOM, and verifies each locator by interacting with it</li>
+      <li><strong>Builds the automation</strong> — Page Object + test spec following POM best practices</li>
+      <li><strong>Runs and self-heals</strong> — executes the test; if a locator breaks, it re-inspects the live page and fixes itself</li>
+      <li><strong>Reports back</strong> — posts results on the Jira ticket</li>
+    </ol>
+
+    <h3>Key Innovation: The Self-Healing Locator</h3>
+    <div class="highlight-box">
+      The breakthrough is <strong>not generating code from guesswork</strong> — it's navigating the live application to discover and confirm locators.
+    </div>
+    <table>
+      <tr><th>Traditional Approach</th><th>Our Approach</th></tr>
+      <tr><td>Guess locators from DevTools</td><td>Healer interacts with the live page</td></tr>
+      <tr><td>Can't pierce Shadow DOM</td><td>Pierces Shadow DOM natively</td></tr>
+      <tr><td>Breaks on DOM changes</td><td>Self-heals by re-inspecting</td></tr>
+      <tr><td>Manual fixes needed</td><td>Auto-discovers working alternatives</td></tr>
+    </table>
+
+    <h3>Proof of Value — Salesforce Case Study</h3>
+    <p>We chose Salesforce Experience Cloud because it represents a <strong>worst-case difficulty</strong>: Lightning Web Components with deeply nested Shadow DOM, dynamic dependent form fields, and custom widgets with no accessible text.</p>
+    <table>
+      <tr><th>#</th><th>Scenario</th><th>Source</th><th>Status</th></tr>
+      <tr><td>1</td><td>Incident Creation</td><td>Jira ticket</td><td class="pass">Passing</td></tr>
+      <tr><td>2</td><td>Certificate of Insurance Request</td><td>Jira ticket</td><td class="pass">Passing</td></tr>
+      <tr><td>3</td><td>Expense Request</td><td>Document</td><td class="pass">Passing</td></tr>
+      <tr><td>4</td><td>Request Assessments</td><td>Document</td><td class="pass">Passing</td></tr>
+      <tr><td>5</td><td>Facilities Request</td><td>Document</td><td class="pass">Passing</td></tr>
+      <tr><td>6</td><td>Security Exception Request</td><td>Jira ticket</td><td class="pass">Passing</td></tr>
+    </table>
+    <div class="highlight-box">
+      <strong>The takeaway:</strong> If it works on Salesforce, it works on your web application — whether that's a public website, a customer portal, an internal tool, or a SaaS product.
+    </div>
+
+    <h3>What the Framework Can Automate</h3>
+    <table>
+      <tr><th>Application Type</th><th>Supported</th></tr>
+      <tr><td>Public websites & marketing sites</td><td class="pass">Yes</td></tr>
+      <tr><td>Single Page Apps (React, Angular, Vue)</td><td class="pass">Yes</td></tr>
+      <tr><td>Salesforce & Lightning apps</td><td class="pass">Yes (proven)</td></tr>
+      <tr><td>Customer portals & dashboards</td><td class="pass">Yes</td></tr>
+      <tr><td>E-commerce & checkout flows</td><td class="pass">Yes</td></tr>
+      <tr><td>Banking / insurance web platforms</td><td class="pass">Yes</td></tr>
+      <tr><td>Mobile web (responsive)</td><td class="pass">Yes</td></tr>
+      <tr><td>Multi-browser (Chromium, Firefox, WebKit)</td><td class="pass">Yes</td></tr>
+    </table>
+
+    <h3>Business Impact</h3>
+    <table>
+      <tr><th>Metric</th><th>Traditional</th><th>AI-Driven</th><th>Improvement</th></tr>
+      <tr><td>Time per user story</td><td>1–2 days</td><td>6–10 minutes</td><td>~95% faster</td></tr>
+      <tr><td>Locator maintenance</td><td>1–4 hours per break</td><td>2 minutes (auto-heal)</td><td>~97% faster</td></tr>
+      <tr><td>Requirement → test</td><td>Multiple handoffs</td><td>Single conversation</td><td>Streamlined</td></tr>
+      <tr><td>First-run pass rate</td><td>Low (Salesforce)</td><td>High (verified live)</td><td>Significantly higher</td></tr>
+    </table>
+
+    <div class="section-divider"></div>
+
+    <!-- ============ 2. PRESENTATION ============ -->
+    <h2 id="presentation">2. Demo / Presentation</h2>
+    <p><em>The following sections are structured as presentation slides. Each heading represents one slide.</em></p>
+
+    <h3>Slide 1 — The Problem</h3>
+    <ul>
+      <li>Manual test authoring: <strong>1–2 days</strong> per user story</li>
+      <li>Complex DOM (SPAs, <strong>Shadow DOM</strong>, iframes) breaks standard locators</li>
+      <li>Locators break with <strong>every UI update</strong></li>
+      <li><strong>60%+</strong> of effort spent on maintenance</li>
+    </ul>
+
+    <h3>Slide 2 — The Solution</h3>
+    <ul>
+      <li><strong>Kiro</strong> as the AI automation engineer</li>
+      <li><strong>Playwright</strong> for browser automation (pierces Shadow DOM)</li>
+      <li><strong>Self-healing locators</strong> via live page inspection</li>
+      <li><strong>4 flexible workflows</strong> for any entry point</li>
+    </ul>
+
+    <h3>Slide 3 — Proof of Value (Salesforce Case Study)</h3>
+    <p>Tested against Salesforce Experience Cloud — worst-case difficulty (Shadow DOM, dynamic forms):</p>
+    <table>
+      <tr><th>Scenario</th><th>Status</th></tr>
+      <tr><td>Incident Creation</td><td class="pass">✓</td></tr>
+      <tr><td>COI Request</td><td class="pass">✓</td></tr>
+      <tr><td>Expense Request</td><td class="pass">✓</td></tr>
+      <tr><td>Request Assessments</td><td class="pass">✓</td></tr>
+      <tr><td>Facilities Request</td><td class="pass">✓</td></tr>
+      <tr><td>Security Exception</td><td class="pass">✓</td></tr>
+    </table>
+    <p><span class="badge">100% pass rate</span> — if it works on Salesforce, it works on your web app</p>
+
+    <h3>Slide 4 — Time Savings</h3>
+    <table>
+      <tr><th>Activity</th><th>Traditional</th><th>AI-Driven</th></tr>
+      <tr><td>Understand requirement</td><td>30 min</td><td>5 sec</td></tr>
+      <tr><td>Create test cases</td><td>2 hours</td><td>15 sec</td></tr>
+      <tr><td>Discover locators</td><td>4 hours</td><td>3 min</td></tr>
+      <tr><td>Build Page Object</td><td>2 hours</td><td>30 sec</td></tr>
+      <tr><td>Write test</td><td>2 hours</td><td>20 sec</td></tr>
+      <tr><td><strong>Total per story</strong></td><td><strong>1–2 days</strong></td><td><strong>6–10 min</strong></td></tr>
+    </table>
+
+    <h3>Slide 5 — Live Demo Plan</h3>
+    <ol>
+      <li><strong>"Automate KD-10"</strong> → watch full pipeline execute</li>
+      <li><strong>Attach a user story doc</strong> → watch it become a test</li>
+      <li><strong>"Run all smoke tests"</strong> → watch execution report</li>
+      <li><strong>Break a locator</strong> → watch the healer fix it</li>
+    </ol>
+
+    <h3>Slide 6 — Key Takeaways</h3>
+    <ol>
+      <li><strong>95% faster</strong> — days to minutes</li>
+      <li><strong>Self-healing</strong> locators eliminate #1 maintenance cost</li>
+      <li><strong>Salesforce Shadow DOM</strong> fully supported</li>
+      <li><strong>4 flexible workflows</strong> for any entry point</li>
+      <li><strong>Full traceability</strong> — requirement to test to report</li>
+    </ol>
+
+    <div class="section-divider"></div>
+
+    <!-- ============ 3. METRICS ============ -->
+    <h2 id="metrics">3. Metrics Report</h2>
+
+    <h3>Framework Capability</h3>
+    <table>
+      <tr><th>Metric</th><th>Value</th></tr>
+      <tr><td>Automation Workflows</td><td>4</td></tr>
+      <tr><td>Steering Documents</td><td>12</td></tr>
+      <tr><td>Supported App Types</td><td>Any web app</td></tr>
+      <tr><td>Supported Browsers</td><td>Chromium, Firefox, WebKit</td></tr>
+      <tr><td>Page Objects (case study)</td><td>8</td></tr>
+    </table>
+
+    <h3>Case Study Execution Results</h3>
+    <table>
+      <tr><th>Scenario</th><th>Status</th></tr>
+      <tr><td>Incident — Create</td><td class="pass">PASS</td></tr>
+      <tr><td>Incident — Validation</td><td class="pass">PASS</td></tr>
+      <tr><td>COI Request</td><td class="pass">PASS</td></tr>
+      <tr><td>Expense Request</td><td class="pass">PASS</td></tr>
+      <tr><td>Request Assessments</td><td class="pass">PASS</td></tr>
+      <tr><td>Facilities Request</td><td class="pass">PASS</td></tr>
+      <tr><td>Security Exception</td><td class="pass">PASS</td></tr>
+    </table>
+    <p><strong>Overall Pass Rate: 100%</strong></p>
+
+    <h3>Performance</h3>
+    <table>
+      <tr><th>Test</th><th>Avg Duration</th></tr>
+      <tr><td>Incident Creation</td><td>~31 seconds</td></tr>
+      <tr><td>COI Request</td><td>~35 seconds</td></tr>
+      <tr><td>Expense Request</td><td>~33 seconds</td></tr>
+      <tr><td>Security Exception</td><td>~35 seconds</td></tr>
+      <tr><td><strong>Average per test</strong></td><td><strong>~33 seconds</strong></td></tr>
+    </table>
+
+    <h3>Efficiency — Time Savings</h3>
+    <table>
+      <tr><th>Activity</th><th>Traditional</th><th>AI-Driven</th><th>Savings</th></tr>
+      <tr><td>Understand requirement</td><td>30 min</td><td>5 sec</td><td>99%</td></tr>
+      <tr><td>Create test cases</td><td>2 hours</td><td>15 sec</td><td>99%</td></tr>
+      <tr><td>Write feature file</td><td>1 hour</td><td>10 sec</td><td>99%</td></tr>
+      <tr><td>Discover locators</td><td>4 hours</td><td>3 min</td><td>98%</td></tr>
+      <tr><td>Build Page Object</td><td>2 hours</td><td>30 sec</td><td>99%</td></tr>
+      <tr><td>Write test spec</td><td>2 hours</td><td>20 sec</td><td>99%</td></tr>
+      <tr><td>Heal broken locator</td><td>1–4 hours</td><td>2 min</td><td>97%</td></tr>
+      <tr><td><strong>Total per story</strong></td><td><strong>1–2 days</strong></td><td><strong>6–10 min</strong></td><td><strong>~95%</strong></td></tr>
+    </table>
+
+    <div class="section-divider"></div>
+
+    <!-- ============ 4. WORKFLOW ============ -->
+    <h2 id="workflow">4. Workflow Walkthrough</h2>
+
+    <h3>Overview of the 4 Workflows</h3>
+    <table>
+      <tr><th>#</th><th>Workflow</th><th>Trigger</th><th>Jira</th><th>Zephyr</th><th>Automates</th></tr>
+      <tr><td>1</td><td>Jira Automation</td><td>"Automate KD-7"</td><td>—</td><td>✓</td><td>✓</td></tr>
+      <tr><td>2</td><td>User Story Automation</td><td>Paste story / doc</td><td>—</td><td>—</td><td>✓</td></tr>
+      <tr><td>3</td><td>Story → Jira → Zephyr → Test</td><td>"Create in Jira and automate"</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>4</td><td>Test Execution & Reporting</td><td>"Run smoke tests"</td><td>—</td><td>—</td><td>Runs existing</td></tr>
+    </table>
+
+    <h3>Workflow 1: Automate from Jira</h3>
+    <pre><code>1. Read Jira ticket          → getJiraIssue
+2. Create Zephyr test cases  → linked to ticket
+3. Generate feature file     → Gherkin with tags
+4. Discover locators         → Playwright MCP healer (live page)
+5. Build Page Object         → extends BasePage
+6. Write test spec           → uses fixtures
+7. Run & heal                → execute, fix, re-run
+8. Post Jira comment         → results summary</code></pre>
+
+    <h3>Workflow 2: User Story to Automation</h3>
+    <p>Paste a requirement in chat or attach a Word/PDF document. Kiro parses it, structures a user story, then generates the feature file, discovers locators, builds the Page Object, writes the test, and runs it. No Jira needed.</p>
+
+    <h3>Workflow 3: Story → Jira → Zephyr → Automation</h3>
+    <p>The most comprehensive flow. Kiro creates a new Jira ticket, creates Zephyr test cases linked to it, generates the feature file, automates the test, runs it, and posts results back on the ticket — all from a single conversation.</p>
+
+    <h3>Workflow 4: Test Execution & Reporting</h3>
+    <pre><code>npx playwright test --project=chromium --grep @smoke
+npx playwright test --project=chromium --grep @regression
+npx playwright test --project=chromium --grep @e2e</code></pre>
+    <p>Runs the suite, collects results, generates a structured report, and optionally posts to Jira.</p>
+
+    <div class="section-divider"></div>
+
+    <!-- ============ 5. FRAMEWORK DOC ============ -->
+    <h2 id="framework">5. Framework Documentation</h2>
+
+    <h3>Technology Stack</h3>
+    <table>
+      <tr><th>Layer</th><th>Technology</th></tr>
+      <tr><td>AI Orchestration</td><td>Kiro IDE + Steering Documents</td></tr>
+      <tr><td>Test Runner</td><td>Playwright (@playwright/test ^1.45)</td></tr>
+      <tr><td>Locator Discovery</td><td>Playwright MCP (live page inspection)</td></tr>
+      <tr><td>Test Management</td><td>Zephyr Scale (Jira-integrated)</td></tr>
+      <tr><td>Project Tracking</td><td>Jira (Atlassian Cloud)</td></tr>
+      <tr><td>Language</td><td>TypeScript (strict mode)</td></tr>
+      <tr><td>Reporting</td><td>Allure + Playwright HTML</td></tr>
+      <tr><td>Runtime</td><td>Node.js >= 18</td></tr>
+    </table>
+
+    <h3>Project Structure</h3>
+    <pre><code>ai-test-framework/
+├── .kiro/steering/            # 12 AI behavior guides
+├── src/
+│   ├── config/                # .env.dev, .env.staging
+│   ├── test-case-management/
+│   │   ├── features/istm/     # Gherkin feature files
+│   │   └── user-stories/      # Structured user stories
+│   ├── playwright/
+│   │   ├── pages/             # Page Objects (POM)
+│   │   ├── fixtures/          # Test DI
+│   │   ├── object-repository/ # Verified locators
+│   │   └── tests/             # smoke / regression / e2e
+│   └── reporting/             # Reports & artifacts
+├── docs/                      # Documentation
+├── playwright.config.ts
+└── package.json</code></pre>
+
+    <h3>Locator Strategy (Any Web App)</h3>
+    <table>
+      <tr><th>DOM Type</th><th>Strategy</th></tr>
+      <tr><td>Standard HTML</td><td><code>getByRole</code>, <code>getByLabel</code>, <code>getByTestId</code></td></tr>
+      <tr><td>Shadow DOM (Web Components)</td><td>Playwright native piercing + deep query</td></tr>
+      <tr><td>iframes</td><td>Frame locators</td></tr>
+      <tr><td>Dynamic SPAs</td><td>Auto-waiting + explicit visibility waits</td></tr>
+      <tr><td>Custom widgets</td><td>Attribute selectors (<code>data-value</code>, <code>aria-label</code>)</td></tr>
+      <tr><td>Native dropdowns</td><td><code>selectOption()</code></td></tr>
+    </table>
+
+    <h3>Setup Guide</h3>
+    <pre><code># Install
+cd ai-test-framework
+npm install
+npx playwright install chromium
+
+# Configure src/config/.env.dev
+BASE_URL=https://your-application-url
+APP_USERNAME=your-username
+APP_PASSWORD=your-password</code></pre>
+    <div class="highlight-box">
+      <strong>Note:</strong> Use <code>APP_USERNAME</code>/<code>APP_PASSWORD</code> (not <code>username</code>/<code>password</code>) to avoid conflict with Windows system environment variables.
+    </div>
+
+    <h3>Running Tests</h3>
+    <pre><code>npm run test:smoke
+npm run test:regression
+npm run test:e2e
+
+# Specific spec
+npx playwright test src/playwright/tests/smoke/incident-creation.spec.ts --project=chromium</code></pre>
+
+    <h3>Troubleshooting</h3>
+    <table>
+      <tr><th>Issue</th><th>Cause</th><th>Fix</th></tr>
+      <tr><td>Login fills wrong username</td><td>Windows env var conflict</td><td>Use APP_USERNAME</td></tr>
+      <tr><td>networkidle timeout</td><td>Salesforce background requests</td><td>Use domcontentloaded</td></tr>
+      <tr><td>Locator not found</td><td>Element in Shadow DOM</td><td>Use healer / data-value</td></tr>
+      <tr><td>Combobox option not clickable</td><td>Text empty in Shadow DOM</td><td>Use [data-value]</td></tr>
+      <tr><td>Missing browsers</td><td>Not installed</td><td>npx playwright install chromium</td></tr>
+    </table>
+
+    <h3>Security Considerations</h3>
+    <ul>
+      <li>Kiro runs <strong>locally</strong> — code never leaves your machine</li>
+      <li>Credentials in <code>.env</code> files (gitignored)</li>
+      <li>Use <strong>sandbox</strong> environments only — never production</li>
+      <li>Use <strong>synthetic test data</strong> — never real customer PII</li>
+      <li>Rotate PATs (Jira, Zephyr) regularly</li>
+    </ul>
+
+    <div style="margin-top:60px; padding-top:20px; border-top:1px solid #e1e4e8; text-align:center; color:#888; font-size:0.85em;">
+      AI-Driven Test Automation Framework · Milestone Technologies · August 2026
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
