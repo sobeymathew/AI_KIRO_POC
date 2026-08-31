@@ -1,0 +1,37 @@
+{
+  "id": "TC-0032",
+  "name": "Verify Agentforce tickets can be filtered in reports",
+  "objective": "Validate that fulfillers can filter and report on tickets created by Agentforce.",
+  "precondition": "Tickets created by Agentforce exist in the system. Fulfiller has reporting access.",
+  "category": "regression",
+  "priority": "P2",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0009",
+  "labels": ["regression", "p2", "agentforce", "source-tracking", "reporting"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Navigate to the ticket reporting/list view",
+      "testData": "",
+      "expectedResult": "Ticket list or report view is displayed"
+    },
+    {
+      "step": 2,
+      "description": "Apply filter: Source = Agentforce",
+      "testData": "Filter by Source = 'Agentforce'",
+      "expectedResult": "Filter is applied successfully"
+    },
+    {
+      "step": 3,
+      "description": "Verify only Agentforce-created tickets are displayed",
+      "testData": "",
+      "expectedResult": "All displayed tickets have Source = Agentforce; no other tickets are shown"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

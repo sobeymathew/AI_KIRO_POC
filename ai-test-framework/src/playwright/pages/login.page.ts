@@ -2,103 +2,67 @@ import { Page, Locator } from '@playwright/test';
 import { BasePage } from './base.page';
 
 /**
- * Page Object for the Login page.
+ * Page Object for the Salesforce ITSM Login page.
  * Handles all user authentication interactions.
- * 
- * URL: /login
- * Repository: src/web-scraping/object-repository/pages/login-page.repo.json
+ *
+ * URL: /itsm/s/ (login component embedded in the portal page)
+ * Repository: src/playwright/object-repository/pages/login-page.repo.json
+ * Verified: 2026-08-06
  */
 export class LoginPage extends BasePage {
-  // Form elements
-  readonly emailInput: Locator;
+  // Form elements (verified locators from object repository)
+  readonly usernameInput: Locator;
   readonly passwordInput: Locator;
-  readonly submitButton: Locator;
-  readonly rememberMeCheckbox: Locator;
-
-  // Links
-  readonly forgotPasswordLink: Locator;
-  readonly signUpLink: Locator;
+  readonly loginButton: Locator;
 
   // Feedback elements
   readonly errorMessage: Locator;
-  readonly successMessage: Locator;
-  readonly loadingSpinner: Locator;
-
-  // Social login
-  readonly googleLoginButton: Locator;
-  readonly githubLoginButton: Locator;
 
   constructor(page: Page) {
     super(page);
 
-    // Form elements
-    this.emailInput = page.getByTestId('login-email');
-    this.passwordInput = page.getByTestId('login-password');
-    this.submitButton = page.getByTestId('login-submit');
-    this.rememberMeCheckbox = page.getByLabel('Remember me');
+    // Verified Salesforce locators from login-page.repo.json
+    this.usernameInput = page.getByPlaceholder('Username');
+    this.passwordInput = page.getByPlaceholder('Password');
+    this.loginButton = page.locator('button:has-text("Log in")');
 
-    // Links
-    this.forgotPasswordLink = page.getByRole('link', { name: 'Forgot password' });
-    this.signUpLink = page.getByRole('link', { name: 'Sign up' });
-
-    // Feedback elements
-    this.errorMessage = page.getByTestId('login-error');
-    this.successMessage = page.getByTestId('login-success');
-    this.loadingSpinner = page.getByTestId('login-loading');
-
-    // Social login
-    this.googleLoginButton = page.getByTestId('login-google');
-    this.githubLoginButton = page.getByTestId('login-github');
+    // Error feedback
+    this.errorMessage = page.locator('.error-message, .slds-notify--alert, [data-aura-class="forceFormMessageQueue"]');
   }
 
   /** Navigate to the login page */
   async navigate(): Promise<void> {
-    await this.goto('/login');
+    this.logger.info('Navigating to Salesforce ITSM login page');
+    // BASE_URL is the login page directly: /itsm/s/login/
+    await this.page.goto('/', { waitUntil: 'domcontentloaded', timeout: 60000 });
+    // Wait for Salesforce to render the login form dynamically
+    await this.page.waitForTimeout(5000);
+    await this.usernameInput.waitFor({ state: 'visible', timeout: 30000 });
   }
 
-  /** Perform login with email and password */
-  async login(email: string, password: string): Promise<void> {
-    this.logger.info(`Logging in as: ${email}`);
-    await this.emailInput.fill(email);
+  /** Perform login with username and password */
+  async login(username: string, password: string): Promise<void> {
+    this.logger.info(`Logging in as: ${username}`);
+    await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
-    await this.submitButton.click();
-  }
-
-  /** Perform login with remember me checked */
-  async loginWithRememberMe(email: string, password: string): Promise<void> {
-    await this.emailInput.fill(email);
-    await this.passwordInput.fill(password);
-    await this.rememberMeCheckbox.check();
-    await this.submitButton.click();
-  }
-
-  /** Click the forgot password link */
-  async clickForgotPassword(): Promise<void> {
-    await this.forgotPasswordLink.click();
-  }
-
-  /** Click the sign up link */
-  async clickSignUp(): Promise<void> {
-    await this.signUpLink.click();
-  }
-
-  /** Login with Google OAuth */
-  async loginWithGoogle(): Promise<void> {
-    await this.googleLoginButton.click();
-  }
-
-  /** Login with GitHub OAuth */
-  async loginWithGitHub(): Promise<void> {
-    await this.githubLoginButton.click();
-  }
-
-  /** Get the error message text */
-  async getErrorText(): Promise<string> {
-    return (await this.errorMessage.textContent()) ?? '';
+    await this.loginButton.click();
+    // Wait for navigation after login
+    await this.page.waitForLoadState('domcontentloaded');
   }
 
   /** Check if login form is displayed */
   async isLoginFormVisible(): Promise<boolean> {
-    return await this.emailInput.isVisible();
+    return await this.usernameInput.isVisible();
+  }
+
+  /** Get the error message text */
+  async getErrorText(): Promise<string> {
+    await this.errorMessage.waitFor({ state: 'visible', timeout: 10000 });
+    return (await this.errorMessage.textContent()) ?? '';
+  }
+
+  /** Check if error message is visible */
+  async isErrorVisible(): Promise<boolean> {
+    return await this.errorMessage.isVisible();
   }
 }

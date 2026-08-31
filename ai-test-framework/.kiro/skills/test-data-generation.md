@@ -81,25 +81,22 @@ When test cases require specific data sets.
 ## Template
 
 ```typescript
-// src/test-data/static/auth.data.ts
+// src/test-data/itsm-test-data.ts
 export const authTestData = {
   validUser: {
-    email: process.env.TEST_USER_EMAIL || 'test@example.com',
-    password: process.env.TEST_USER_PASSWORD || 'Test@12345',
-    name: 'Test User',
-  },
-  invalidUser: {
-    email: 'invalid@example.com',
-    password: 'wrongpassword',
+    username: process.env.APP_USERNAME || 'itsmuser@milestone.tech',
+    password: process.env.APP_PASSWORD || 'SecurePassword1',
   },
 };
 
-// src/test-data/dynamic/user.factory.ts
-import { v4 as uuid } from 'uuid';
-
-export function createTestUser(overrides = {}) {
-  return {
-    email: `test-${uuid()}@example.com`,
+// Example: Module-specific test data
+export const incidentTestData = {
+  validIncident: {
+    requestedFor: 'ITSM Requester 4',
+    urgency: 'Low - Productivity not impacted',
+    category: 'Hardware',
+    subCategory: 'Laptop',
+    briefDescription: 'Test incident for validation',
     password: 'Test@12345',
     name: `User ${Date.now()}`,
     ...overrides,

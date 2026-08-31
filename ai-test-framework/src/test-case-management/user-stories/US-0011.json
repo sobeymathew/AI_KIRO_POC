@@ -1,0 +1,43 @@
+{
+  "id": "US-0011",
+  "requirementId": "REQ-0002",
+  "title": "Intelligent Ticket Routing",
+  "story": "As a fulfiller, I want tickets created by the assistant to be routed automatically to the correct team, so that manual reassignment is minimized.",
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0015",
+      "given": "a ticket matches configured routing keywords",
+      "when": "the ticket is created",
+      "then": "it is assigned to the corresponding resolver queue"
+    },
+    {
+      "id": "AC-0015a",
+      "given": "multiple routing rules match a ticket",
+      "when": "the routing engine processes the ticket",
+      "then": "the highest-priority rule is applied"
+    },
+    {
+      "id": "AC-0015b",
+      "given": "no routing rule matches a ticket",
+      "when": "the routing engine processes the ticket",
+      "then": "it is assigned to the default queue"
+    },
+    {
+      "id": "AC-0015c",
+      "given": "a ticket is routed by the AI",
+      "when": "a fulfiller views the ticket",
+      "then": "the routing decision and reason are visible"
+    }
+  ],
+  "edgeCases": [
+    "Routing rule configuration changes while ticket is being created",
+    "Default queue is full or disabled",
+    "Ticket content matches a deprecated routing keyword",
+    "Round-robin assignment within a queue",
+    "Re-routing after category override by fulfiller"
+  ],
+  "priority": "P1",
+  "complexity": "HIGH",
+  "estimatedTestCases": 6,
+  "status": "APPROVED"
+}

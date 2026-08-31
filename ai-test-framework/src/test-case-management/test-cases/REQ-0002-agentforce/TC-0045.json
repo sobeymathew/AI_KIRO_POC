@@ -1,0 +1,73 @@
+{
+  "id": "TC-0045",
+  "name": "E2E: Knowledge article insufficient leads to incident creation",
+  "objective": "Validate the complete end-to-end journey where a user asks a question, receives a knowledge article that doesn't resolve the issue, and the assistant seamlessly transitions to ticket creation with conversation history preserved.",
+  "precondition": "User has valid credentials. Knowledge articles exist but may not fully resolve the specific issue.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0002,US-0004,US-0005",
+  "labels": ["e2e", "p0", "agentforce", "knowledge-to-ticket"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Log in to the self-service portal and navigate to home page",
+      "testData": "Valid portal credentials",
+      "expectedResult": "Home page loads with Agentforce icon visible"
+    },
+    {
+      "step": 2,
+      "description": "Click the Agentforce icon to open the AI Assistant",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 3,
+      "description": "Ask a question that returns a knowledge article",
+      "testData": "\"How do I fix the printer error on the 3rd floor\"",
+      "expectedResult": "The assistant retrieves a relevant knowledge article about printer troubleshooting"
+    },
+    {
+      "step": 4,
+      "description": "Indicate the article did not resolve the issue",
+      "testData": "\"That didn't help\" or click 'Not resolved'",
+      "expectedResult": "The assistant offers to create a ticket"
+    },
+    {
+      "step": 5,
+      "description": "Confirm desire to create a ticket",
+      "testData": "\"Yes, please create a ticket\"",
+      "expectedResult": "The assistant begins gathering additional details"
+    },
+    {
+      "step": 6,
+      "description": "Provide remaining required details as prompted",
+      "testData": "Location, urgency, additional context as requested",
+      "expectedResult": "The assistant gathers all information and presents summary"
+    },
+    {
+      "step": 7,
+      "description": "Confirm incident creation",
+      "testData": "Click confirm",
+      "expectedResult": "Incident is created with conversation history as context"
+    },
+    {
+      "step": 8,
+      "description": "Verify incident number and link are displayed",
+      "testData": "",
+      "expectedResult": "Incident number (INC-XXXXX) and link are shown"
+    },
+    {
+      "step": 9,
+      "description": "Verify the knowledge article interaction is recorded in ticket history",
+      "testData": "",
+      "expectedResult": "Ticket description or history references the knowledge article that was tried"
+    }
+  ],
+  "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
+  "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

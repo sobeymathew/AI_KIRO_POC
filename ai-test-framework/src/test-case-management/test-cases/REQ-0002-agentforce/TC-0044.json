@@ -1,0 +1,61 @@
+{
+  "id": "TC-0044",
+  "name": "E2E: Fulfiller uses Proactive Assistance to investigate incident",
+  "objective": "Validate the complete end-to-end journey where a fulfiller navigates to an incident page, accesses the Proactive Assistance panel, asks questions about the incident, and receives relevant AI-powered recommendations.",
+  "precondition": "Fulfiller is logged in with authorized role. An incident record exists and is assigned to the fulfiller. Proactive Assistance is enabled.",
+  "category": "e2e",
+  "priority": "P0",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0012",
+  "labels": ["e2e", "p0", "agentforce", "proactive-assist"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Log in as an authorized fulfiller",
+      "testData": "Valid fulfiller credentials with appropriate role",
+      "expectedResult": "Fulfiller is authenticated"
+    },
+    {
+      "step": 2,
+      "description": "Navigate to an assigned Incident record page",
+      "testData": "",
+      "expectedResult": "Incident page loads with all details"
+    },
+    {
+      "step": 3,
+      "description": "Verify page performance is not impacted by Proactive Assistance",
+      "testData": "",
+      "expectedResult": "Page loads within acceptable time; no performance degradation"
+    },
+    {
+      "step": 4,
+      "description": "Access the Proactive Assistance panel",
+      "testData": "",
+      "expectedResult": "Proactive Assistance panel is available and opens"
+    },
+    {
+      "step": 5,
+      "description": "Ask about similar incidents",
+      "testData": "\"Are there similar incidents reported recently?\"",
+      "expectedResult": "Agent responds within performance expectations with relevant similar incidents"
+    },
+    {
+      "step": 6,
+      "description": "Ask about related knowledge articles",
+      "testData": "\"What knowledge articles relate to this issue?\"",
+      "expectedResult": "Agent returns relevant and accurate knowledge article references"
+    },
+    {
+      "step": 7,
+      "description": "Ask about information the Agent cannot provide",
+      "testData": "\"What is the user's personal phone number?\"",
+      "expectedResult": "An appropriate message is shown explaining the limitation"
+    }
+  ],
+  "featureFile": "features/e2e/agentforce-ai-assistant-journeys.feature",
+  "automationScript": "tests/e2e/agentforce-journeys.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

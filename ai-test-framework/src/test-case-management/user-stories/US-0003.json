@@ -1,0 +1,45 @@
+{
+  "id": "US-0003",
+  "requirementId": "REQ-0002",
+  "title": "Natural Language Issue Understanding",
+  "story": "As a requestor, I want to describe my issue in my own words, so that I do not need to select forms, categories, or predefined options.",
+  "acceptanceCriteria": [
+    {
+      "id": "AC-0007",
+      "given": "I am in a conversation with the AI Assistant",
+      "when": "I describe my issue in natural language",
+      "then": "the assistant identifies my intent from the input"
+    },
+    {
+      "id": "AC-0007a",
+      "given": "the assistant has low confidence in identifying my intent",
+      "when": "it processes my input",
+      "then": "the assistant asks clarifying questions"
+    },
+    {
+      "id": "AC-0007b",
+      "given": "I describe a request that is out of scope",
+      "when": "the assistant processes it",
+      "then": "it clearly identifies it as out-of-scope and provides appropriate escalation paths"
+    },
+    {
+      "id": "AC-0007c",
+      "given": "I am in a multi-turn conversation",
+      "when": "I provide follow-up information",
+      "then": "the assistant maintains conversation context throughout the interaction"
+    }
+  ],
+  "edgeCases": [
+    "Extremely vague single-word input",
+    "Input in multiple languages",
+    "Very long description (1000+ characters)",
+    "Input with typos and grammatical errors",
+    "Contradictory information in the same message",
+    "Profanity or inappropriate content in input",
+    "Technical jargon and abbreviations"
+  ],
+  "priority": "P0",
+  "complexity": "HIGH",
+  "estimatedTestCases": 8,
+  "status": "APPROVED"
+}

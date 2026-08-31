@@ -1,6 +1,5 @@
 export { BasePage } from './base.page';
 export { LoginPage } from './login.page';
-export { DashboardPage } from './dashboard.page';
 export { IncidentCreatePage } from './incident-create.page';
 export type { IncidentFormData } from './incident-create.page';
 export { CoiRequestPage } from './coi-request.page';
@@ -9,3 +8,5 @@ export { ExpenseRequestPage } from './expense-request.page';
 export type { ExpenseFormData } from './expense-request.page';
 export { FacilitiesRequestPage } from './facilities-request.page';
 export type { FacilitiesFormData } from './facilities-request.page';
+export { TravelRequestPage } from './travel-request.page';
+export { RequestAssessmentsPage } from './request-assessments.page';

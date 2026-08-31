@@ -1,0 +1,43 @@
+{
+  "id": "TC-0023",
+  "name": "Verify ambiguous request triggers clarification for ticket type",
+  "objective": "Validate that when a user describes an ambiguous request, the assistant asks clarifying questions to determine whether it is an Incident or Service Request.",
+  "precondition": "User is logged in, on home page, AI Assistant panel is open.",
+  "category": "regression",
+  "priority": "P1",
+  "requirementId": "REQ-0002",
+  "userStoryId": "US-0006",
+  "labels": ["regression", "p1", "agentforce", "classification"],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Click the Agentforce icon on the home page",
+      "testData": "",
+      "expectedResult": "AI Assistant panel opens"
+    },
+    {
+      "step": 2,
+      "description": "Describe an ambiguous request",
+      "testData": "\"I need something done with my account\"",
+      "expectedResult": "Message is submitted"
+    },
+    {
+      "step": 3,
+      "description": "Verify the assistant asks clarifying questions",
+      "testData": "",
+      "expectedResult": "The assistant asks what specifically is needed with the account (access issue, locked out, new access, etc.)"
+    },
+    {
+      "step": 4,
+      "description": "Provide clarification",
+      "testData": "\"I am locked out of my account\"",
+      "expectedResult": "The assistant now classifies this as an Incident and proceeds accordingly"
+    }
+  ],
+  "featureFile": "features/regression/agentforce-ai-assistant-full.feature",
+  "automationScript": "tests/regression/agentforce-assistant-regression.spec.ts",
+  "automationStatus": "PENDING",
+  "zephyrKey": null,
+  "createdDate": "2026-08-12",
+  "lastModified": "2026-08-12"
+}

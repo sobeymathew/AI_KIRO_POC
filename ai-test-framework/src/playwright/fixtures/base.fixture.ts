@@ -1,36 +1,31 @@
 import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
-import { DashboardPage } from '../pages/dashboard.page';
 import { IncidentCreatePage } from '../pages/incident-create.page';
 import { CoiRequestPage } from '../pages/coi-request.page';
 import { ExpenseRequestPage } from '../pages/expense-request.page';
+import { TravelRequestPage } from '../pages/travel-request.page';
 import { FacilitiesRequestPage } from '../pages/facilities-request.page';
 import { RequestAssessmentsPage } from '../pages/request-assessments.page';
 import { SecurityExceptionRequestPage } from '../pages/security-exception-request.page';
-import { HeaderNavComponent } from '../components/header-nav.component';
 
 /**
- * Extended test fixtures providing page objects and components.
+ * Extended test fixtures providing ITSM page objects.
  * Import this instead of @playwright/test in all test files.
  */
 type PageFixtures = {
   loginPage: LoginPage;
-  dashboardPage: DashboardPage;
   incidentCreatePage: IncidentCreatePage;
   coiRequestPage: CoiRequestPage;
   expenseRequestPage: ExpenseRequestPage;
+  travelRequestPage: TravelRequestPage;
   facilitiesRequestPage: FacilitiesRequestPage;
   requestAssessmentsPage: RequestAssessmentsPage;
   securityExceptionPage: SecurityExceptionRequestPage;
-  headerNav: HeaderNavComponent;
 };
 
 export const test = base.extend<PageFixtures>({
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
-  },
-  dashboardPage: async ({ page }, use) => {
-    await use(new DashboardPage(page));
   },
   incidentCreatePage: async ({ page }, use) => {
     await use(new IncidentCreatePage(page));
@@ -41,6 +36,9 @@ export const test = base.extend<PageFixtures>({
   expenseRequestPage: async ({ page }, use) => {
     await use(new ExpenseRequestPage(page));
   },
+  travelRequestPage: async ({ page }, use) => {
+    await use(new TravelRequestPage(page));
+  },
   facilitiesRequestPage: async ({ page }, use) => {
     await use(new FacilitiesRequestPage(page));
   },
@@ -49,9 +47,6 @@ export const test = base.extend<PageFixtures>({
   },
   securityExceptionPage: async ({ page }, use) => {
     await use(new SecurityExceptionRequestPage(page));
-  },
-  headerNav: async ({ page }, use) => {
-    await use(new HeaderNavComponent(page));
   },
 });
 
