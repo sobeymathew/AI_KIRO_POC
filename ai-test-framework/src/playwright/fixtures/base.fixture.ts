@@ -6,6 +6,7 @@ import { ExpenseRequestPage } from '../pages/expense-request.page';
 import { TravelRequestPage } from '../pages/travel-request.page';
 import { FacilitiesRequestPage } from '../pages/facilities-request.page';
 import { RequestAssessmentsPage } from '../pages/request-assessments.page';
+import { SecurityExceptionRequestPage } from '../pages/security-exception-request.page';
 
 /**
  * Extended test fixtures providing ITSM page objects.
@@ -19,6 +20,7 @@ type PageFixtures = {
   travelRequestPage: TravelRequestPage;
   facilitiesRequestPage: FacilitiesRequestPage;
   requestAssessmentsPage: RequestAssessmentsPage;
+  securityExceptionPage: SecurityExceptionRequestPage;
 };
 
 export const test = base.extend<PageFixtures>({
@@ -42,6 +44,9 @@ export const test = base.extend<PageFixtures>({
   },
   requestAssessmentsPage: async ({ page }, use) => {
     await use(new RequestAssessmentsPage(page));
+  },
+  securityExceptionPage: async ({ page }, use) => {
+    await use(new SecurityExceptionRequestPage(page));
   },
 });
 
