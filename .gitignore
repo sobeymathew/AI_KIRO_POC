@@ -1,0 +1,21 @@
+# Kiro MCP settings — contains API keys, PATs, and tokens. Never commit.
+.kiro/settings/mcp.json
+
+# Environment / secrets
+**/.env
+**/.env.*
+!**/.env.template
+
+# Node
+node_modules/
+
+# Playwright / test artifacts
+allure-results/
+allure-report/
+**/reporting/artifacts/
+test-results/
+playwright-report/
+
+# OS / IDE
+.DS_Store
+Thumbs.db

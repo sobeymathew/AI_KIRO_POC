@@ -2,11 +2,9 @@ import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
 import { IncidentCreatePage } from '../pages/incident-create.page';
 import { CoiRequestPage } from '../pages/coi-request.page';
-import { ExpenseRequestPage } from '../pages/expense-request.page';
-import { TravelRequestPage } from '../pages/travel-request.page';
-import { FacilitiesRequestPage } from '../pages/facilities-request.page';
 import { RequestAssessmentsPage } from '../pages/request-assessments.page';
 import { SecurityExceptionRequestPage } from '../pages/security-exception-request.page';
+import { ExpenseRequestPage } from '../pages/expense-request.page';
 
 /**
  * Extended test fixtures providing ITSM page objects.
@@ -16,11 +14,9 @@ type PageFixtures = {
   loginPage: LoginPage;
   incidentCreatePage: IncidentCreatePage;
   coiRequestPage: CoiRequestPage;
-  expenseRequestPage: ExpenseRequestPage;
-  travelRequestPage: TravelRequestPage;
-  facilitiesRequestPage: FacilitiesRequestPage;
   requestAssessmentsPage: RequestAssessmentsPage;
   securityExceptionPage: SecurityExceptionRequestPage;
+  expenseRequestPage: ExpenseRequestPage;
 };
 
 export const test = base.extend<PageFixtures>({
@@ -33,20 +29,14 @@ export const test = base.extend<PageFixtures>({
   coiRequestPage: async ({ page }, use) => {
     await use(new CoiRequestPage(page));
   },
-  expenseRequestPage: async ({ page }, use) => {
-    await use(new ExpenseRequestPage(page));
-  },
-  travelRequestPage: async ({ page }, use) => {
-    await use(new TravelRequestPage(page));
-  },
-  facilitiesRequestPage: async ({ page }, use) => {
-    await use(new FacilitiesRequestPage(page));
-  },
   requestAssessmentsPage: async ({ page }, use) => {
     await use(new RequestAssessmentsPage(page));
   },
   securityExceptionPage: async ({ page }, use) => {
     await use(new SecurityExceptionRequestPage(page));
+  },
+  expenseRequestPage: async ({ page }, use) => {
+    await use(new ExpenseRequestPage(page));
   },
 });
 
