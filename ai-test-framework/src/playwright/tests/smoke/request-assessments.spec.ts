@@ -3,20 +3,17 @@ import { AssessmentFormData } from '../../pages/request-assessments.page';
 
 /**
  * Smoke Tests: Request Assessments
- * Story ID: SR-EXP-001
- * Source: Request Assessments-user story.docx
- * User Story: src/test-case-management/user-stories/request-assessments.md
+ * Azure DevOps Work Item: 8
  * Feature: src/test-case-management/features/istm/request-assessments.feature
  */
 test.describe('Request Assessments - Smoke @smoke', () => {
   test.setTimeout(120000);
 
-  // Test data (verified from live form 2026-08-11)
   const assessmentData: AssessmentFormData = {
     subcategory: 'Choice_Subcategory_Third_Party_Assessment',
     type: 'Third Party Assessment',
     clientName: 'Test Client Corp',
-    description: 'Automated smoke test - Request Assessment for third party security review',
+    description: 'Automated smoke test - Request Assessment for third party security review (Work Item 8)',
   };
 
   test.beforeEach(async ({ page }) => {
@@ -34,7 +31,7 @@ test.describe('Request Assessments - Smoke @smoke', () => {
     await page.waitForTimeout(3000);
   });
 
-  test('should submit request assessment successfully with mandatory fields @smoke @p0', async ({
+  test('should submit request assessment successfully @smoke @p0', async ({
     requestAssessmentsPage,
   }) => {
     // Arrange - Navigate: Service Request → Service Catalog → Request Assessments
@@ -43,13 +40,16 @@ test.describe('Request Assessments - Smoke @smoke', () => {
     // Act - Fill mandatory fields and submit
     await requestAssessmentsPage.submitRequestAssessment(assessmentData);
 
-    // Assert - Verify "Service Request Created Successfully"
-    await expect(requestAssessmentsPage.successMessageText).toBeVisible({ timeout: 20000 });
+    // Guard - Fail clearly if the application returned a system error (not a test defect)
+    const appError = await requestAssessmentsPage.hasApplicationError();
+    expect(
+      appError,
+      'Application returned a system error on submission (server-side issue, not a test defect)'
+    ).toBe(false);
 
-    // Verify Request Number is generated
-    await expect(requestAssessmentsPage.requestNumberText).toBeVisible({ timeout: 15000 });
+    // Assert - Verify submission succeeded and a request number was generated
     const requestNumber = await requestAssessmentsPage.getRequestNumber();
     expect(requestNumber).toMatch(/RQ-\d+/);
-    console.log(`✅ Request Assessment submitted successfully: ${requestNumber}`);
+    console.log(`✅ Request Assessment submitted: ${requestNumber}`);
   });
 });

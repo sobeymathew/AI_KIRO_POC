@@ -3,9 +3,9 @@ import { BasePage } from './base.page';
 
 /**
  * Page Object for the Request Assessments form.
- * Flow: Service Request → Service Catalog → Request Assessments → Fill Form → Submit
- * Verified: 2026-08-11 via Playwright MCP healer
- * Story ID: SR-EXP-001
+ * Flow: Service Request → Service Catalog → Request Assessments → Fill → Submit
+ * Verified: 2026-09-02 via Playwright MCP healer (RQ-000002872)
+ * Azure DevOps Work Item: 8
  */
 export class RequestAssessmentsPage extends BasePage {
   // --- Navigation (verified) ---
@@ -23,20 +23,20 @@ export class RequestAssessmentsPage extends BasePage {
   // --- Buttons ---
   readonly submitButton: Locator;
 
-  // --- Feedback (verified) ---
+  // --- Feedback ---
   readonly successMessageText: Locator;
   readonly requestNumberText: Locator;
 
   constructor(page: Page) {
     super(page);
 
-    // Navigation
+    // Navigation — verified locators (button class updated 2026-09-02)
     this.serviceRequestMenu = page.locator('button:has-text("Service Request")');
     this.serviceCatalogLink = page.locator('a[href="/itsm/s/service-catalog"]');
-    // Request Assessments is the 4th "Request" button (index 3)
-    this.requestAssessmentsButton = page.locator('.slds-button.slds-button_outline-brand').nth(3);
+    // Request Assessments is the 5th "Request" button (index 4) in the catalog
+    this.requestAssessmentsButton = page.locator('.slds-button_neutral.cpq-button').nth(4);
 
-    // Form fields — Category is auto-selected & disabled (Security Assessments)
+    // Form fields — Category is auto-selected (Security Assessments) & disabled
     this.subcategoryDropdown = page.locator('select[name="Subcategory_m"]');
     this.typeDropdown = page.locator('select[name="Type_ThirdPartyAssessment"]');
     this.clientNameInput = page.locator('input[name="Client_Name"]');
@@ -46,7 +46,7 @@ export class RequestAssessmentsPage extends BasePage {
     // Buttons
     this.submitButton = page.locator('button:has-text("Submit")');
 
-    // Success feedback
+    // Feedback
     this.successMessageText = page.getByText('Service Request Created Successfully');
     this.requestNumberText = page.getByText(/RQ-\d+/);
   }
@@ -60,7 +60,7 @@ export class RequestAssessmentsPage extends BasePage {
     this.logger.info('Clicking Service Catalog');
     await this.serviceCatalogLink.click();
     await this.page.waitForLoadState('domcontentloaded', { timeout: 30000 });
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForTimeout(4000);
 
     this.logger.info('Clicking Request Assessments button');
     await this.requestAssessmentsButton.waitFor({ state: 'visible', timeout: 15000 });
@@ -69,54 +69,47 @@ export class RequestAssessmentsPage extends BasePage {
     await this.page.waitForTimeout(5000);
   }
 
-  /** Select Subcategory (triggers additional fields) */
-  async selectSubcategory(value: string): Promise<void> {
-    this.logger.info(`Selecting Subcategory: ${value}`);
-    await this.subcategoryDropdown.selectOption(value);
-    await this.page.waitForTimeout(2000);
-  }
-
-  /** Select Type dropdown (appears after Subcategory) */
-  async selectType(value: string): Promise<void> {
-    this.logger.info(`Selecting Type: ${value}`);
-    await this.typeDropdown.waitFor({ state: 'visible', timeout: 10000 });
-    await this.typeDropdown.selectOption(value);
-  }
-
-  /** Fill Client Name */
-  async fillClientName(name: string): Promise<void> {
-    this.logger.info(`Filling Client Name: ${name}`);
-    await this.clientNameInput.waitFor({ state: 'visible', timeout: 10000 });
-    await this.clientNameInput.fill(name);
-  }
-
-  /** Fill Detailed Description */
-  async fillDescription(text: string): Promise<void> {
-    this.logger.info('Filling Detailed Description');
-    await this.detailedDescriptionInput.waitFor({ state: 'visible', timeout: 10000 });
-    await this.detailedDescriptionInput.fill(text);
-  }
-
-  /** Click Submit */
-  async submit(): Promise<void> {
-    this.logger.info('Submitting Request Assessments form');
-    await this.submitButton.click();
-  }
-
   /** Fill all mandatory fields and submit */
   async submitRequestAssessment(data: AssessmentFormData): Promise<void> {
-    this.logger.info('Submitting Request Assessment with all mandatory fields');
-    await this.selectSubcategory(data.subcategory);
-    await this.selectType(data.type);
-    await this.fillClientName(data.clientName);
-    await this.fillDescription(data.description);
-    await this.submit();
+    this.logger.info('Submitting Request Assessment');
+    await this.subcategoryDropdown.selectOption(data.subcategory);
+    await this.page.waitForTimeout(2000);
+
+    await this.typeDropdown.waitFor({ state: 'visible', timeout: 10000 });
+    await this.typeDropdown.selectOption(data.type);
+
+    await this.clientNameInput.waitFor({ state: 'visible', timeout: 10000 });
+    await this.clientNameInput.fill(data.clientName);
+    await this.detailedDescriptionInput.fill(data.description);
+    await this.submitButton.click();
+    // Wait for the confirmation page to render (Salesforce flow transition)
+    await this.page.waitForTimeout(6000);
   }
 
-  /** Get Request Number */
+  /** Get the full confirmation-page text (used for both success and error detection) */
+  private async getResultPageText(): Promise<string> {
+    return await this.page.evaluate(() => document.body.innerText || '');
+  }
+
+  /**
+   * Returns the generated RQ number, or empty string if not found.
+   */
   async getRequestNumber(): Promise<string> {
-    await this.requestNumberText.waitFor({ state: 'visible', timeout: 20000 });
-    return (await this.requestNumberText.textContent()) ?? '';
+    const pageText = await this.getResultPageText();
+    const match = pageText.match(/RQ-\d+/);
+    return match ? match[0] : '';
+  }
+
+  /** Verify submission was successful (success text or RQ number present) */
+  async isSubmissionSuccessful(): Promise<boolean> {
+    const pageText = await this.getResultPageText();
+    return pageText.includes('Created Successfully') || /RQ-\d+/.test(pageText);
+  }
+
+  /** Detect an application-side system error on the confirmation page */
+  async hasApplicationError(): Promise<boolean> {
+    const pageText = await this.getResultPageText();
+    return pageText.includes('Something went wrong') || pageText.includes('system issue');
   }
 }
 

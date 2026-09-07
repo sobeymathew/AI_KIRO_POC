@@ -1,0 +1,104 @@
+{
+  "page": "expense-request",
+  "url": "/itsm/s/service-catalog",
+  "verifiedAt": "2026-09-02",
+  "verifiedBy": "playwright-mcp-healer",
+  "notes": "Expense Request is a cascading Service Catalog form. Category -> Subcategory -> (comments + Business Justification). Requested By and Requested For are read-only and auto-populated with the logged-in user. On submission with valid data, the sandbox returned 'Something went wrong - system issue' (application/system error), not a test defect.",
+  "elements": {
+    "serviceRequestMenu": {
+      "locator": "button:has-text(\"Service Request\")",
+      "type": "button",
+      "interaction": "click",
+      "verified": true
+    },
+    "serviceCatalogLink": {
+      "locator": "a[href=\"/itsm/s/service-catalog\"]",
+      "type": "link",
+      "interaction": "click",
+      "verified": true
+    },
+    "expenseRequestButton": {
+      "locator": "button with text 'Request' at index 1 (2nd Request button in catalog)",
+      "type": "button",
+      "interaction": "click",
+      "verified": true
+    },
+    "requestedBy": {
+      "locator": "input[name=\"Requested_By\"]",
+      "type": "input",
+      "interaction": "read-only (auto-populated with logged-in user)",
+      "verified": true
+    },
+    "requestedFor": {
+      "locator": "input[aria-label=\"Requested For\"]",
+      "type": "input",
+      "interaction": "read-only (auto-populated with logged-in user)",
+      "verified": true
+    },
+    "categoryDropdown": {
+      "locator": "select[name=\"Category\"]",
+      "type": "native-select",
+      "interaction": "selectOption",
+      "options": {
+        "None": "FlowImplicit__DefaultTextChoiceName",
+        "Corporate Card": "Choice_Corporate_Card_Category",
+        "Workday expense": "Choice_Workday_expense_Category",
+        "Expense Policy": "Choice_Expense_Policy_Category"
+      },
+      "verified": true
+    },
+    "subcategoryDropdown": {
+      "locator": "select[name=\"Subcategory\"]",
+      "type": "native-select",
+      "interaction": "selectOption (revealed after Category is selected)",
+      "options": {
+        "None": "FlowImplicit__DefaultTextChoiceName",
+        "New Credit Card": "Choice_New_Credit_Card_Subcategory",
+        "Existing Credit Card Limit Increase": "Choice_Existing_Credit_Card_Limit_Increase_Subcategory"
+      },
+      "verified": true
+    },
+    "additionalComments": {
+      "locator": "input[name=\"Please_provide_additional_comments_here\"]",
+      "type": "input",
+      "interaction": "fill (revealed after Subcategory is selected)",
+      "verified": true
+    },
+    "businessJustification": {
+      "locator": "input[name=\"Business_Justification\"]",
+      "type": "input",
+      "interaction": "fill (mandatory, revealed after Subcategory is selected)",
+      "verified": true
+    },
+    "fileUpload": {
+      "locator": "input[type=\"file\"]",
+      "type": "file",
+      "interaction": "setInputFiles (optional, max 4MB)",
+      "verified": true
+    },
+    "submitButton": {
+      "locator": "button:has-text(\"Submit\")",
+      "type": "button",
+      "interaction": "click",
+      "verified": true
+    },
+    "successMessageText": {
+      "locator": "getByText('Service Request Created Successfully')",
+      "type": "text",
+      "interaction": "assert visible",
+      "verified": false
+    },
+    "requestNumberText": {
+      "locator": "getByText(/RQ-\\d+/)",
+      "type": "text",
+      "interaction": "assert visible",
+      "verified": false
+    },
+    "systemErrorText": {
+      "locator": "getByText('Something went wrong')",
+      "type": "text",
+      "interaction": "assert visible (application error state)",
+      "verified": true
+    }
+  }
+}
