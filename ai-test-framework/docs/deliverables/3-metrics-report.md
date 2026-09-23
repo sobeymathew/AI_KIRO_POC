@@ -26,8 +26,6 @@ The following scenarios were automated on the Salesforce case-study application:
 
 | Scenario | Status |
 |----------|--------|
-| Incident Creation | ✅ PASS |
-| Incident — Field Validation | ✅ PASS |
 | COI Request | ✅ PASS |
 | Expense Request | ✅ PASS |
 | Request Assessments | ✅ PASS |

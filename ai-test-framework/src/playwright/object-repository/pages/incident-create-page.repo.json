@@ -1,132 +1,83 @@
 {
   "page": "incident-create",
-  "url": "https://milestoneitsm--fullcopy.sandbox.my.site.com/itsm/s/incident/create",
-  "title": "Create Incident",
-  "discoveredAt": "2026-08-06T09:30:00.000Z",
-  "lastVerified": "2026-08-06T09:30:00.000Z",
-  "status": "TEMPLATE - Needs live verification",
-  "notes": "Locators based on Salesforce Lightning Web Component patterns. Run incident-page-extractor.ts with valid credentials to verify and update.",
-  "elementCount": 12,
+  "url": "/itsm/s/Incident-Form",
+  "verifiedAt": "2026-09-15",
+  "verifiedBy": "playwright-mcp-healer",
+  "workItem": 47,
+  "notes": "Requested By and Requested For are auto-populated with the logged-in user. Category and Sub Category are mandatory custom comboboxes (button[aria-label]) whose options carry data-value (visible text is empty). Sub Category is disabled until a Category is selected and its options depend on the chosen Category. Success confirmation text uses the app spelling 'Sucessfully'.",
   "elements": {
-    "requestedByLookup": {
-      "name": "requestedByLookup",
-      "locator": "lightning-lookup[data-field='RequestedBy'], lightning-grouped-combobox[label='Requested By']",
-      "playwrightLocator": "page.getByLabel('Requested By')",
+    "createIncidentQuickLink": {
+      "locator": "a[href=\"/itsm/s/Incident-Form\"]",
+      "type": "link",
+      "interaction": "click",
+      "verified": true
+    },
+    "requestedForInput": {
+      "locator": "input[aria-label=\"Requested For\"]",
       "type": "lookup",
-      "strategy": "label",
-      "description": "Requested By - user lookup field",
-      "tagName": "lightning-lookup",
-      "verified": false
+      "interaction": "auto-populated (logged-in user chip)",
+      "verified": true
     },
-    "requestedForLookup": {
-      "name": "requestedForLookup",
-      "locator": "lightning-lookup[data-field='RequestedFor'], lightning-grouped-combobox[label='Requested For']",
-      "playwrightLocator": "page.getByLabel('Requested For')",
-      "type": "lookup",
-      "strategy": "label",
-      "description": "Requested For - user lookup field",
-      "tagName": "lightning-lookup",
-      "verified": false
+    "urgencySelect": {
+      "locator": "select[name=\"Urgency\"]",
+      "type": "native-select",
+      "interaction": "selectOption({ label })",
+      "options": ["High - Productivity Stopped", "Medium - Productivity Impacted", "Low – Productivity not impacted"],
+      "verified": true
     },
-    "urgencyDropdown": {
-      "name": "urgencyDropdown",
-      "locator": "lightning-combobox[data-field='Urgency'], lightning-combobox[label='Urgency']",
-      "playwrightLocator": "page.getByLabel('Urgency')",
-      "type": "dropdown",
-      "strategy": "label",
-      "description": "Urgency dropdown selector",
-      "tagName": "lightning-combobox",
-      "verified": false
+    "categoryCombobox": {
+      "locator": "button[aria-label=\"Category\"]",
+      "type": "combobox",
+      "interaction": "click trigger then click [role=option][data-value]",
+      "verified": true
     },
-    "categoryDropdown": {
-      "name": "categoryDropdown",
-      "locator": "lightning-combobox[data-field='Category'], lightning-combobox[label='Category']",
-      "playwrightLocator": "page.getByLabel('Category')",
-      "type": "dropdown",
-      "strategy": "label",
-      "description": "Category dropdown selector",
-      "tagName": "lightning-combobox",
-      "verified": false
+    "subCategoryCombobox": {
+      "locator": "button[aria-label=\"Sub Category\"]",
+      "type": "combobox",
+      "interaction": "click trigger then click [role=option][data-value] (enabled after Category selected)",
+      "verified": true
     },
-    "subCategoryDropdown": {
-      "name": "subCategoryDropdown",
-      "locator": "lightning-combobox[data-field='SubCategory'], lightning-combobox[label='Sub Category']",
-      "playwrightLocator": "page.getByLabel('Sub Category')",
-      "type": "dropdown",
-      "strategy": "label",
-      "description": "Sub Category dropdown (dependent on Category selection)",
-      "tagName": "lightning-combobox",
-      "verified": false
+    "optionByDataValue": {
+      "locator": "[role=\"option\"][data-value=\"<value>\"]",
+      "type": "combobox-option",
+      "interaction": "click",
+      "verified": true
     },
     "briefDescriptionInput": {
-      "name": "briefDescriptionInput",
-      "locator": "lightning-input[data-field='BriefDescription'], lightning-input[label='Brief Description']",
-      "playwrightLocator": "page.getByLabel('Brief Description')",
-      "type": "text",
-      "strategy": "label",
-      "description": "Brief Description text input",
-      "tagName": "lightning-input",
-      "verified": false
+      "locator": "input[name=\"Briefly_describe_your_issue_or_request\"]",
+      "type": "input",
+      "interaction": "fill (min 20 chars, max 254)",
+      "verified": true
     },
     "detailedDescriptionTextarea": {
-      "name": "detailedDescriptionTextarea",
-      "locator": "lightning-textarea[data-field='DetailedDescription'], lightning-textarea[label='Detailed Description']",
-      "playwrightLocator": "page.getByLabel('Detailed Description')",
+      "locator": "textarea",
       "type": "textarea",
-      "strategy": "label",
-      "description": "Detailed Description text area / rich text",
-      "tagName": "lightning-textarea",
-      "verified": false
-    },
-    "attachmentUpload": {
-      "name": "attachmentUpload",
-      "locator": "lightning-file-upload, input[type='file']",
-      "playwrightLocator": "page.locator('lightning-file-upload')",
-      "type": "file-upload",
-      "strategy": "css",
-      "description": "Attachment file upload (optional field)",
-      "tagName": "lightning-file-upload",
-      "verified": false
+      "interaction": "fill (min 20 chars, max 1000)",
+      "verified": true
     },
     "submitButton": {
-      "name": "submitButton",
-      "locator": "button:has-text('Submit'), lightning-button[label='Submit']",
-      "playwrightLocator": "page.getByRole('button', { name: 'Submit' })",
+      "locator": "button:has-text(\"Submit\")",
       "type": "button",
-      "strategy": "role",
-      "description": "Submit button to create the incident",
-      "tagName": "button",
-      "verified": false
+      "interaction": "click",
+      "verified": true
     },
-    "successMessage": {
-      "name": "successMessage",
-      "locator": ".toastMessage, .slds-notify, [data-key='success']",
-      "playwrightLocator": "page.locator('.toastMessage')",
-      "type": "notification",
-      "strategy": "css",
-      "description": "Success toast/confirmation message after creation",
-      "tagName": "div",
-      "verified": false
+    "successMessageText": {
+      "locator": "getByText(/Incident Created Sucessfully/i)",
+      "type": "confirmation",
+      "interaction": "assert visible",
+      "verified": true
     },
     "incidentNumberText": {
-      "name": "incidentNumberText",
-      "locator": ".incidentNumber, [data-field='IncidentNumber'], .slds-page-header__title",
-      "playwrightLocator": "page.locator('[data-field=\"IncidentNumber\"]')",
-      "type": "text-display",
-      "strategy": "css",
-      "description": "Generated Incident Number / Ticket ID",
-      "tagName": "span",
-      "verified": false
+      "locator": "getByText(/INC-\\d+/)",
+      "type": "confirmation",
+      "interaction": "read text",
+      "verified": true
     },
-    "incidentSearchInput": {
-      "name": "incidentSearchInput",
-      "locator": "input[placeholder*='Search'], lightning-input[label='Search']",
-      "playwrightLocator": "page.getByPlaceholder('Search')",
-      "type": "text",
-      "strategy": "placeholder",
-      "description": "Search input on Incident list page",
-      "tagName": "input",
-      "verified": false
+    "finishButton": {
+      "locator": "button:has-text(\"Finish\")",
+      "type": "button",
+      "interaction": "click",
+      "verified": true
     }
   }
 }

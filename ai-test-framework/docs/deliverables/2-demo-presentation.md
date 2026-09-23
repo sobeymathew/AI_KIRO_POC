@@ -108,7 +108,6 @@ We tested against Salesforce Experience Cloud — a worst-case difficulty (Shado
 
 | Scenario | Status |
 |----------|--------|
-| Incident Creation | ✅ |
 | COI Request | ✅ |
 | Expense Request | ✅ |
 | Request Assessments | ✅ |

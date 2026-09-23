@@ -183,26 +183,21 @@ ai-test-framework/                      [itsm-qa-platform v2.0.0]
 │   │   ├── hooks/
 │   │   │   └── global-setup.ts
 │   │   ├── object-repository/pages/
-│   │   │   ├── incident-create-page.repo.json
 │   │   │   └── login-page.repo.json
 │   │   ├── pages/
 │   │   │   ├── base.page.ts            # Abstract base
 │   │   │   ├── coi-request.page.ts     # COI Request
 │   │   │   ├── expense-request.page.ts # Expense Request
 │   │   │   ├── facilities-request.page.ts # Facilities Request
-│   │   │   ├── incident-create.page.ts # Incident Creation
 │   │   │   ├── index.ts               # Barrel exports
 │   │   │   ├── login.page.ts          # Salesforce Login
 │   │   │   ├── request-assessments.page.ts # Security Assessments
 │   │   │   └── travel-request.page.ts  # Travel Request
 │   │   ├── tests/
-│   │   │   ├── regression/
-│   │   │   │   └── incident-creation-validation.spec.ts
 │   │   │   └── smoke/
 │   │   │       ├── coi-request.spec.ts
 │   │   │       ├── expense-request.spec.ts
 │   │   │       ├── facilities-request.spec.ts
-│   │   │       ├── incident-creation.spec.ts
 │   │   │       ├── request-assessments.spec.ts
 │   │   │       ├── travel-request.spec.ts
 │   │   │       └── user-login.spec.ts
@@ -224,7 +219,6 @@ ai-test-framework/                      [itsm-qa-platform v2.0.0]
 │   │   │   │   ├── coi-request.feature
 │   │   │   │   ├── expense-request.feature
 │   │   │   │   ├── facilities-request.feature
-│   │   │   │   ├── incident-creation.feature
 │   │   │   │   ├── request-assessments.feature
 │   │   │   │   └── travel-request.feature
 │   │   │   ├── regression/

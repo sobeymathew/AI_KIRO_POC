@@ -63,7 +63,6 @@ npm run report:allure
 | Module | Page Object | Test Spec | Feature File |
 |--------|-------------|-----------|--------------|
 | Login (Salesforce Auth) | `login.page.ts` | `user-login.spec.ts` | — |
-| Incident Creation | `incident-create.page.ts` | `incident-creation.spec.ts` | `incident-creation.feature` |
 | COI Request | `coi-request.page.ts` | `coi-request.spec.ts` | `coi-request.feature` |
 | Expense Request | `expense-request.page.ts` | `expense-request.spec.ts` | `expense-request.feature` |
 | Facilities Request | `facilities-request.page.ts` | `facilities-request.spec.ts` | `facilities-request.feature` |

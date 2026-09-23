@@ -1,0 +1,21 @@
+flowchart LR
+    subgraph L["Language + Runtime"]
+        TS["TypeScript (strict)"]
+        NODE["Node.js >= 18"]
+    end
+    subgraph T["Test + Discovery"]
+        PW["Playwright ^1.45"]
+        MCP["Playwright MCP Healer"]
+        BDD["Gherkin (BDD)"]
+    end
+    subgraph R["Reporting"]
+        AL["Allure"]
+        HTML["Playwright HTML"]
+        WIN["Winston Logging"]
+    end
+    subgraph O["Ops"]
+        GH["GitHub Actions CI"]
+        DOCK["Docker"]
+    end
+
+    L --> T --> R --> O

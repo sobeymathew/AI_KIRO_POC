@@ -131,7 +131,6 @@ Provides visibility into test health:
 
 | Module | Status | Jira | Verified |
 |--------|--------|------|----------|
-| Incident Creation | Active | KD-7 | 2026-08-10 |
 | COI Request | Active | KD-8 | 2026-08-11 |
 | Facilities Request | Active | KD-9 | 2026-08-11 |
 | Expense Request | Active | — | 2026-08-11 |

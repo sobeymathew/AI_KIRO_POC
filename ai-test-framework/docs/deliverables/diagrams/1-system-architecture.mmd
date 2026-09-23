@@ -1,0 +1,45 @@
+flowchart TB
+    subgraph SRC["1 - Source of Requirement"]
+        JIRA["Jira User Story<br/>+ Zephyr Scale"]
+        ADO["Azure DevOps<br/>Work Item"]
+        DOC["Document / Chat<br/>User Story"]
+    end
+
+    subgraph KIRO["2 - Kiro AI Orchestration Layer"]
+        STEER["Steering Rules<br/>(standards + workflow)"]
+        ENGINE["AI Automation Engine<br/>(reads, plans, generates)"]
+        HEALER["Playwright MCP Healer<br/>(live locator discovery)"]
+    end
+
+    subgraph AUTO["3 - Playwright Automation Layer"]
+        FEAT["Gherkin Feature Files"]
+        REPO["Object Repository<br/>(verified locators)"]
+        POM["Page Objects (POM)"]
+        SPEC["Test Specs"]
+    end
+
+    subgraph OUT["4 - Execution + Reporting"]
+        RUN["Test Execution<br/>(Chromium / Firefox / WebKit)"]
+        ALLURE["Allure + HTML Reports"]
+        RESULT["Results published back<br/>to source system"]
+    end
+
+    APP["Target Web Application<br/>(e.g. Salesforce Experience Cloud)"]
+
+    JIRA --> ENGINE
+    ADO --> ENGINE
+    DOC --> ENGINE
+    STEER --> ENGINE
+    ENGINE --> FEAT
+    ENGINE --> HEALER
+    HEALER <-->|inspect + verify| APP
+    HEALER --> REPO
+    REPO --> POM
+    FEAT --> SPEC
+    POM --> SPEC
+    SPEC --> RUN
+    RUN <-->|drive UI| APP
+    RUN --> ALLURE
+    RUN --> RESULT
+    RESULT --> JIRA
+    RESULT --> ADO

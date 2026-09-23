@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Test Automation Assistant — POC One-Pager</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #2c3e50;
+    background: #e9ecf1;
+    padding: 24px;
+  }
+  .sheet {
+    max-width: 1040px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    overflow: hidden;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    background:
+      linear-gradient(115deg, rgba(6,10,28,0.96) 0%, rgba(10,16,40,0.85) 42%, rgba(18,26,60,0.55) 100%),
+      radial-gradient(circle at 78% 45%, #2b3a86 0%, #10152e 55%, #05070f 100%);
+    color: #fff;
+    padding: 40px 44px 46px;
+    min-height: 210px;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: 46px; top: 34px;
+    width: 340px; height: 150px;
+    background:
+      radial-gradient(circle at 30% 50%, rgba(120,90,220,0.35), transparent 60%),
+      radial-gradient(circle at 70% 60%, rgba(40,208,206,0.30), transparent 60%),
+      conic-gradient(from 180deg at 60% 50%, rgba(255,120,180,0.20), rgba(90,120,255,0.20), rgba(40,208,206,0.20), rgba(255,120,180,0.20));
+    filter: blur(4px);
+    border-radius: 50%;
+    opacity: 0.75;
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: 2.15em;
+    font-weight: 700;
+    letter-spacing: .3px;
+    margin-bottom: 16px;
+    position: relative; z-index: 2;
+  }
+  .hero p {
+    max-width: 560px;
+    font-size: .92em;
+    line-height: 1.55;
+    color: #d9dEEc;
+    position: relative; z-index: 2;
+  }
+  .brand {
+    position: absolute;
+    top: 30px; right: 44px;
+    text-align: right;
+    z-index: 3;
+  }
+  .brand .logo {
+    display: inline-flex; align-items: flex-end; gap: 3px; height: 26px; margin-bottom: 4px;
+  }
+  .brand .logo span { display:inline-block; width:6px; border-radius:2px; }
+  .brand .logo .b1 { height: 14px; background:#f39c12; }
+  .brand .logo .b2 { height: 22px; background:#e74c3c; }
+  .brand .logo .b3 { height: 26px; background:#3498db; }
+  .brand .name { font-size: 1.15em; font-weight: 600; letter-spacing: .5px; }
+  .brand .tag { font-size: .62em; letter-spacing: 3px; text-transform: uppercase; color:#aeb7cc; }
+
+  /* ---------- COLUMNS ---------- */
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 0;
+    padding: 26px 8px 26px 0;
+  }
+  .col { padding: 4px 22px; border-right: 1px solid #e6e8ee; }
+  .col:nth-child(3) { border-right: none; }
+  .col-head { display:flex; align-items:center; gap:10px; margin-bottom: 14px; }
+  .col-head .ic {
+    width: 30px; height: 30px; flex: 0 0 30px;
+    border: 2px solid #1a2980; border-radius: 6px;
+    display:flex; align-items:center; justify-content:center;
+    color:#1a2980; font-size: 15px;
+  }
+  .col-head h2 { color:#1a2980; font-size: 1.18em; font-weight:700; line-height:1.15; }
+  .col p.lead { font-size: .82em; color:#3a4657; margin-bottom: 10px; line-height:1.5; }
+  .col ul { margin: 0 0 0 16px; }
+  .col li { font-size: .8em; color:#404b5c; margin-bottom: 7px; line-height: 1.42; }
+  .col .closer { font-size:.8em; color:#404b5c; margin-top:10px; line-height:1.45; }
+
+  /* ---------- METRICS ---------- */
+  .metrics { padding: 6px 20px 4px 6px; display:flex; flex-direction:column; gap:12px; justify-content:center; }
+  .metric {
+    display:flex; align-items:center; gap:12px;
+    color:#fff; border-radius: 26px 6px 6px 26px;
+    padding: 9px 16px 9px 10px;
+    min-width: 232px;
+    box-shadow: 0 3px 8px rgba(230,90,40,0.28);
+  }
+  .metric.m1 { background: linear-gradient(90deg,#f4732f,#f39b2b); }
+  .metric.m2 { background: linear-gradient(90deg,#f15a3a,#f4842f); }
+  .metric.m3 { background: linear-gradient(90deg,#ee4f5a,#f47637); }
+  .metric .num {
+    background: rgba(255,255,255,.18);
+    border-radius: 50%;
+    width: 46px; height: 46px; flex:0 0 46px;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 1.02em; font-weight: 700;
+  }
+  .metric .lbl { font-size: .74em; line-height:1.25; }
+
+  /* ---------- FOOTER ---------- */
+  .powered {
+    border-top: 1px solid #e6e8ee;
+    display:flex; align-items:center; gap: 40px;
+    padding: 18px 44px;
+  }
+  .powered .ph { display:flex; align-items:center; gap:10px; }
+  .powered .ph .ic {
+    width: 30px; height: 30px; border:2px solid #1a2980; border-radius:6px;
+    display:flex; align-items:center; justify-content:center; color:#1a2980;
+  }
+  .powered .ph h3 { color:#1a2980; font-size: 1.02em; font-weight:700; line-height:1.1; }
+  .tech { display:flex; align-items:center; gap: 34px; }
+  .tech .t { font-size: 1.15em; font-weight:600; color:#2c3e50; letter-spacing:.3px; display:flex; align-items:center; gap:8px; }
+  .tech .dot { color:#1aa260; }
+  .footbar {
+    background:#0b0f1c; color:#aeb7cc;
+    font-size:.64em; text-align:center;
+    padding: 9px 12px;
+    letter-spacing:.2px;
+  }
+  .footbar a { color:#d64b3f; text-decoration:none; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="brand">
+        <div class="logo"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+        <div class="name">milestone</div>
+        <div class="tag">technologies</div>
+      </div>
+      <h1>AI Test Automation Assistant</h1>
+      <p>An AI-orchestrated solution that turns Azure DevOps work items into working automated tests.
+      Kiro reads the user story, generates linked manual test cases, authors Gherkin features, discovers
+      and self-heals live UI locators, builds the Page Object and test, then runs it and posts results
+      back to the work item — delivering traceable, end-to-end coverage with minimal human effort.</p>
+    </div>
+
+    <!-- THREE COLUMNS + METRICS -->
+    <div class="cols">
+      <div class="col">
+        <div class="col-head"><div class="ic">&#9881;</div><h2>Client's Challenge</h2></div>
+        <p class="lead">Test creation was manual, slow, and hard to keep in sync with requirements.</p>
+        <ul>
+          <li>Authoring cases and scripts from each work item took hours per story.</li>
+          <li>Fragile UI locators broke often on the Salesforce/Shadow-DOM app.</li>
+          <li>Weak traceability between requirements, test cases, and automation.</li>
+          <li>Results lived in tooling silos, not on the work item.</li>
+          <li>Limited regression coverage under tight sprint timelines.</li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <div class="col-head"><div class="ic">&#128736;</div><h2>Milestone Solution</h2></div>
+        <p class="lead">A Kiro-driven pipeline that automates the full lifecycle from work item to green test.</p>
+        <ul>
+          <li>Reads the ADO work item and derives the full test-scenario set.</li>
+          <li>Creates linked manual Test Cases (Child) for traceability.</li>
+          <li>Generates tagged Gherkin feature files from acceptance criteria.</li>
+          <li>Discovers &amp; self-heals live locators (pierces Shadow DOM).</li>
+          <li>Builds Page Objects + Playwright specs to framework standards.</li>
+          <li>Runs headed, heals failures, and comments results on the work item.</li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <div class="col-head"><div class="ic">&#128200;</div><h2>Value Delivered</h2></div>
+        <p class="lead">Automation shifts from manual, one-off scripting to scalable, traceable coverage.</p>
+        <ul>
+          <li>Work item to executable test in minutes, not hours.</li>
+          <li>Every test traces to a requirement and Test Case ID.</li>
+          <li>Self-healing locators cut maintenance and flaky failures.</li>
+          <li>Results posted back to Azure DevOps for a closed loop.</li>
+          <li>Consistent Page Object Model across the suite.</li>
+          <li>Faster, broader regression within the sprint.</li>
+        </ul>
+      </div>
+
+      <div class="metrics">
+        <div class="metric m1"><div class="num">90%</div><div class="lbl">reduction in test<br>authoring time</div></div>
+        <div class="metric m2"><div class="num">100%</div><div class="lbl">requirement-to-test<br>traceability</div></div>
+        <div class="metric m3"><div class="num">1st</div><div class="lbl">run pass — zero<br>manual healing needed</div></div>
+      </div>
+    </div>
+
+    <!-- POWERED BY -->
+    <div class="powered">
+      <div class="ph">
+        <div class="ic">&#9881;</div>
+        <h3>Tech That<br>Powered</h3>
+      </div>
+      <div class="tech">
+        <div class="t">&#129302;&nbsp;Kiro AI</div>
+        <div class="t">&#127917;&nbsp;Playwright</div>
+        <div class="t"><span style="color:#3178c6;">&#60;/&#62;</span> TypeScript</div>
+        <div class="t">Azure DevOps</div>
+      </div>
+    </div>
+
+    <div class="footbar">
+      © Milestone Technologies, Inc. All Rights Reserved. &nbsp;|&nbsp; 2201 Walnut Ave., Suite 290, Fremont, CA 94538
+      &nbsp;|&nbsp; (877) 651-2454 &nbsp;|&nbsp; <a href="mailto:itsolutions@milestone.tech">itsolutions@milestone.tech</a>
+      &nbsp;|&nbsp; <a href="https://www.milestone.tech">www.milestone.tech</a>
+    </div>
+
+  </div>
+</body>
+</html>

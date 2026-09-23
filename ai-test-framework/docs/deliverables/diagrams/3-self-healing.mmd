@@ -1,0 +1,11 @@
+flowchart TD
+    START["Test needs a locator"] --> CHECK{"Locator works<br/>on live page?"}
+    CHECK -->|Yes| USE["Use locator<br/>+ store in repository"]
+    CHECK -->|No| NAV["Navigate to live page"]
+    NAV --> INSPECT["Inspect DOM<br/>(pierce Shadow DOM)"]
+    INSPECT --> TRY["Try locator strategies<br/>aria-label > href > name > data-value"]
+    TRY --> VERIFY{"Interaction<br/>succeeds?"}
+    VERIFY -->|Yes| UPDATE["Update Object Repository<br/>+ Page Object"]
+    VERIFY -->|No| TRY
+    UPDATE --> USE
+    USE --> DONE["Continue test execution"]

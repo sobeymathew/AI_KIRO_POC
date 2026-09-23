@@ -187,6 +187,7 @@ Feature: User Login
 ### Step 7: Run & Heal (with 2-attempt retry rule)
 
 - Run: `npx playwright test {spec} --project=chromium --retries=0 --headed`
+- **Always run in headed mode** (`--headed`) so the live browser is visible during execution — this is required for this workflow, not optional. Do not run headless for the Run & Heal step.
 - If a **locator** fails → apply the healer process (inspect live page, try alternatives, fix) and re-run
 - **Retry rule:** Attempt the run up to **2 times**.
   - If it passes on attempt 1 or 2 → proceed to Step 8 with a PASS result
@@ -200,52 +201,89 @@ Feature: User Login
 
 Always post a comment on the work item after execution — **whether the test passed or failed after 2 attempts.**
 
-Use `add_work_item_comment` (or `wit_work_item_comment_write`) with:
-  - Test execution status (PASS / FAIL)
-  - **Actual result** — for a failure, include the exact error/message observed on screen (e.g., "Application returned: 'Something went wrong — system issue'")
-  - Attempts made (e.g., "Failed after 2 attempts")
-  - Manual test case IDs created
-  - Feature file path and automation test spec path
-  - Root-cause classification (test defect / application error / environment)
-  - Next steps
+Use `add_work_item_comment` (or `wit_work_item_comment_write`) with the **standard client-friendly format** below.
+
+**Formatting principles (always follow):**
+- **Outcome first** — status + created record ID + run details in the header, so the reader sees the result without scrolling.
+- **Scannable tables, short labels** — use "Result at a glance", "Test data used", and "Coverage" tables rather than dense paragraphs.
+- **No internal jargon in the client view** — omit file paths, DOM/locator/`data-value` detail, and app-typo notes. Keep it business-readable.
+- **Evidence over description** — attach the run screenshot/trace to the work item and reference it; don't describe form behavior in prose.
+- **Honest coverage** — show which test cases are automated vs. still manual/pending; never over-claim.
 
 Also:
-- Update the linked Test Case outcome (Passed/Failed) to reflect the automated run
-- Optionally move the work item state (e.g., To Do → In Progress → Done)
+- **Attach the success (or failure) screenshot/trace** to the work item as evidence.
+- Update the linked Test Case outcome (Passed/Failed) to reflect the automated run.
+- Optionally move the work item state (e.g., To Do → In Progress → Done).
 
-**Comment format for a failure:**
+**Standard comment format — PASS:**
 ```markdown
-## ❌ Automated Test Result — FAILED (after 2 attempts)
+## ✅ Automated Test — PASSED
 
-**Test:** {spec path}
+**Record created:** {e.g., INC-000001531}
 **Scenario:** {scenario name}
+**Run:** {browser} · {headed/headless} · {attempt} · {duration} · {date}
 
-### Actual Result
-{Exact message/behavior observed — e.g., "Application returned: Something went wrong. We couldn't complete your request due to a system issue."}
+---
 
-### Attempts
-- Attempt 1: {result}
-- Attempt 2: {result}
+### Result at a glance
+| | |
+|---|---|
+| Status | ✅ Passed |
+| Outcome | {e.g., Incident INC-000001531 created & confirmed on screen} |
+| Environment | {e.g., ITSM sandbox (itsmcopy)} |
+| Evidence | Success screenshot attached to this work item |
 
-### Classification
-{Application error | Test defect | Environment issue}
+### Test data used
+| Field | Value |
+|---|---|
+| {field} | {value} |
 
-### Artifacts
-- Feature file: {path}
-- Test spec: {path}
-- Screenshot/trace: {path}
+### Coverage
+| Test Case | Type | Status |
+|---|---|---|
+| #{id} | Happy path (E2E) | ✅ Automated & passing |
+| #{id} | {type} | ⏳ Manual — automation pending |
 
-### Next Steps
-{recommendation}
+---
+
+*Success screenshot is attached to this work item as evidence.*
 ```
 
-**Comment format for a pass:**
+**Standard comment format — FAIL (after 2 attempts):**
 ```markdown
-## ✅ Automated Test Result — PASSED
+## ❌ Automated Test — FAILED
 
-**Test:** {spec path}
-**Result:** {e.g., RQ-000002872 created successfully}
-**Attempts:** 1
+**Scenario:** {scenario name}
+**Run:** {browser} · {headed/headless} · 2 attempts · {date}
+
+---
+
+### Result at a glance
+| | |
+|---|---|
+| Status | ❌ Failed (after 2 attempts) |
+| Actual result | {exact on-screen message — e.g., "Application returned: Something went wrong — system issue"} |
+| Classification | {Application error / Test defect / Environment issue} |
+| Environment | {e.g., ITSM sandbox (itsmcopy)} |
+| Evidence | Failure screenshot attached to this work item |
+
+### Attempts
+| # | Result |
+|---|---|
+| 1 | {result} |
+| 2 | {result} |
+
+### Coverage
+| Test Case | Type | Status |
+|---|---|---|
+| #{id} | Happy path (E2E) | ❌ Blocked by {application error / defect} |
+
+### Next steps
+{recommendation}
+
+---
+
+*Failure screenshot/trace is attached to this work item as evidence.*
 ```
 
 ---

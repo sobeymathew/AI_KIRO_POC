@@ -70,12 +70,11 @@ We chose Salesforce Experience Cloud as our test case because it represents a **
 
 | # | Scenario | Source | Status |
 |---|----------|--------|--------|
-| 1 | Incident Creation | Jira ticket | ✅ Passing |
-| 2 | Certificate of Insurance Request | Jira ticket | ✅ Passing |
-| 3 | Expense Request | Word document | ✅ Passing |
-| 4 | Request Assessments | Word document | ✅ Passing |
-| 5 | Facilities Request | Word document | ✅ Passing |
-| 6 | Security Exception Request | Jira ticket | ✅ Passing |
+| 1 | Certificate of Insurance Request | Jira ticket | ✅ Passing |
+| 2 | Expense Request | Word document | ✅ Passing |
+| 3 | Request Assessments | Word document | ✅ Passing |
+| 4 | Facilities Request | Word document | ✅ Passing |
+| 5 | Security Exception Request | Jira ticket | ✅ Passing |
 
 All scenarios automated end-to-end with a **100% pass rate**, verified by creating real records.
 

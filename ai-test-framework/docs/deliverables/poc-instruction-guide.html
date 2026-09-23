@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Test Automation Assistant — Instruction Guide</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #222;
+    background: #f2f3f6;
+    padding: 40px 20px;
+    line-height: 1.55;
+  }
+  .page {
+    max-width: 860px;
+    margin: 0 auto 30px;
+    background: #fff;
+    box-shadow: 0 2px 18px rgba(0,0,0,0.10);
+    padding: 60px 66px;
+  }
+  h1 {
+    text-align: center;
+    color: #1f4e79;
+    font-size: 2.15em;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    text-align: center;
+    font-style: italic;
+    color: #6b7280;
+    font-size: 1.02em;
+    margin: 14px 0 40px;
+  }
+  h2 {
+    color: #1f4e79;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 40px 0 14px;
+  }
+  h3 {
+    color: #1f4e79;
+    font-size: 1.15em;
+    font-weight: 700;
+    margin: 30px 0 10px;
+  }
+  ul, ol { margin: 0 0 14px 26px; }
+  li { margin-bottom: 8px; }
+  p { margin-bottom: 12px; }
+  .tip {
+    margin: 12px 0 8px;
+    font-size: .98em;
+  }
+  .tip b { color: #222; }
+  figure {
+    margin: 20px 0 8px;
+    border: 1px solid #d7dbe2;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fafbfc;
+  }
+  figure img { width: 100%; display: block; }
+  figcaption {
+    font-size: .82em;
+    color: #6b7280;
+    padding: 8px 12px;
+    border-top: 1px solid #e6e8ee;
+    background: #fff;
+  }
+  .mono { font-family: Consolas, 'Courier New', monospace; font-size: .9em; background:#f3f4f7; padding:1px 5px; border-radius:3px; }
+  hr { border: none; border-top: 1px solid #e6e8ee; margin: 40px 0; }
+  .flow {
+    background: #1f4e79;
+    color: #fff;
+    font-size: 1.25em;
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 4px;
+    margin: 46px 0 8px;
+  }
+  .flow .sub { display:block; font-size: .62em; font-weight: 400; opacity: .85; margin-top: 3px; }
+  .flow.jira { background: #0052cc; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <h1>AI Test Automation Assistant<br>Instruction Guide</h1>
+  <p class="subtitle">Workflow for automating a requirement end-to-end with AI-assisted test generation — for Azure DevOps and Jira</p>
+
+  <h2>Before You Start</h2>
+  <ul>
+    <li>Confirm the Azure DevOps work item is ready for automation with a clear user story and acceptance criteria.</li>
+    <li>Ensure the Azure DevOps MCP connection is configured and the target project is accessible.</li>
+    <li>Verify test environment credentials are set in <span class="mono">src/config/.env.dev</span> and the application under test is reachable.</li>
+    <li>Treat AI-generated test cases and code as a first draft. A QA engineer or lead should review the output before it is merged or reported.</li>
+  </ul>
+
+  <h2>Step-by-Step Instructions</h2>
+
+  <div class="flow">Flow A — Azure DevOps
+    <span class="sub">Work item &rarr; Test Cases (Child links) &rarr; Feature file &rarr; Locators &rarr; Page Object &rarr; Spec &rarr; Run &rarr; Work item comment</span>
+  </div>
+
+  <h3>Step A1: Trigger the automation</h3>
+  <ol>
+    <li>Open the Kiro session in the IDE and confirm the workspace is the test framework project.</li>
+    <li>Enter the trigger phrase with the work item ID, for example: <span class="mono">Automate work item 37</span>.</li>
+    <li>Confirm Kiro reads the work item and returns the extracted title, user story, and mandatory fields.</li>
+  </ol>
+  <p class="tip"><b>Tip:</b> Start with a well-formed work item — a clear "As a / I want / So that" story and explicit acceptance criteria produce the most accurate test cases.</p>
+
+  <h3>Step A2: Review the generated test cases and feature file</h3>
+  <ol start="4">
+    <li>Review the manual Test Cases Kiro creates and links as Children of the work item (happy path, validation, dependent-field, and end-to-end).</li>
+    <li>Confirm each test case has clear steps and expected results.</li>
+    <li>Open the generated Gherkin feature file under <span class="mono">features/istm/</span> and check the scenarios and tags map to the acceptance criteria.</li>
+  </ol>
+  <p class="tip"><b>Tip:</b> The test cases are a draft. Adjust, add, or reject any scenario that is not supported by the work item.</p>
+
+  <h3>Step A3: Confirm live locator discovery</h3>
+  <ol start="7">
+    <li>Kiro logs into the application and navigates to the target form using the Playwright healer.</li>
+    <li>It inspects each field (piercing Shadow DOM) and interacts with it to confirm the locator works.</li>
+    <li>Verified locators are stored in the object repository under <span class="mono">object-repository/pages/</span>.</li>
+  </ol>
+  <p class="tip"><b>Tip:</b> Locators are confirmed by real interaction, not guessing — this is what keeps the tests stable and self-healing.</p>
+
+  <h3>Step A4: Review the Page Object and test spec</h3>
+  <ol start="10">
+    <li>Review the generated Page Object in <span class="mono">pages/</span>, built only from verified locators and extending the shared base page.</li>
+    <li>Confirm it is registered in the fixtures and barrel export.</li>
+    <li>Open the test spec in <span class="mono">tests/smoke/</span> and check it follows the Arrange–Act–Assert pattern with correct traceability to the work item and test case IDs.</li>
+  </ol>
+  <p class="tip"><b>Tip:</b> Good generated code reads like the team wrote it — consistent naming, one class per file, and no hard-coded waits.</p>
+
+  <h3>Step A5: Run, heal, and confirm results</h3>
+  <ol start="13">
+    <li>Kiro runs the spec headed on Chromium (up to two attempts, healing locators if needed).</li>
+    <li>Review the run output: passed / failed, duration, and the record created (for example, a generated record ID).</li>
+    <li>Confirm the success message and generated ID appear on screen and no application errors are shown.</li>
+    <li>Kiro posts a results comment back to the work item and attaches the evidence screenshot.</li>
+  </ol>
+  <p class="tip"><b>Tip:</b> A run that exits without error is not enough — always confirm the on-screen confirmation and the generated ID before reporting a pass.</p>
+
+  <div class="flow jira">Flow B — Jira
+    <span class="sub">Jira ticket &rarr; Zephyr test cases (linked) &rarr; Feature file &rarr; Locators &rarr; Page Object &rarr; Spec &rarr; Run &rarr; Jira comment</span>
+  </div>
+
+  <p>The Jira flow follows the same end-to-end pipeline as Azure DevOps. The differences are the requirement source (a Jira ticket instead of a work item), test-case management (Zephyr Scale instead of linked child work items), and where results are posted (a Jira comment). Steps B3 to B5 are identical to the Azure DevOps flow because the application under test and the automation layer are the same.</p>
+
+  <h3>Step B1: Trigger the automation</h3>
+  <ol>
+    <li>Open the Kiro session and confirm the Jira (Atlassian) MCP connection is configured for the target project (for example, project key <span class="mono">KD</span>).</li>
+    <li>Enter the trigger phrase with the ticket key, for example: <span class="mono">Automate KD-7</span>.</li>
+    <li>Confirm Kiro reads the ticket and returns the summary, user story, and acceptance criteria.</li>
+  </ol>
+  <p class="tip"><b>Tip:</b> As with Azure DevOps, a clear "As a / I want / So that" story and explicit acceptance criteria produce the most accurate test cases.</p>
+
+  <h3>Step B2: Review the Zephyr test cases and feature file</h3>
+  <ol start="4">
+    <li>Review the <span class="mono">STEP_BY_STEP</span> test cases Kiro creates in Zephyr Scale and links back to the Jira ticket.</li>
+    <li>Confirm each test case has a clear objective, steps, and expected results.</li>
+    <li>Open the generated Gherkin feature file under <span class="mono">features/istm/</span> and check the scenarios and tags map to the acceptance criteria and Zephyr test case keys.</li>
+  </ol>
+  <p class="tip"><b>Tip:</b> The Zephyr test cases are a draft. Adjust, add, or reject any scenario that is not supported by the ticket.</p>
+
+  <h3>Step B3: Confirm live locator discovery</h3>
+  <ol start="7">
+    <li>Kiro logs into the application and navigates to the target form using the Playwright healer.</li>
+    <li>It inspects each field (piercing Shadow DOM) and interacts with it to confirm the locator works.</li>
+    <li>Verified locators are stored in the object repository under <span class="mono">object-repository/pages/</span> — shared across both flows.</li>
+  </ol>
+  <p class="tip"><b>Tip:</b> Locator discovery is application-driven, so it works identically whether the requirement came from Jira or Azure DevOps.</p>
+
+  <h3>Step B4: Review the Page Object and test spec</h3>
+  <ol start="10">
+    <li>Review the generated Page Object in <span class="mono">pages/</span>, built only from verified locators and extending the shared base page.</li>
+    <li>Confirm it is registered in the fixtures and barrel export.</li>
+    <li>Open the test spec in <span class="mono">tests/smoke/</span> and check the traceability header references the Jira ticket and Zephyr test case keys.</li>
+  </ol>
+  <p class="tip"><b>Tip:</b> The Page Object and spec are reused across flows — only the traceability references differ.</p>
+
+  <h3>Step B5: Run, heal, and post results to Jira</h3>
+  <ol start="13">
+    <li>Kiro runs the spec headed on Chromium (up to two attempts, healing locators if needed).</li>
+    <li>Review the run output: passed / failed, duration, and the record created.</li>
+    <li>Confirm the success message and generated ID appear on screen and no application errors are shown.</li>
+    <li>Kiro posts a structured results comment back to the Jira ticket and can update the Zephyr execution status.</li>
+  </ol>
+  <p class="tip"><b>Tip:</b> Keep the automated and manual outcomes in sync — update the Zephyr status so the Jira ticket reflects the true test state.</p>
+
+  <hr>
+
+  <h2>Example Use Case — Azure DevOps</h2>
+  <p><b>Scenario:</b> A work item with a user story and acceptance criteria needs an automated test covering the happy-path flow, with full traceability back to Azure DevOps.</p>
+  <ul>
+    <li>Trigger with <span class="mono">Automate work item &lt;ID&gt;</span> in Kiro.</li>
+    <li>Review the linked test cases and the generated feature file.</li>
+    <li>Confirm the locators discovered live on the target form.</li>
+    <li>Review the Page Object and Playwright spec.</li>
+    <li>Run the test and confirm the on-screen confirmation and generated record ID.</li>
+    <li>Confirm the PASS comment and evidence posted on the work item, and update the test case outcome.</li>
+  </ul>
+
+  <h2>Example Use Case — Jira</h2>
+  <p><b>Scenario:</b> A Jira ticket (for example, KD-7) needs an automated test with test cases managed in Zephyr Scale and results reported back to Jira.</p>
+  <ul>
+    <li>Trigger with <span class="mono">Automate KD-7</span> in Kiro.</li>
+    <li>Review the Zephyr test cases created and linked to the ticket, plus the generated feature file.</li>
+    <li>Confirm the locators discovered live on the target form.</li>
+    <li>Review the Page Object and Playwright spec (traceability points to the Jira ticket and Zephyr keys).</li>
+    <li>Run the test and confirm the on-screen confirmation and generated ID.</li>
+    <li>Confirm the structured comment posted on the Jira ticket, and update the Zephyr execution status.</li>
+  </ul>
+</div>
+
+</body>
+</html>

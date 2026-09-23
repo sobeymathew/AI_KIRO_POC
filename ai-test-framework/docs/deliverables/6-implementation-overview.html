@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Implementation Overview — Jira &amp; Azure DevOps Automation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f6fa;
+    padding: 40px 20px;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .cover {
+    background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+    color: #fff;
+    padding: 80px 50px;
+    text-align: center;
+  }
+  .cover h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 700; }
+  .cover .subtitle { font-size: 1.15em; opacity: 0.9; margin-bottom: 30px; }
+  .cover .meta { font-size: 0.95em; opacity: 0.85; }
+  .content { padding: 50px; }
+  h2 {
+    color: #1a2980;
+    font-size: 1.7em;
+    margin: 46px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #26d0ce;
+  }
+  h2:first-child { margin-top: 0; }
+  h3 { color: #2c3e50; font-size: 1.25em; margin: 28px 0 12px; }
+  h4 { color: #34495e; font-size: 1.05em; margin: 20px 0 10px; }
+  p { margin-bottom: 14px; }
+  ul, ol { margin: 0 0 15px 25px; }
+  li { margin-bottom: 6px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+  }
+  th {
+    background: #1a2980;
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+  }
+  td { padding: 9px 12px; border-bottom: 1px solid #e1e4e8; vertical-align: top; }
+  tr:nth-child(even) { background: #f8f9fb; }
+  code {
+    background: #f0f2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.88em;
+    color: #c7254e;
+  }
+  pre {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 18px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 18px 0;
+    font-size: 0.82em;
+    line-height: 1.45;
+  }
+  pre code { background: none; color: inherit; padding: 0; }
+  .pass { color: #27ae60; font-weight: 600; }
+  .fail { color: #c0392b; font-weight: 600; }
+  .toc {
+    background: #f8f9fb;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 22px 28px;
+    margin-bottom: 36px;
+  }
+  .toc h3 { margin-top: 0; }
+  .toc ol { margin-left: 20px; }
+  .toc a { color: #1a2980; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .badge {
+    display: inline-block;
+    background: #26d0ce;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+  .highlight-box {
+    background: #eaf6ff;
+    border-left: 4px solid #1a2980;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  blockquote {
+    border-left: 4px solid #26d0ce;
+    background: #f4fbfb;
+    padding: 12px 18px;
+    margin: 16px 0;
+    color: #34495e;
+    border-radius: 0 6px 6px 0;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .container { box-shadow: none; border-radius: 0; }
+    h2 { page-break-after: avoid; }
+    table, pre { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="cover">
+    <h1>Implementation Overview</h1>
+    <div class="subtitle">Jira &amp; Azure DevOps Automation &mdash; AI-Driven Test Automation Framework</div>
+    <div class="meta">Version 1.0 &nbsp;|&nbsp; September 2026 &nbsp;|&nbsp; Current Implementation</div>
+  </div>
+  <div class="content">
+
+    <div class="toc">
+      <h3>Contents</h3>
+      <ol>
+        <li><a href="#s1">Purpose</a></li>
+        <li><a href="#s2">Two Integrations, One Framework</a></li>
+        <li><a href="#s3">MCP Servers in Use</a></li>
+        <li><a href="#s4">Connection Details</a></li>
+        <li><a href="#s5">End-to-End Pipelines</a></li>
+        <li><a href="#s6">Worked Example &mdash; ADO Work Item 14</a></li>
+        <li><a href="#s7">Traceability</a></li>
+        <li><a href="#s8">Reusable Salesforce Locator Patterns</a></li>
+        <li><a href="#s9">Running &amp; Reporting</a></li>
+        <li><a href="#s10">Current Coverage Snapshot</a></li>
+        <li><a href="#s11">Steering Documents</a></li>
+        <li><a href="#s12">Summary</a></li>
+      </ol>
+    </div>
+
+    <h2 id="s1">1. Purpose</h2>
+    <p>This document describes the <strong>current, working implementation</strong> of the AI-orchestrated test automation framework, covering <strong>both</strong> requirements-management integrations:</p>
+    <ul>
+      <li><strong>Jira + Zephyr Scale</strong> &mdash; the original integration</li>
+      <li><strong>Azure DevOps (Boards + Test Cases)</strong> &mdash; the newer integration</li>
+    </ul>
+    <p>It is a companion to the framework documentation and workflow walkthrough, focused on what is actually built and running today, including a live worked example (Azure DevOps Work Item 14 &mdash; Expense Request).</p>
+
+    <h2 id="s2">2. Two Integrations, One Framework</h2>
+    <p>The automation engine (Kiro + Playwright + TypeScript + Page Object Model) is identical for both tracking systems. Only the <strong>requirements source</strong> and <strong>test-case store</strong> differ.</p>
+    <table>
+      <thead><tr><th>Concern</th><th>Jira Path</th><th>Azure DevOps Path</th></tr></thead>
+      <tbody>
+        <tr><td>Requirement source</td><td>Jira issue (e.g., <code>KD-7</code>)</td><td>ADO work item (e.g., <code>#14</code>)</td></tr>
+        <tr><td>Test case store</td><td>Zephyr Scale</td><td>ADO Test Case work items (Child links)</td></tr>
+        <tr><td>Test-case linkage</td><td>Zephyr <code>issue_links</code></td><td><code>Hierarchy-Forward</code> (Child)</td></tr>
+        <tr><td>Progress updates</td><td>Jira comment</td><td>Work item comment</td></tr>
+        <tr><td>Failure evidence</td><td>Comment / attachment</td><td>Work item attachment (screenshot)</td></tr>
+        <tr><td>Traceability</td><td>Jira + Zephyr</td><td>Native ADO work item links</td></tr>
+      </tbody>
+    </table>
+    <p>Everything downstream &mdash; feature files, locator discovery, Page Objects, test specs, execution, reporting &mdash; is shared.</p>
+
+    <h2 id="s3">3. MCP Servers in Use</h2>
+    <p>Configured in <code>.kiro/settings/mcp.json</code>:</p>
+    <table>
+      <thead><tr><th>MCP Server</th><th>Purpose</th><th>State</th></tr></thead>
+      <tbody>
+        <tr><td><code>azure-devops</code></td><td>Work items, test cases, links, comments</td><td>Enabled</td></tr>
+        <tr><td><code>playwright</code></td><td>Live locator discovery &amp; healing</td><td>Enabled</td></tr>
+        <tr><td><code>atlassian</code></td><td>Jira issues &amp; comments</td><td>Available (toggle)</td></tr>
+        <tr><td><code>zephyr</code></td><td>Zephyr Scale test cases</td><td>Available (toggle)</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight-box">Credentials/tokens live in the MCP config and <code>.env</code> files (gitignored). Use sandbox environments and synthetic data only.</div>
+
+    <h2 id="s4">4. Connection Details</h2>
+    <h3>Azure DevOps</h3>
+    <ul>
+      <li><strong>Organization:</strong> <code>Westpoint-MTI-Lab</code></li>
+      <li><strong>Project:</strong> <code>Westpoint-KiroAI Integration POC</code></li>
+      <li><strong>Test cases:</strong> created as <code>Test Case</code> work items, linked as <strong>Child</strong> of the parent story</li>
+      <li><strong>Auth:</strong> PAT via <code>AZURE_DEVOPS_EXT_PAT</code></li>
+    </ul>
+    <h3>Jira / Zephyr</h3>
+    <ul>
+      <li><strong>Cloud ID:</strong> <code>74bddaaa-afcf-407f-a20f-e93afc663c84</code></li>
+      <li><strong>Site:</strong> <code>milestone-team-a63qhc1b.atlassian.net</code></li>
+      <li><strong>Project Key:</strong> <code>KD</code> (Kiro-Dev)</li>
+      <li><strong>Zephyr:</strong> EU API, folders by module, test cases <code>STEP_BY_STEP</code> linked via <code>issue_links</code></li>
+    </ul>
+
+    <h2 id="s5">5. End-to-End Pipelines</h2>
+    <h3>5.1 Jira + Zephyr Pipeline</h3>
+<pre><code>1. Read Jira ticket          -&gt; getJiraIssue
+2. Create Zephyr test cases  -&gt; STEP_BY_STEP, linked to ticket
+3. Generate feature file     -&gt; Gherkin with tags + traceability header
+4. Discover &amp; verify locators-&gt; Playwright MCP healer (live page)
+5. Build Page Object         -&gt; extends BasePage
+6. Write test spec           -&gt; imports from base.fixture.ts
+7. Run &amp; heal                -&gt; execute, fix, re-run
+8. Post Jira comment         -&gt; structured results</code></pre>
+    <p><strong>Trigger:</strong> <code>"Automate KD-7"</code></p>
+
+    <h3>5.2 Azure DevOps Pipeline</h3>
+<pre><code>1. Read work item            -&gt; wit_work_item (get)
+2. Create ALL manual test    -&gt; Test Case work items (Child), sequential
+   cases (happy/validation/
+   negative/e2e)
+3. Generate feature file     -&gt; Gherkin with tags + traceability header
+4. Discover &amp; verify locators-&gt; Playwright MCP healer (live page)
+5. Build Page Object         -&gt; extends BasePage
+6. Write test spec           -&gt; imports from base.fixture.ts
+7. Run &amp; heal (2-attempt rule)-&gt; execute, fix, re-run
+8. Update work item          -&gt; comment (PASS/FAIL) + screenshot attachment</code></pre>
+    <p><strong>Trigger:</strong> <code>"Automate work item 14"</code></p>
+
+    <h4>Key differences enforced today</h4>
+    <ul>
+      <li><strong>Sequential test-case creation</strong> in ADO &mdash; parallel creation causes parent-link revision conflicts.</li>
+      <li><strong>2-attempt retry rule</strong> in ADO &mdash; on repeated failure, the <em>actual</em> on-screen result is reported and classified (test defect / application error / environment).</li>
+      <li><strong>Failure screenshots</strong> are uploaded and linked to the ADO work item as attachments.</li>
+    </ul>
+
+    <h2 id="s6">6. Worked Example &mdash; ADO Work Item 14 (Expense Request)</h2>
+    <p>A complete run of the Azure DevOps pipeline.</p>
+
+    <h3>6.1 Requirement</h3>
+    <p><strong>Work Item 14 &mdash; "Create Expense Request"</strong> (User Story, Sprint 1, Priority 2). As an employee, submit an Expense Request via the Service Catalog so the Expense Team can process it. Requested By is auto-populated and read-only; Requested For and Category are mandatory; file uploads limited to 4 MB with a defined format list; a unique request number is generated on success.</p>
+
+    <h3>6.2 Test Cases Created (Children of #14)</h3>
+    <table>
+      <thead><tr><th>ID</th><th>Title</th><th>Priority</th><th>Category</th></tr></thead>
+      <tbody>
+        <tr><td>#16</td><td>E2E: Create and submit Expense Request successfully with all mandatory fields</td><td>1</td><td>Happy / E2E</td></tr>
+        <tr><td>#17</td><td>Verify mandatory field validation (Requested For &amp; Category empty)</td><td>2</td><td>Validation</td></tr>
+        <tr><td>#18</td><td>Verify Requested By is auto-populated and read-only</td><td>2</td><td>Field behavior</td></tr>
+        <tr><td>#19</td><td>Verify file upload rejects unsupported format or file &gt; 4 MB</td><td>3</td><td>Negative / boundary</td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.3 Form Behavior Discovered (live, via Playwright MCP)</h3>
+    <p>The Expense Request form is <strong>cascading/progressive</strong> &mdash; later fields appear only after earlier selections:</p>
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Mandatory</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Requested By</td><td>text (read-only)</td><td>&mdash;</td><td>Auto-populated with logged-in user</td></tr>
+        <tr><td>Requested For</td><td>lookup (read-only)</td><td>Yes</td><td>Auto-populated with logged-in user</td></tr>
+        <tr><td>Category</td><td>dropdown</td><td>Yes</td><td>None / Corporate Card / Workday expense / Expense Policy</td></tr>
+        <tr><td>Subcategory</td><td>dropdown</td><td>Yes</td><td>Revealed after Category</td></tr>
+        <tr><td>Additional comments</td><td>text</td><td>&mdash;</td><td>Revealed after Subcategory</td></tr>
+        <tr><td>Business Justification</td><td>text</td><td>Yes</td><td>Revealed after Subcategory</td></tr>
+        <tr><td>Upload Files</td><td>file</td><td>No</td><td>Max 4 MB; png, pdf, jpg, jpeg, doc, docx, xls, xlsx, pst, ost, txt, csv, eml, msg</td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.4 Artifacts Produced</h3>
+    <table>
+      <thead><tr><th>Artifact</th><th>Path</th></tr></thead>
+      <tbody>
+        <tr><td>Feature file</td><td><code>src/test-case-management/features/istm/expense-request.feature</code></td></tr>
+        <tr><td>Page Object</td><td><code>src/playwright/pages/expense-request.page.ts</code></td></tr>
+        <tr><td>Test spec</td><td><code>src/playwright/tests/smoke/expense-request.spec.ts</code></td></tr>
+        <tr><td>Object repository</td><td><code>src/playwright/object-repository/pages/expense-request-page.repo.json</code></td></tr>
+        <tr><td>Fixture registration</td><td><code>src/playwright/fixtures/base.fixture.ts</code></td></tr>
+        <tr><td>Barrel export</td><td><code>src/playwright/pages/index.ts</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.5 Execution Result</h3>
+    <ul>
+      <li><span class="fail">Attempt 1: FAILED</span> (~47.5s) &mdash; application returned "Something went wrong. We couldn't complete your request due to a system issue."</li>
+      <li><span class="fail">Attempt 2: FAILED</span> (~50.1s) &mdash; same system error.</li>
+      <li><strong>Classification:</strong> <strong>Application error</strong> &mdash; not a test or locator defect. The automation navigated, verified the read-only Requested By, filled all cascading mandatory fields, and submitted correctly; the backend failed.</li>
+      <li><strong>Reported back:</strong> a structured FAILED comment was posted on Work Item 14, and the failure screenshot (<code>test-failed-1.png</code>) was uploaded and linked as a work item attachment.</li>
+    </ul>
+    <div class="highlight-box">This example demonstrates the framework's value even on a failing flow: it discovered undocumented cascading behavior, produced reusable assets, and returned precise, classified evidence to the tracker.</div>
+
+    <h2 id="s7">7. Traceability</h2>
+    <h3>Azure DevOps</h3>
+<pre><code>User Story (#14)
+  |- Child -&gt; Test Case work items (#16, #17, #18, #19)
+       |- referenced in -&gt; Feature file header (work item + TC IDs)
+            |- Page Object + Test Spec (traceability comment header)
+                 |- Execution result -&gt; work item comment + screenshot attachment</code></pre>
+    <h3>Jira + Zephyr</h3>
+<pre><code>Jira ticket (KD-X)
+  |- Zephyr test cases (issue_links)
+       |- referenced in -&gt; Feature file header (Jira + Zephyr refs)
+            |- Page Object + Test Spec
+                 |- Execution result -&gt; Jira comment</code></pre>
+    <p>Every feature file carries a traceability header; every test spec carries a comment header linking back to its source.</p>
+
+    <h2 id="s8">8. Reusable Salesforce Locator Patterns (verified)</h2>
+    <table>
+      <thead><tr><th>Element</th><th>Locator strategy</th></tr></thead>
+      <tbody>
+        <tr><td>Navigation menu</td><td><code>button:has-text("Service Request")</code></td></tr>
+        <tr><td>Catalog link</td><td><code>a[href="/itsm/s/service-catalog"]</code></td></tr>
+        <tr><td>Native dropdown</td><td><code>select[name="..."]</code> + <code>selectOption()</code></td></tr>
+        <tr><td>Named input</td><td><code>input[name="..."]</code></td></tr>
+        <tr><td>Lookup field</td><td><code>input[aria-label="..."]</code></td></tr>
+        <tr><td>Combobox option</td><td><code>[data-value="..."]</code></td></tr>
+        <tr><td>Submit</td><td><code>button:has-text("Submit")</code></td></tr>
+        <tr><td>Success / ID</td><td><code>getByText('Service Request Created Successfully')</code>, <code>getByText(/RQ-\d+/)</code></td></tr>
+        <tr><td>System error</td><td><code>getByText('Something went wrong')</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="s9">9. Running &amp; Reporting</h2>
+<pre><code># Smoke suite (fast feedback)
+npx playwright test --project=chromium --grep @smoke
+
+# Single spec (headed for debugging)
+npx playwright test src/playwright/tests/smoke/expense-request.spec.ts --project=chromium --headed
+
+# Reports
+npx playwright show-report
+npm run report:allure</code></pre>
+    <p>On failure, Playwright captures a screenshot, video, and trace under <code>src/reporting/artifacts/traces/...</code>. For ADO, the screenshot is attached to the work item; for Jira, results are posted as a comment.</p>
+
+    <h2 id="s10">10. Current Coverage Snapshot</h2>
+    <table>
+      <thead><tr><th>Feature / Form</th><th>Source</th><th>Spec</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>User Login</td><td>&mdash;</td><td><code>tests/smoke/user-login.spec.ts</code></td><td class="pass">Automated</td></tr>
+        <tr><td>COI Request</td><td>Jira KD-8</td><td><code>tests/smoke/coi-request.spec.ts</code></td><td class="pass">Automated</td></tr>
+        <tr><td>Request Assessments</td><td>Jira</td><td><code>tests/smoke/request-assessments.spec.ts</code></td><td class="pass">Automated</td></tr>
+        <tr><td>Security Exception Request</td><td>Jira KD-10</td><td><code>tests/smoke/security-exception-request.spec.ts</code></td><td class="pass">Automated</td></tr>
+        <tr><td>Expense Request</td><td>ADO #14</td><td><code>tests/smoke/expense-request.spec.ts</code></td><td class="fail">Automated (blocked by app error)</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="s11">11. Steering Documents (behavior guides)</h2>
+    <table>
+      <thead><tr><th>Doc</th><th>Covers</th></tr></thead>
+      <tbody>
+        <tr><td><code>product.md</code></td><td>Product context &amp; principles</td></tr>
+        <tr><td><code>tech.md</code></td><td>Stack, commands, config</td></tr>
+        <tr><td><code>structure.md</code></td><td>Folder layout, naming, architecture</td></tr>
+        <tr><td><code>automation-workflow.md</code></td><td>Jira master flow</td></tr>
+        <tr><td><code>azure-devops-workflow.md</code></td><td>Azure DevOps master flow</td></tr>
+        <tr><td><code>azure-devops-setup.md</code></td><td>ADO MCP connection setup</td></tr>
+        <tr><td><code>jira-comments.md</code></td><td>Jira connection &amp; comment format</td></tr>
+        <tr><td><code>zephyr-testcases.md</code></td><td>Zephyr test case rules</td></tr>
+        <tr><td><code>feature-file-generation.md</code></td><td>Gherkin format &amp; tagging</td></tr>
+        <tr><td><code>playwright-healer.md</code></td><td>Locator discovery &amp; self-healing</td></tr>
+        <tr><td><code>userstory-to-automation.md</code></td><td>Chat/document &rarr; automation</td></tr>
+        <tr><td><code>story-to-jira-automation.md</code></td><td>Story &rarr; Jira &rarr; Zephyr &rarr; automation</td></tr>
+        <tr><td><code>test-execution-reporting.md</code></td><td>Run suites &amp; report</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="s12">12. Summary</h2>
+    <ul>
+      <li>One AI-orchestrated framework serves <strong>both</strong> Jira/Zephyr and Azure DevOps with no engine changes.</li>
+      <li>The Azure DevOps path is fully implemented: read work item &rarr; create linked test cases &rarr; feature file &rarr; live locator discovery &rarr; Page Object &rarr; spec &rarr; 2-attempt run &rarr; work-item comment + screenshot attachment.</li>
+      <li>The Expense Request (Work Item 14) run is a concrete, end-to-end demonstration &mdash; including honest failure classification and evidence attachment.</li>
+      <li>All assets are traceable end-to-end and reusable across the ITSM application's request forms.</li>
+    </ul>
+
+  </div>
+</div>
+</body>
+</html>

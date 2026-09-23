@@ -189,15 +189,41 @@
     <p>We chose Salesforce Experience Cloud because it represents a <strong>worst-case difficulty</strong>: Lightning Web Components with deeply nested Shadow DOM, dynamic dependent form fields, and custom widgets with no accessible text.</p>
     <table>
       <tr><th>#</th><th>Scenario</th><th>Source</th><th>Status</th></tr>
-      <tr><td>1</td><td>Incident Creation</td><td>Jira ticket</td><td class="pass">Passing</td></tr>
-      <tr><td>2</td><td>Certificate of Insurance Request</td><td>Jira ticket</td><td class="pass">Passing</td></tr>
-      <tr><td>3</td><td>Expense Request</td><td>Document</td><td class="pass">Passing</td></tr>
+      <tr><td>1</td><td>Certificate of Insurance Request</td><td>Jira ticket</td><td class="pass">Passing</td></tr>
+      <tr><td>2</td><td>Expense Request</td><td>Document</td><td class="pass">Passing</td></tr>
       <tr><td>4</td><td>Request Assessments</td><td>Document</td><td class="pass">Passing</td></tr>
       <tr><td>5</td><td>Facilities Request</td><td>Document</td><td class="pass">Passing</td></tr>
       <tr><td>6</td><td>Security Exception Request</td><td>Jira ticket</td><td class="pass">Passing</td></tr>
     </table>
     <div class="highlight-box">
       <strong>The takeaway:</strong> If it works on Salesforce, it works on your web application — whether that's a public website, a customer portal, an internal tool, or a SaaS product.
+    </div>
+
+    <h3>ITSM Case Study — Salesforce Experience Cloud</h3>
+    <p>The proof-of-value target is an <strong>ITSM (IT Service Management)</strong> application on Salesforce Experience Cloud. Beyond Jira, the framework also drives the full lifecycle from <strong>Azure DevOps</strong> work items — the same automation engine, only the requirements source and test-case store change.</p>
+    <table>
+      <tr><th>Aspect</th><th>Jira Path</th><th>Azure DevOps Path</th></tr>
+      <tr><td>Requirement source</td><td>Jira issue (e.g., <code>KD-7</code>)</td><td>ADO work item (e.g., <code>#14</code>)</td></tr>
+      <tr><td>Test case store</td><td>Zephyr Scale</td><td>ADO Test Case work items (Child links)</td></tr>
+      <tr><td>Progress updates</td><td>Jira comment</td><td>Work item comment</td></tr>
+      <tr><td>Failure evidence</td><td>Comment / attachment</td><td>Work item screenshot attachment</td></tr>
+    </table>
+
+    <h4>Azure DevOps Flow (Work Item → Automation)</h4>
+    <p>Triggered by <code>"Automate work item &lt;ID&gt;"</code>. Kiro reads the work item, creates linked Test Case work items (as Children, sequentially), generates the feature file, discovers locators on the live page, builds the Page Object and spec, runs with a 2-attempt retry, and updates the work item with the result plus a screenshot on failure.</p>
+
+    <h4>Worked Example — Work Item 14 (Expense Request)</h4>
+    <p>An employee submits an Expense Request via the Service Catalog. Requested By is auto-populated &amp; read-only; Requested For and Category are mandatory; uploads are limited to 4 MB; a unique request number is generated on success. Four Test Cases were created and linked as Children of #14:</p>
+    <table>
+      <tr><th>ID</th><th>Title</th><th>Priority</th></tr>
+      <tr><td>#16</td><td>E2E: Create and submit Expense Request with all mandatory fields</td><td>1</td></tr>
+      <tr><td>#17</td><td>Verify mandatory field validation (Requested For &amp; Category empty)</td><td>2</td></tr>
+      <tr><td>#18</td><td>Verify Requested By is auto-populated and read-only</td><td>2</td></tr>
+      <tr><td>#19</td><td>Verify file upload rejects unsupported format or file &gt; 4 MB</td><td>3</td></tr>
+    </table>
+    <p>The healer discovered undocumented <strong>cascading</strong> behavior on the live form — Category &rarr; Subcategory &rarr; (Additional Comments + Business Justification).</p>
+    <div class="highlight-box">
+      <strong>Result:</strong> FAILED after 2 attempts — the application returned <em>"Something went wrong — we couldn't complete your request due to a system issue."</em> Classified as an <strong>application error</strong> (not a test/locator defect): the automation navigated, verified the read-only field, filled all cascading mandatory fields, and submitted correctly. A structured FAILED comment and the failure screenshot were posted back to Work Item 14 — demonstrating value even on a failing flow.
     </div>
 
     <h3>What the Framework Can Automate</h3>
@@ -248,7 +274,6 @@
     <p>Tested against Salesforce Experience Cloud — worst-case difficulty (Shadow DOM, dynamic forms):</p>
     <table>
       <tr><th>Scenario</th><th>Status</th></tr>
-      <tr><td>Incident Creation</td><td class="pass">✓</td></tr>
       <tr><td>COI Request</td><td class="pass">✓</td></tr>
       <tr><td>Expense Request</td><td class="pass">✓</td></tr>
       <tr><td>Request Assessments</td><td class="pass">✓</td></tr>
@@ -303,8 +328,6 @@
     <h3>Case Study Execution Results</h3>
     <table>
       <tr><th>Scenario</th><th>Status</th></tr>
-      <tr><td>Incident — Create</td><td class="pass">PASS</td></tr>
-      <tr><td>Incident — Validation</td><td class="pass">PASS</td></tr>
       <tr><td>COI Request</td><td class="pass">PASS</td></tr>
       <tr><td>Expense Request</td><td class="pass">PASS</td></tr>
       <tr><td>Request Assessments</td><td class="pass">PASS</td></tr>
@@ -316,7 +339,6 @@
     <h3>Performance</h3>
     <table>
       <tr><th>Test</th><th>Avg Duration</th></tr>
-      <tr><td>Incident Creation</td><td>~31 seconds</td></tr>
       <tr><td>COI Request</td><td>~35 seconds</td></tr>
       <tr><td>Expense Request</td><td>~33 seconds</td></tr>
       <tr><td>Security Exception</td><td>~35 seconds</td></tr>
@@ -439,7 +461,7 @@ npm run test:regression
 npm run test:e2e
 
 # Specific spec
-npx playwright test src/playwright/tests/smoke/incident-creation.spec.ts --project=chromium</code></pre>
+npx playwright test src/playwright/tests/smoke/coi-request.spec.ts --project=chromium</code></pre>
 
     <h3>Troubleshooting</h3>
     <table>

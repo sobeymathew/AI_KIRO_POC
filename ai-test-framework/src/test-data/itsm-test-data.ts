@@ -3,21 +3,6 @@
  * Contains form data, expected values, and test configurations for ITSM modules.
  */
 
-/** Incident creation test data */
-export const incidentTestData = {
-  validIncident: {
-    requestedFor: 'ITSM Requester 4',
-    urgency: 'Low - Productivity not impacted',
-    category: 'Hardware',
-    subCategory: 'Laptop',
-    briefDescription: 'Test incident for validation',
-    detailedDescription: 'This is a test incident created to verify the creation workflow',
-  },
-  expectedFormats: {
-    incidentNumberPattern: /INC-\d+/,
-  },
-};
-
 /** COI Request test data */
 export const coiTestData = {
   validRequest: {

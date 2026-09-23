@@ -1,0 +1,10 @@
+flowchart LR
+    A["Requirement<br/>Jira / Azure DevOps / Doc"] --> B["Create Test Cases<br/>Zephyr or ADO Test Case"]
+    B --> C["Generate Test Steps<br/>Gherkin feature file"]
+    C --> D["Discover Elements Live<br/>AI inspects real app"]
+    D --> E["Generate Playwright Code<br/>Page Object + Spec"]
+    E --> F["Execute Tests<br/>verify real record created"]
+    F --> G["Publish Results<br/>back to source system"]
+    G --> H["Full Traceability<br/>Requirement to Result"]
+
+    F -.->|locator broken| D

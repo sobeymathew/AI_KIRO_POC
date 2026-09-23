@@ -1,0 +1,19 @@
+flowchart TB
+    ENGINE["Kiro AI Automation Engine<br/>(shared core)"]
+
+    subgraph JPATH["Jira Path"]
+        J1["Read Jira User Story"]
+        J2["Create Zephyr Test Cases"]
+        J3["Post results + screenshots<br/>as Jira comment"]
+    end
+
+    subgraph APATH["Azure DevOps Path"]
+        A1["Read ADO Work Item"]
+        A2["Create linked Test Case<br/>work items (Child)"]
+        A3["Post results + screenshots<br/>as work item comment"]
+    end
+
+    J1 --> ENGINE
+    ENGINE --> J2 --> J3
+    A1 --> ENGINE
+    ENGINE --> A2 --> A3

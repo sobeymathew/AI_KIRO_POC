@@ -37,8 +37,8 @@ This document walks through the four automation workflows. They apply to **any w
 ```
 
 ### Example
-> **User:** "Automate KD-7"
-> **Result:** Incident Creation test → INC-000001171 created → passing → Jira updated
+> **User:** "Automate KD-8"
+> **Result:** COI Request test → record created → passing → Jira updated
 
 ---
 

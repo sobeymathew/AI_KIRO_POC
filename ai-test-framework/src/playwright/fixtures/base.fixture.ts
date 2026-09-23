@@ -1,10 +1,10 @@
 import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
-import { IncidentCreatePage } from '../pages/incident-create.page';
 import { CoiRequestPage } from '../pages/coi-request.page';
 import { RequestAssessmentsPage } from '../pages/request-assessments.page';
 import { SecurityExceptionRequestPage } from '../pages/security-exception-request.page';
 import { ExpenseRequestPage } from '../pages/expense-request.page';
+import { IncidentCreationPage } from '../pages/incident-creation.page';
 
 /**
  * Extended test fixtures providing ITSM page objects.
@@ -12,19 +12,16 @@ import { ExpenseRequestPage } from '../pages/expense-request.page';
  */
 type PageFixtures = {
   loginPage: LoginPage;
-  incidentCreatePage: IncidentCreatePage;
   coiRequestPage: CoiRequestPage;
   requestAssessmentsPage: RequestAssessmentsPage;
   securityExceptionPage: SecurityExceptionRequestPage;
   expenseRequestPage: ExpenseRequestPage;
+  incidentCreationPage: IncidentCreationPage;
 };
 
 export const test = base.extend<PageFixtures>({
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
-  },
-  incidentCreatePage: async ({ page }, use) => {
-    await use(new IncidentCreatePage(page));
   },
   coiRequestPage: async ({ page }, use) => {
     await use(new CoiRequestPage(page));
@@ -37,6 +34,9 @@ export const test = base.extend<PageFixtures>({
   },
   expenseRequestPage: async ({ page }, use) => {
     await use(new ExpenseRequestPage(page));
+  },
+  incidentCreationPage: async ({ page }, use) => {
+    await use(new IncidentCreationPage(page));
   },
 });
 
